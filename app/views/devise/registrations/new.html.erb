@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center my-3">Criar conta</h2> 
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field mb-3">
+          <%= f.label :name, class: "form-label fw-semibold" %><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+        </div>
+        
+        <div class="field mb-3">
+          <%= f.label :email, class: "form-label fw-semibold" %><br />
+          <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+        </div>
+
+        <div class="field mb-3">
+          <%= f.label :password, class: "form-label fw-semibold" %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
+
+        <div class="field mb-3">
+          <%= f.label :password_confirmation, class: "form-label fw-semibold" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+
+        <div class="actions d-grid gap-2 mb-3">
+          <%= f.submit "Criar conta", class: "btn btn-dark" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
+
+    <div class="col-8 text-center">
+       <%= image_tag "galpao.jpg", class: "img-fluid" %>
+    </div>
+  </div>
+</div>

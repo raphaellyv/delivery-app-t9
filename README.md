@@ -1,24 +1,52 @@
-# README
+# Sistema de Frete
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tabela de Conteúdos
+  * [Status do projeto](#status-do-projeto)
+  * [Descrição do projeto](#descrição-do-projeto)
+  * [Funcionalidades](#funcionalidades)
+  * [Como rodar a aplicação](#como-rodar-a-aplicação)
+  * [Como rodar os testes](#como-rodar-os-testes)
+  * [Informações adicionais](#informações-adicionais)
 
-Things you may want to cover:
+## Status do projeto
+<p align = "justify"> Em desenvolvimento :warning: </p>
 
-* Ruby version
+## Descrição do projeto
 
-* System dependencies
+<p align = "justify"> Aplicação para Sistema de Frete desenvolvida como parte da 1a etapa da turma 9 do Treinadev. </p>
 
-* Configuration
+## Funcionalidade
 
-* Database creation
+- [X] Somente usuários com domínio @sistemadefrete.com.br podem fazer login.
 
-* Database initialization
+## Como rodar a aplicação
 
-* How to run the test suite
+<p align = "justify"> No terminal, clone o projeto: </p>
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ git clone git@github.com:RaphaellyV/delivery-app-t9.git
+```
 
-* Deployment instructions
+<p align = "justify"> Entre na pasta do projeto: </p>
 
-* ...
+```
+$ cd delivery-app
+```
+
+<p align = "justify"> Instale as dependencias: </p>
+
+```
+$ bin/setup
+```
+
+## Como rodar os testes
+
+```
+$ rspec
+```
+
+## Informações adicionais
+
+* Projeto sendo desenvolvido em: https://github.com/users/RaphaellyV/projects/2.
+
+* Gems instaladas: capybara, rspec, devise 
