@@ -1,0 +1,26 @@
+<h1 class="my-3"><%= Order.model_name.human count: 2 %></h1>
+
+<% if @orders.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"><%= Order.human_attribute_name(:tracking_code) %></th>
+        <th scope="col"><%= t(:origin) %></th>
+        <th scope="col"><%= t(:destination) %></th>
+        <th scope="col"><%= Order.human_attribute_name(:distance) %></th>
+        <th scope="col"><%= Order.human_attribute_name(:status) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.tracking_code %></td>
+          <td><%= order.origin_city_and_state %></td>
+          <td><%= order.destination_city_and_state %></td>
+          <td><%= number_with_delimiter(order.distance, locale: :'pt-BR') %> km</td>
+          <td><%= Order.human_attribute_name("status.#{order.status}") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

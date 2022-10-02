@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_29_050441) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_02_045139) do
+  create_table "orders", force: :cascade do |t|
+    t.string "delivery_address"
+    t.string "delivery_city"
+    t.string "delivery_state"
+    t.string "delivery_postal_code"
+    t.string "recipient"
+    t.string "recipient_cpf"
+    t.string "recipient_email"
+    t.string "recipient_phone_number"
+    t.string "pick_up_address"
+    t.string "pick_up_city"
+    t.string "pick_up_state"
+    t.string "pick_up_postal_code"
+    t.string "sku"
+    t.integer "height"
+    t.integer "width"
+    t.integer "length"
+    t.integer "weight"
+    t.integer "distance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status"
+    t.string "tracking_code"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -20,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_050441) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

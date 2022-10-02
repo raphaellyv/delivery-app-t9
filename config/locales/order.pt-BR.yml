@@ -1,0 +1,35 @@
+pt-BR:
+  activerecord:
+    models:
+      order: 
+        one: "Ordem de Serviço"
+        other: "Ordens de Serviço"
+    attributes:
+      order:
+        delivery_address: "Endereço de Entrega"
+        delivery_city: "Cidade de Entrega"
+        delivery_postal_code: "CEP de Entrega"
+        delivery_state: "Estado de Entrega"
+        distance: "Distância"
+        height: "Altura"
+        length: "Comprimento"
+        pick_up_address: "Endereço de Coleta"
+        pick_up_city: "Cidade de Coleta"
+        pick_up_postal_code: "CEP de Coleta"
+        pick_up_state: "Estado de Coleta"
+        recipient: "Destinatário"
+        recipient_cpf: "CPF do Destinatário"
+        recipient_email: "E-mail do Destinatário"
+        recipient_phone_number: "Telefone do Destinatário"
+        status: "Status"
+        sku: "SKU"
+        tracking_code: "Código de Rastreio"
+        weight: "Peso"
+        width: "Largura"  
+      order/status:
+        delivered: "Finalizada"
+        en_route: "Em andamento"
+        pending: "Pendente"
+        
+        
+

@@ -45,6 +45,14 @@ $ bin/setup
 $ rails db:seed
 ```
 
+<p align = "justify"> Visualize no navegador: </p>
+
+```
+$ rails s
+```
+
+* Acesse http://localhost:3000/
+
 ## Como rodar os testes
 
 ```
@@ -56,3 +64,5 @@ $ rspec
 * Projeto sendo desenvolvido em: https://github.com/users/RaphaellyV/projects/2.
 
 * Gems instaladas: capybara, rspec, devise 
+
+* Usuário regular cadastrado: maria@sistemadefrete.com.br (senha: password)
