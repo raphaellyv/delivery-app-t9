@@ -1,3 +1,10 @@
 pt-BR:
-  origin: "Origem"
+  delivery_info: "Dados para Entrega"
+  delivery_local: "Local de Entrega"
   destination: "Destino"
+  dimensions: "Dimensões"
+  origin: "Origem"
+  pick_up_info: "Dados para Retirada"
+  pick_up_local: "Local de Retirada"
+  product_info: "Dados do Produto"
+  recipient_info: "Dados do Destinatário"

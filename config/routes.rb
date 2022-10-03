@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: "home#track"
 
-  resources :orders, only: [:index]
+  authenticate :user do
+    resources :orders, only: [:index, :show]
+  end
 end
