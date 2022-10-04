@@ -1,9 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2 class="my-3">Consulte seu pedido</h2> 
+<div class="container text-center">
+  <div class="row align-items-center">
+
+    <div class="col align-center">
+      <h1 class=" my-3">Consulte seu pedido</h1>
+      <%= form_with url: search_orders_path, method: :get do |form| %>
+        <div class="mb-3">
+          <%= form.text_field :query, placeholder: Order.human_attribute_name(:tracking_code).downcase, 
+              maxlength: 15, class: "form-control text-center" %>
+        </div>
+
+        <div class="d-grid mb-3">
+          <%= form.submit t(:search_order), class: "btn btn-dark" %>
+        </div>
+      <% end %>
     </div>
-    <div class="col text-center my-3">
+
+    <div class="col my-3">
        <%= image_tag "galpao.jpg", class: "img-fluid" %>
     </div>
   </div>

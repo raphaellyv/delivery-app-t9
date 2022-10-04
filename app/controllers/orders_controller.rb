@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, except: ['search']
   before_action :check_admin, only: [:new]
   
   def index
@@ -28,6 +29,11 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
   end 
+
+  def search
+    @tracking_code = params[:query]
+    @order = Order.find_by(tracking_code: @tracking_code)
+  end
 
   private
 

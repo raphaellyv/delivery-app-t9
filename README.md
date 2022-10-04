@@ -64,10 +64,10 @@ $ rspec
 
 ## Informações adicionais
 
-* Projeto sendo desenvolvido em: https://github.com/users/RaphaellyV/projects/2.
-
-* Gems instaladas: capybara, rspec, devise 
-
 * Usuário regular cadastrado: maria@sistemadefrete.com.br (senha: password)
 
 * Usuário administrador cadastrado: pessoa@sistemadefrete.com.br (senha: password)
+
+* Projeto sendo desenvolvido em: https://github.com/users/RaphaellyV/projects/2.
+
+* Gems instaladas: capybara, rspec, devise 

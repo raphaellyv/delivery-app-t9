@@ -13,6 +13,7 @@
     <dd><%= @order.dimensions %></dd> 
     <dt class="fw-semibold"><%= Order.human_attribute_name(:weight) %>:</dt>
     <dd><%= number_to_human(@order.weight, units: {unit: 'g', thousand: 'kg'}) %></dd>
+  </dl>
 </div>
 
 <hr>

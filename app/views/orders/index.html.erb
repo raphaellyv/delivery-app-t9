@@ -10,11 +10,11 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col"><%= Order.human_attribute_name(:tracking_code) %></th>
-        <th scope="col"><%= t(:origin) %></th>
-        <th scope="col"><%= t(:destination) %></th>
-        <th scope="col"><%= Order.human_attribute_name(:distance) %></th>
-        <th scope="col"><%= Order.human_attribute_name(:status) %></th>
+        <th><%= Order.human_attribute_name(:tracking_code) %></th>
+        <th><%= t(:origin) %></th>
+        <th><%= t(:destination) %></th>
+        <th><%= Order.human_attribute_name(:distance) %></th>
+        <th><%= Order.human_attribute_name(:status) %></th>
       </tr>
     </thead>
     <tbody>

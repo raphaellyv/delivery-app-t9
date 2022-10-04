@@ -1,0 +1,18 @@
+<h2 class="my-3"><%= t(:search_result) %><%= @tracking_code %></h2>
+
+<% if @order.present? %>
+  <h3 class="my-3 text-muted"><%= Order.human_attribute_name(:status) %>: <%= Order.human_attribute_name("status.#{@order.status}") %></h3>
+
+  <dl>
+    <dt class="fw-semibold"><%= Order.human_attribute_name(:sku) %>:</dt>
+    <dd><%= @order.sku %></dd>
+    <dt class="fw-semibold"><%= Order.human_attribute_name(:recipient) %>:</dt>
+    <dd><%= @order.recipient %></dd> 
+    <dt class="fw-semibold"><%= t(:delivery_local) %>:</dt>
+    <dd><%= @order.full_delivery_address %></dd>
+  </dl>
+<% else %>
+  <div class="alert alert-danger">
+    <%= t(:order_not_found) %>
+  </div>
+<% end %>

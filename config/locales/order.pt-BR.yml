@@ -7,7 +7,8 @@ pt-BR:
   height_cm: 'altura em cm'
   length_cm: "comprimento em cm"
   number_with_ddd: "somente o número com DDD"
-  numbers_only: 'somente números'
+  numbers_only: "somente números"
+  order_not_found: "Não foi possível encontrar o pedido"
   order_registration_error: "Não foi possível cadastrar a Ordem de Serviço"
   order_registration_success: "Ordem de Serviço cadastrada com sucesso"
   origin: "Origem"
@@ -15,6 +16,7 @@ pt-BR:
   pick_up_local: "Local de Retirada"
   product_info: "Dados do Produto"
   recipient_info: "Dados do Destinatário"
+  search_order: "Buscar Pedido"
   weight_g: "peso em g"
   width_cm: 'largura em cm'
   activerecord:
