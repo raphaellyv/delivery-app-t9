@@ -15,9 +15,12 @@
 
 <p align = "justify"> Aplicação para Sistema de Frete desenvolvida como parte da 1a etapa da turma 9 do Treinadev. </p>
 
-## Funcionalidade
+## Funcionalidades
 
 - [X] Somente usuários com domínio @sistemadefrete.com.br podem fazer login.
+- [X] Usuários administradores podem cadastrar uma ordem de serviço com status pendente.
+- [X] Usuários regulares e administradores podem ver lista de ordens de serviço.
+- [X] Usuários regulares e administradores podem ver detalhes de uma ordem de serviço.
 
 ## Como rodar a aplicação
 
@@ -66,3 +69,5 @@ $ rspec
 * Gems instaladas: capybara, rspec, devise 
 
 * Usuário regular cadastrado: maria@sistemadefrete.com.br (senha: password)
+
+* Usuário administrador cadastrado: pessoa@sistemadefrete.com.br (senha: password)

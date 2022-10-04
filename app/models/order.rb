@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  enum :status, { pending: 10, en_route: 20, delivered: 30 }, default: :pending
+  enum :status, { pending: 10, en_route: 20, delivered_late: 30, delivered_on_time: 40 }, default: :pending
 
   before_validation :generate_code, on: :create
 

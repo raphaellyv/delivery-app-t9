@@ -1,5 +1,11 @@
 <h1 class="my-3"><%= Order.model_name.human count: 2 %></h1>
 
+<% if current_user.admin? %>
+  <div class="my-3">
+    <%= link_to "#{ t(:register) } #{ Order.model_name.human }", new_order_path, class: "btn btn-outline-dark " %>
+  </div>
+<% end %>
+
 <% if @orders.any? %>
   <table class="table">
     <thead>

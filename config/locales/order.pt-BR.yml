@@ -1,4 +1,22 @@
 pt-BR:
+  delivery_info: "Dados para Entrega"
+  delivery_local: "Local de Entrega"
+  destination: "Destino"
+  dimensions: "Dimensões"
+  distance_km: "distância em km"
+  height_cm: 'altura em cm'
+  length_cm: "comprimento em cm"
+  number_with_ddd: "somente o número com DDD"
+  numbers_only: 'somente números'
+  order_registration_error: "Não foi possível cadastrar a Ordem de Serviço"
+  order_registration_success: "Ordem de Serviço cadastrada com sucesso"
+  origin: "Origem"
+  pick_up_info: "Dados para Retirada"
+  pick_up_local: "Local de Retirada"
+  product_info: "Dados do Produto"
+  recipient_info: "Dados do Destinatário"
+  weight_g: "peso em g"
+  width_cm: 'largura em cm'
   activerecord:
     models:
       order: 
@@ -27,7 +45,8 @@ pt-BR:
         weight: "Peso"
         width: "Largura"  
       order/status:
-        delivered: "Finalizada"
+        delivered_late: "Finalizada com Atraso"
+        delivered_on_time: "Finalizada dentro do Prazo"
         en_route: "Em andamento"
         pending: "Pendente"
         

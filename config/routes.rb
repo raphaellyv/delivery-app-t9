@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root to: "home#track"
 
   authenticate :user do
-    resources :orders, only: [:index, :show]
+    resources :orders, only: [:index, :show, :new, :create]
   end
 end

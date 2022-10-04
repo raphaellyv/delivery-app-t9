@@ -12,5 +12,6 @@ describe 'Visitante vê a tela inicial' do
       expect(page).to have_link 'Sistema de Frete'
     end
     expect(page).to have_content 'Consulte seu pedido'
+    expect(page).not_to have_link 'Ordens de Serviço'
   end
 end

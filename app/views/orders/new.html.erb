@@ -1,0 +1,279 @@
+<h1 class="my-3"><%= t(:new_fem) %> <%= Order.model_name.human %></h1>
+
+<%= form_with(model: @order) do |f| %>
+  <div class="mb-3">
+    <%= f.label :distance, class: "form-label fw-semibold" %>
+    <%= f.number_field :distance, placeholder: t(:distance_km), class: "form-control" %>
+
+    <% if(@order.errors.include? :distance) %>
+      <div class="my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:distance).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+
+  <h3 class="my-3"><%= t(:product_info) %></h3>
+
+  <div class="mb-3">
+    <%= f.label :sku, class: "form-label fw-semibold" %>
+    <%= f.text_field :sku, class: "form-control", maxlength: 20 %>
+
+    <% if(@order.errors.include? :sku) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:sku).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :length, class: "form-label fw-semibold" %>
+      <%= f.number_field :length, placeholder: t(:length_cm), class: "form-control" %>
+
+      <% if(@order.errors.include? :length) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @order.errors.full_messages_for(:length).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :width, class: "form-label fw-semibold" %>
+      <%= f.number_field :width, placeholder: t(:width_cm), class: "form-control" %>
+
+      <% if(@order.errors.include? :width) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @order.errors.full_messages_for(:width).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :height, class: "form-label fw-semibold" %>
+      <%= f.number_field :height, placeholder: t(:height_cm), class: "form-control" %>
+
+      <% if(@order.errors.include? :height) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @order.errors.full_messages_for(:height).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= f.label :weight, class: "form-label fw-semibold" %>
+    <%= f.number_field :weight, class: "form-control", placeholder: t(:weight_g) %>
+
+    <% if(@order.errors.include? :weight) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:weight).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <h3 class="my-3"><%= t(:recipient_info) %></h3>
+
+  <div class="mb-3">
+    <%= f.label :recipient, class: "form-label fw-semibold" %>
+    <%= f.text_field :recipient, class: "form-control" %>
+
+    <% if(@order.errors.include? :recipient) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:recipient).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :recipient_cpf, class: "form-label fw-semibold" %>
+    <%= f.text_field :recipient_cpf, placeholder: 'somente números', maxlength: 11, class: "form-control" %>
+    <% if(@order.errors.include? :recipient_cpf) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:recipient_cpf).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :recipient_email, class: "form-label fw-semibold" %>
+    <%= f.email_field :recipient_email, class: "form-control" %>
+
+    <% if(@order.errors.include? :recipient_email) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:recipient_email).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :recipient_phone_number, class: "form-label fw-semibold" %>
+    <%= f.telephone_field :recipient_phone_number, placeholder: t(:number_with_ddd), maxlength: 11, class: "form-control" %>
+
+    <% if(@order.errors.include? :recipient_phone_number) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:recipient_phone_number).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <h3 class="my-3"><%= t(:pick_up_info) %></h3>
+
+  <div class="mb-3">
+    <%= f.label :pick_up_address, class: "form-label fw-semibold" %>
+    <%= f.text_field :pick_up_address, class: "form-control" %>
+
+    <% if(@order.errors.include? :pick_up_address) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:pick_up_address).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :pick_up_city, class: "form-label fw-semibold" %>
+      <%= f.text_field :pick_up_city, class: "form-control" %>
+
+      <% if(@order.errors.include? :pick_up_city) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:pick_up_city).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :pick_up_state, class: "form-label fw-semibold" %>
+      <%= f.text_field :pick_up_state, class: "form-control" %>
+
+      <% if(@order.errors.include? :pick_up_state) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:pick_up_state).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :pick_up_postal_code, class: "form-label fw-semibold" %>
+      <%= f.text_field :pick_up_postal_code, placeholder: t(:numbers_only), maxlength: 8, class: "form-control" %>
+
+      <% if(@order.errors.include? :pick_up_postal_code) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:pick_up_postal_code).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+  <h3 class="my-3"><%= t(:delivery_info) %></h3>
+
+  <div class="mb-3">
+    <%= f.label :delivery_address, class: "form-label fw-semibold" %>
+    <%= f.text_field :delivery_address, class: "form-control" %>
+
+    <% if(@order.errors.include? :delivery_address) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:delivery_address).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :delivery_city, class: "form-label fw-semibold" %>
+      <%= f.text_field :delivery_city, class: "form-control" %>
+
+      <% if(@order.errors.include? :delivery_city) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:delivery_city).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :delivery_state, class: "form-label fw-semibold" %>
+      <%= f.text_field :delivery_state, class: "form-control" %>
+
+      <% if(@order.errors.include? :delivery_state) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:delivery_state).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :delivery_postal_code, class: "form-label fw-semibold" %>
+      <%= f.text_field :delivery_postal_code, placeholder: t(:numbers_only), maxlength: 8, class: "form-control" %>
+
+      <% if(@order.errors.include? :delivery_postal_code) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @order.errors.full_messages_for(:delivery_postal_code).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.submit class: "btn btn-dark" %>
+  </div>
+<% end %>
