@@ -2,9 +2,9 @@
   <div>
     <%= render 'new' %>
   </div>
-<% end %>
 
-<br>
+  <br>
+<% end %>
 
 <h1 class="my-3"><%= ShippingOption.model_name.human count: 2 %></h1>
 
@@ -47,7 +47,7 @@
             <td><%= button_to t(:enable), enable_shipping_option_path(so.id), class: "btn btn-outline-success" %></td>
 
           <% elsif current_user.admin? && so.status == 'enabled' %>
-            <td><%= button_to t(:disable), root_path, class: "btn btn-outline-danger" %></td>
+            <td><%= button_to t(:disable), disable_shipping_option_path(so.id), class: "btn btn-outline-danger" %></td>
           <% end %>
         </tr>
       <% end %>

@@ -18,13 +18,16 @@
 ## Funcionalidades
 
 - [X] Somente usuários com domínio @sistemadefrete.com.br podem fazer login.
+- [X] Usuários com domínio @sistemadefrete.com.br podem fazer cadastro e terão acesso como usuário regular.
+
 - [X] Usuários administradores podem cadastrar uma ordem de serviço com status pendente.
 - [X] Usuários regulares e administradores podem ver lista de ordens de serviço.
 - [X] Usuários regulares e administradores podem ver detalhes de uma ordem de serviço.
 - [X] Visitantes podem buscar por uma ordem de serviço pelo código de rastreio.
+
 - [X] Usuários regulares e administradores podem ver lista de modalidades de transporte.
 - [X] Usuários administradores podem criar modalidades de transporte com o status "Inativa".
-- [X] Usuários administradores podem alterar o status de uma modalidade de transporte para "Ativa".
+- [X] Usuários administradores podem alterar o status de uma modalidade de transporte para "Ativa" ou "Inativa".
 
 ## Como rodar a aplicação
 

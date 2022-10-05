@@ -1,6 +1,7 @@
 pt-BR:
   currency: "preço em reais"
   disable: "Desativar"
+  disable_so_success: "Modalidade de Transporte desativada com sucesso"
   distance_range: "Intervalo de Distância"
   enable: "Ativar"
   enable_so_success: "Modalidade de Transporte ativada com sucesso"

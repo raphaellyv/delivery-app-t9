@@ -28,6 +28,12 @@ class ShippingOptionsController < ApplicationController
     redirect_to shipping_options_path, notice: t(:enable_so_success)
   end
 
+  def disable
+    @shipping_option = ShippingOption.find(params[:id])
+    @shipping_option.disabled!
+    redirect_to shipping_options_path, notice: t(:disable_so_success)
+  end
+
   private
 
   def check_admin

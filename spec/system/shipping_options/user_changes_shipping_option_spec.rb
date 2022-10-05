@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário ativa modalidade de transporte' do
+describe 'Usuário altera status da modalidade de transporte' do
   it 'e não deve ser um usuário regular' do
     # Arrange
     user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
@@ -37,11 +37,11 @@ describe 'Usuário ativa modalidade de transporte' do
       expect(page).not_to have_button 'Desativar'
     end
 
-    it 'com sucesso' do
+    it 'para ativa' do
       # Arrange
       admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
 
-      so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
+      ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
                                   delivery_fee: 5.50)
 
       # Act
@@ -53,6 +53,24 @@ describe 'Usuário ativa modalidade de transporte' do
       # Assert
       expect(page).to have_content 'Modalidade de Transporte ativada com sucesso'
       expect(page).to have_button 'Desativar'
+    end
+
+    it 'para inativa' do
+      # Arrange
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+
+      ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
+                                  delivery_fee: 5.50, status: :enabled)
+
+      # Act
+      login_as admin
+      visit root_path
+      click_on 'Modalidades de Transporte'
+      click_on 'Desativar'
+
+      # Assert
+      expect(page).to have_content 'Modalidade de Transporte desativada com sucesso'
+      expect(page).to have_button 'Ativar'
     end
   end
 end
