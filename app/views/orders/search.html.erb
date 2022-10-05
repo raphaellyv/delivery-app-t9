@@ -4,10 +4,8 @@
   <h3 class="my-3 text-muted"><%= Order.human_attribute_name(:status) %>: <%= Order.human_attribute_name("status.#{@order.status}") %></h3>
 
   <dl>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:sku) %>:</dt>
-    <dd><%= @order.sku %></dd>
-    <dt class="fw-semibold"><%= Order.human_attribute_name(:recipient) %>:</dt>
-    <dd><%= @order.recipient %></dd> 
+    <dt class="fw-semibold"><%= t(:pick_up_local) %>:</dt>
+    <dd><%= @order.full_pick_up_address %></dd> 
     <dt class="fw-semibold"><%= t(:delivery_local) %>:</dt>
     <dd><%= @order.full_delivery_address %></dd>
   </dl>
