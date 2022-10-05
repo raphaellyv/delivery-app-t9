@@ -1,6 +1,11 @@
 pt-BR:
+  characters_min: " caracteres no mínimo"
   check_errors: "Veja os erros abaixo:"
+  delivery_app: "Sistema de Frete"
   new_fem: "Nova"
   new_masc: "Novo"
   register: "Cadastrar"
   search_result: "Resultado da Busca por "
+  sign_in: "Entrar"
+  sign_out: "Sair"
+  sign_up: "Criar conta"

@@ -21,6 +21,7 @@
 - [X] Usuários administradores podem cadastrar uma ordem de serviço com status pendente.
 - [X] Usuários regulares e administradores podem ver lista de ordens de serviço.
 - [X] Usuários regulares e administradores podem ver detalhes de uma ordem de serviço.
+- [X] Visitantes podem buscar por uma ordem de serviço pelo código de rastreio.
 
 ## Como rodar a aplicação
 
@@ -70,4 +71,4 @@ $ rspec
 
 * Projeto sendo desenvolvido em: https://github.com/users/RaphaellyV/projects/2.
 
-* Gems instaladas: capybara, rspec, devise 
+* Gems instaladas: bootstrap, capybara, devise, rspec
