@@ -21,7 +21,7 @@ describe 'Usuário cria ordem de serviço' do
 
     # Assert
     expect(current_path).to eq root_path
-    expect(page).to have_content 'Área restrita para administradores'
+    expect(page).to have_content 'Área restrita a administradores'
   end
 
   context 'como administrador' do

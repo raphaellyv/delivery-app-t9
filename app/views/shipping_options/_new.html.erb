@@ -1,0 +1,101 @@
+<h1 class="my-3"><%= t(:new_fem) %> <%= ShippingOption.model_name.human %></h1>
+
+<%= form_with(model: @shipping_option) do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label fw-semibold" %>
+    <%= f.text_field :name, class: "form-control" %>
+
+    <% if(@shipping_option.errors.include? :name) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @shipping_option.errors.full_messages_for(:name).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :delivery_fee, class: "form-label fw-semibold" %>
+    <%= f.number_field :delivery_fee, step: 0.05, placeholder: t(:currency), class: "form-control" %>
+
+    <% if(@shipping_option.errors.include? :delivery_fee) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @shipping_option.errors.full_messages_for(:delivery_fee).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :min_distance, class: "form-label fw-semibold" %>
+      <%= f.number_field :min_distance, placeholder: t(:distance_km), class: "form-control" %>
+
+      <% if(@shipping_option.errors.include? :min_distance) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @shipping_option.errors.full_messages_for(:min_distance).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col">
+      <%= f.label :max_distance, class: "form-label fw-semibold" %>
+      <%= f.number_field :max_distance, placeholder: t(:distance_km), class: "form-control" %>
+
+      <% if(@shipping_option.errors.include? :max_distance) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @shipping_option.errors.full_messages_for(:max_distance).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :min_weight, class: "form-label fw-semibold" %>
+      <%= f.number_field :min_weight, placeholder: t(:weight_g), class: "form-control" %>
+
+      <% if(@shipping_option.errors.include? :min_weight) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @shipping_option.errors.full_messages_for(:min_weight).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col">
+      <%= f.label :max_weight, class: "form-label fw-semibold" %>
+      <%= f.number_field :max_weight, placeholder: t(:weight_g), class: "form-control" %>
+
+      <% if(@shipping_option.errors.include? :max_weight) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @shipping_option.errors.full_messages_for(:max_weight).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="d-grid mb-3">
+    <%= f.submit class: "btn btn-dark" %>
+  </div>
+<% end %>

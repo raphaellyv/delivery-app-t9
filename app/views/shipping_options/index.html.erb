@@ -1,0 +1,60 @@
+<% if current_user.admin? %>
+  <div>
+    <%= render 'new' %>
+  </div>
+<% end %>
+
+<br>
+
+<h1 class="my-3"><%= ShippingOption.model_name.human count: 2 %></h1>
+
+<% if @shipping_options.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= ShippingOption.human_attribute_name(:name) %></th>
+        <th><%= t(:distance_range) %></th>
+        <th><%= t(:weight_range) %></th>
+        <th><%= ShippingOption.human_attribute_name(:delivery_fee) %></th>
+        <th><%= ShippingOption.human_attribute_name(:status) %></th>
+
+        <% if current_user.admin? %>
+          <th><%= t(:change_status) %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shipping_options.each do |so| %>
+        <tr>
+          <td><%= so.name %></td>
+          <td>
+            <%= number_to_human(so.min_distance, delimiter: ' ', units: { unit: 'km' }) %><%= t(:to) %>
+            <%= number_to_human(so.max_distance, delimiter: ' ', units: { unit: 'km' }) %>
+          </td>
+          <td>
+            <%= number_to_human(so.min_weight, units: {unit: 'g', thousand: 'kg'}) %><%= t(:to) %> 
+            <%= number_to_human(so.max_weight, units: {unit: 'g', thousand: 'kg'}) %>
+          </td>
+          <td><%= number_to_currency(so.delivery_fee) %></td>
+
+          <% if so.status == 'enabled' %>
+            <td class="fw-semibold text-success"><%= ShippingOption.human_attribute_name("status.#{so.status}") %></td>
+          <% else %>
+            <td class="fw-semibold text-danger"><%= ShippingOption.human_attribute_name("status.#{so.status}") %></td>
+          <% end %>
+
+          <% if current_user.admin? && so.status == 'disabled' %>
+            <td><%= button_to t(:enable), enable_shipping_option_path(so.id), class: "btn btn-outline-success" %></td>
+
+          <% elsif current_user.admin? && so.status == 'enabled' %>
+            <td><%= button_to t(:disable), root_path, class: "btn btn-outline-danger" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t(:no_shipping_option_registered) %>
+  </div>
+<% end %>

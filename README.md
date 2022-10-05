@@ -22,6 +22,9 @@
 - [X] Usuários regulares e administradores podem ver lista de ordens de serviço.
 - [X] Usuários regulares e administradores podem ver detalhes de uma ordem de serviço.
 - [X] Visitantes podem buscar por uma ordem de serviço pelo código de rastreio.
+- [X] Usuários regulares e administradores podem ver lista de modalidades de transporte.
+- [X] Usuários administradores podem criar modalidades de transporte com o status "Inativa".
+- [X] Usuários administradores podem alterar o status de uma modalidade de transporte para "Ativa".
 
 ## Como rodar a aplicação
 

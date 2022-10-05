@@ -1,7 +1,10 @@
 pt-BR:
+  admin_restricted_area: "Área restrita a administradores"
+  change_status: "Alterar Status"
   characters_min: " caracteres no mínimo"
   check_errors: "Veja os erros abaixo:"
   delivery_app: "Sistema de Frete"
+  distance_km: "distância em km"
   new_fem: "Nova"
   new_masc: "Novo"
   register: "Cadastrar"
@@ -9,3 +12,4 @@ pt-BR:
   sign_in: "Entrar"
   sign_out: "Sair"
   sign_up: "Criar conta"
+  weight_g: "peso em g"

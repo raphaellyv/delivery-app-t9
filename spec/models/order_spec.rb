@@ -1,141 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  describe '#destination_city_and_state' do
-    it 'exibe o nome da cidade e estado de destino' do
-      # Arrange
-      order = Order.new(delivery_city: 'Rio de Janeiro', delivery_state: 'RJ')
-
-      # Act
-
-      # Assert
-      expect(order.destination_city_and_state).to eq 'Rio de Janeiro - RJ'
-    end
-  end
-
-  describe '#dimensions' do
-    it 'exibe comprimento, largura e altura do produto' do
-      # Arrange
-      order = Order.new(length: 100, width: 70, height: 50)
-
-      # Act
-
-      # Assert
-      expect(order.dimensions).to eq '100 cm x 70 cm x 50 cm'
-    end
-  end
-
-  describe '#formatted_delivery_postal_code' do
-    it 'exibe o CEP de entrega formatado' do
-      # Arrange
-      order = Order.new(delivery_postal_code: '12345678')
-
-      # Act
-
-      # Assert
-      expect(order.formatted_delivery_postal_code).to eq '12.345-678'
-    end
-  end
-
-  describe '#formatted_pick_up_postal_code' do
-    it 'exibe o CEP de retirada formatado' do
-      # Arrange
-      order = Order.new(pick_up_postal_code: '12345678')
-
-      # Act
-
-      # Assert
-      expect(order.formatted_pick_up_postal_code).to eq '12.345-678'
-    end
-  end
-  
-  describe '#formatted_cpf' do
-    it 'exibe o CPF do destinatário formatado' do
-      # Arrange
-      order = Order.new(recipient_cpf: '12345678901')
-
-      # Act
-
-      # Assert
-      expect(order.formatted_cpf).to eq '123.456.789-01'
-    end
-  end
-
-  describe '#formatted_phone_number' do
-    it 'exibe o telefone de 11 dígitos do destinatário formatado' do
-      # Arrange
-      order = Order.new(recipient_phone_number: '12345678901')
-
-      # Act
-
-      # Assert
-      expect(order.formatted_phone_number).to eq '(12) 34567-8901'
-    end
-
-    it 'exibe o telefone de 10 dígitos do destinatário formatado' do
-      # Arrange
-      order = Order.new(recipient_phone_number: '1234567890')
-
-      # Act
-
-      # Assert
-      expect(order.formatted_phone_number).to eq '(12) 3456-7890'
-    end
-  end
-
-  describe '#full_delivery_address' do
-    it 'exibe o endereço, cidade e estado de entrega' do
-      # Arrange
-      order = Order.new(delivery_address: 'Estrada do Porto, 70', delivery_city: 'Santo André', delivery_state: 'SP')
-
-      # Act
-
-      # Assert
-      expect(order.full_delivery_address).to eq 'Estrada do Porto, 70 - Santo André - SP'
-    end
-  end
-
-  describe '#full_pick_up_address' do
-    it 'exibe o endereço, cidade e estado de retirada' do
-      # Arrange
-      order = Order.new(pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'Santo André', pick_up_state: 'SP')
-
-      # Act
-
-      # Assert
-      expect(order.full_pick_up_address).to eq 'Estrada do Porto, 70 - Santo André - SP'
-    end
-  end
-
-  describe '#origin_city_and_state' do
-    it 'exibe o nome da cidade e estado de origem' do
-      # Arrange
-      order = Order.new(pick_up_city: 'São Paulo', pick_up_state: 'SP')
-
-      # Act
-
-      # Assert
-      expect(order.origin_city_and_state).to eq 'São Paulo - SP'
-    end
-  end
-
-  describe '#pending?' do
-    it 'a ordem de serviço é criada como pendente' do
-      # Arrange
-      order = Order.create!(delivery_address: 'Rua das Palmeiras, 13', delivery_city: 'Rio de Janeiro', delivery_state: 'RJ', 
-                            delivery_postal_code: '28200000', recipient: 'Denise Silva', recipient_cpf: '00000000000',
-                            recipient_email: 'denise@email.com', recipient_phone_number: '00000000000', 
-                            pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'São Paulo', pick_up_state: 'SP', 
-                            pick_up_postal_code: '30000000', sku: '00000000000000000000', height: 60, width: 40, length: 100, 
-                            weight: 300, distance: 60)
-
-      # Act
-      
-      # Assert
-      expect(order.pending?).to be true
-    end
-  end
-
   describe '#valid?' do
     context 'format' do
       it 'delivery_postal_code deve conter somente números' do
@@ -748,6 +613,141 @@ RSpec.describe Order, type: :model do
         # Assert
         expect(order.errors[:distance]).to include('não pode ficar em branco')
       end
+    end
+  end
+
+  describe '#destination_city_and_state' do
+    it 'exibe o nome da cidade e estado de destino' do
+      # Arrange
+      order = Order.new(delivery_city: 'Rio de Janeiro', delivery_state: 'RJ')
+
+      # Act
+
+      # Assert
+      expect(order.destination_city_and_state).to eq 'Rio de Janeiro - RJ'
+    end
+  end
+
+  describe '#dimensions' do
+    it 'exibe comprimento, largura e altura do produto' do
+      # Arrange
+      order = Order.new(length: 100, width: 70, height: 50)
+
+      # Act
+
+      # Assert
+      expect(order.dimensions).to eq '100 cm x 70 cm x 50 cm'
+    end
+  end
+
+  describe '#formatted_delivery_postal_code' do
+    it 'exibe o CEP de entrega formatado' do
+      # Arrange
+      order = Order.new(delivery_postal_code: '12345678')
+
+      # Act
+
+      # Assert
+      expect(order.formatted_delivery_postal_code).to eq '12.345-678'
+    end
+  end
+
+  describe '#formatted_pick_up_postal_code' do
+    it 'exibe o CEP de retirada formatado' do
+      # Arrange
+      order = Order.new(pick_up_postal_code: '12345678')
+
+      # Act
+
+      # Assert
+      expect(order.formatted_pick_up_postal_code).to eq '12.345-678'
+    end
+  end
+  
+  describe '#formatted_cpf' do
+    it 'exibe o CPF do destinatário formatado' do
+      # Arrange
+      order = Order.new(recipient_cpf: '12345678901')
+
+      # Act
+
+      # Assert
+      expect(order.formatted_cpf).to eq '123.456.789-01'
+    end
+  end
+
+  describe '#formatted_phone_number' do
+    it 'exibe o telefone de 11 dígitos do destinatário formatado' do
+      # Arrange
+      order = Order.new(recipient_phone_number: '12345678901')
+
+      # Act
+
+      # Assert
+      expect(order.formatted_phone_number).to eq '(12) 34567-8901'
+    end
+
+    it 'exibe o telefone de 10 dígitos do destinatário formatado' do
+      # Arrange
+      order = Order.new(recipient_phone_number: '1234567890')
+
+      # Act
+
+      # Assert
+      expect(order.formatted_phone_number).to eq '(12) 3456-7890'
+    end
+  end
+
+  describe '#full_delivery_address' do
+    it 'exibe o endereço, cidade e estado de entrega' do
+      # Arrange
+      order = Order.new(delivery_address: 'Estrada do Porto, 70', delivery_city: 'Santo André', delivery_state: 'SP')
+
+      # Act
+
+      # Assert
+      expect(order.full_delivery_address).to eq 'Estrada do Porto, 70 - Santo André - SP'
+    end
+  end
+
+  describe '#full_pick_up_address' do
+    it 'exibe o endereço, cidade e estado de retirada' do
+      # Arrange
+      order = Order.new(pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'Santo André', pick_up_state: 'SP')
+
+      # Act
+
+      # Assert
+      expect(order.full_pick_up_address).to eq 'Estrada do Porto, 70 - Santo André - SP'
+    end
+  end
+
+  describe '#origin_city_and_state' do
+    it 'exibe o nome da cidade e estado de origem' do
+      # Arrange
+      order = Order.new(pick_up_city: 'São Paulo', pick_up_state: 'SP')
+
+      # Act
+
+      # Assert
+      expect(order.origin_city_and_state).to eq 'São Paulo - SP'
+    end
+  end
+
+  describe '#pending?' do
+    it 'a ordem de serviço é criada como pendente' do
+      # Arrange
+      order = Order.create!(delivery_address: 'Rua das Palmeiras, 13', delivery_city: 'Rio de Janeiro', delivery_state: 'RJ', 
+                            delivery_postal_code: '28200000', recipient: 'Denise Silva', recipient_cpf: '00000000000',
+                            recipient_email: 'denise@email.com', recipient_phone_number: '00000000000', 
+                            pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'São Paulo', pick_up_state: 'SP', 
+                            pick_up_postal_code: '30000000', sku: '00000000000000000000', height: 60, width: 40, length: 100, 
+                            weight: 300, distance: 60)
+
+      # Act
+      
+      # Assert
+      expect(order.pending?).to be true
     end
   end
 

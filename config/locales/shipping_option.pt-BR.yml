@@ -1,0 +1,34 @@
+pt-BR:
+  currency: "preço em reais"
+  disable: "Desativar"
+  distance_range: "Intervalo de Distância"
+  enable: "Ativar"
+  enable_so_success: "Modalidade de Transporte ativada com sucesso"
+  no_shipping_option_registered: "Não existem modalidades de transporte cadastradas"
+  so_registration_error: "Não foi possível cadastrar a modalidade de transporte"
+  so_registration_success: "Modalidade de Transporte cadastrada com sucesso"
+  to: " a "
+  weight_range: "Intervalo de Peso"
+  activerecord:
+    models:
+      shipping_option: 
+        one: "Modalidade de Transporte"
+        other: "Modalidades de Transporte"
+    attributes:
+      shipping_option:
+        delivery_fee: "Taxa Fixa de Entrega"
+        max_distance: "Distância Máxima"
+        max_weight: "Peso Máximo"
+        min_distance: "Distância Mínima"
+        min_weight: "Peso Mínimo"
+        name: "Modalidade"
+        status: "Status"
+      shipping_option/status:
+        disabled: "Inativa"
+        enabled: "Ativa"
+        
+        
+        
+        
+        
+        

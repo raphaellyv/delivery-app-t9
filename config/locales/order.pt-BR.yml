@@ -3,9 +3,9 @@ pt-BR:
   delivery_local: "Local de Entrega"
   destination: "Destino"
   dimensions: "Dimensões"
-  distance_km: "distância em km"
   height_cm: 'altura em cm'
   length_cm: "comprimento em cm"
+  no_order_registered: "Não existem ordens de serviço cadastradas"
   number_with_ddd: "somente o número com DDD"
   numbers_only: "somente números"
   order_not_found: "Não foi possível encontrar o pedido"
@@ -17,7 +17,6 @@ pt-BR:
   product_info: "Dados do Produto"
   recipient_info: "Dados do Destinatário"
   search_order: "Buscar Pedido"
-  weight_g: "peso em g"
   width_cm: 'largura em cm'
   activerecord:
     models:

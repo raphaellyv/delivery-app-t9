@@ -7,7 +7,7 @@
 <% end %>
 
 <% if @orders.any? %>
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th><%= Order.human_attribute_name(:tracking_code) %></th>
@@ -29,4 +29,8 @@
       <% end %>
     </tbody>
   </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t(:no_order_registered) %>
+  </div>
 <% end %>

@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
 
   def check_admin
     if current_user.regular?
-      redirect_to root_path, alert: 'Área restrita para administradores'
+      redirect_to root_path, alert: t(:admin_restricted_area)
     end
   end
 end
