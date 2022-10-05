@@ -7,9 +7,9 @@ describe 'Usuário vê lista de modalidades de transporte' do
       user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
   
       ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
-                              delivery_fee: 5.50)
+                              delivery_fee: 5.50, status: :enabled)
       ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1500, max_weight: 40000, 
-                                delivery_fee: 3.00)
+                                delivery_fee: 3.00, status: :enabled)
   
       # Act
       login_as user
@@ -24,7 +24,7 @@ describe 'Usuário vê lista de modalidades de transporte' do
       expect(page).to have_content 'Intervalo de Distância'
       expect(page).to have_content 'Intervalo de Peso'
       expect(page).to have_content 'Taxa Fixa de Entrega'
-      expect(page).to have_content 'Status'
+      expect(page).not_to have_content 'Status'
       expect(page).to have_content 'Entrega Expressa'
       expect(page).to have_content 'Entrega Básica'
       expect(page).to have_content '50 km a 600 km'
@@ -33,7 +33,7 @@ describe 'Usuário vê lista de modalidades de transporte' do
       expect(page).to have_content '1,5 kg a 40 kg'
       expect(page).to have_content 'R$ 5,50'
       expect(page).to have_content 'R$ 3,00'
-      expect(page).to have_content 'Inativa'
+      expect(page).not_to have_content 'Ativa'
     end
 
     it 'e não existem modalidades de transporte cadastradas' do
@@ -47,6 +47,38 @@ describe 'Usuário vê lista de modalidades de transporte' do
 
       # Assert
       expect(page).to have_content "Não existem modalidades de transporte cadastradas"
+    end
+
+    it 'e não vê as modalidades inativas' do
+      # Arrange
+      user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
+  
+      ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
+                              delivery_fee: 5.50, status: :disabled)
+      ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1500, max_weight: 40000, 
+                                delivery_fee: 3.00, status: :enabled)
+  
+      # Act
+      login_as user
+      visit root_path
+      click_on 'Modalidades de Transporte'
+  
+      # Assert
+      within 'main' do
+        expect(page).to have_content 'Modalidades de Transporte'
+      end
+      expect(page).to have_content 'Modalidade'
+      expect(page).to have_content 'Intervalo de Distância'
+      expect(page).to have_content 'Intervalo de Peso'
+      expect(page).to have_content 'Taxa Fixa de Entrega'
+      expect(page).not_to have_content 'Entrega Expressa'
+      expect(page).to have_content 'Entrega Básica'
+      expect(page).not_to have_content '50 km a 600 km'
+      expect(page).to have_content '30 km a 800 km'
+      expect(page).not_to have_content '1 kg a 50 kg'
+      expect(page).to have_content '1,5 kg a 40 kg'
+      expect(page).not_to have_content 'R$ 5,50'
+      expect(page).to have_content 'R$ 3,00'
     end
   end
 

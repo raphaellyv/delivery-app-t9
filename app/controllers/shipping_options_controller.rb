@@ -2,7 +2,13 @@ class ShippingOptionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @shipping_options = ShippingOption.all.order(:name)
+    if current_user.admin?
+      @shipping_options = ShippingOption.all.order(:name)
+
+    else
+      @shipping_options = ShippingOption.enabled.order(:name)
+    end
+    
     @shipping_option = ShippingOption.new
   end
 
