@@ -29,6 +29,7 @@
 - [X] Usuários administradores podem ver lista de contendo todas as modalidades de transporte e seus status.
 - [X] Usuários administradores podem criar modalidades de transporte com o status "Inativa".
 - [X] Usuários administradores podem alterar o status de uma modalidade de transporte para "Ativa" ou "Inativa".
+- [X] Usuários administradores podem editar uma modalidade de transporte.
 
 ## Como rodar a aplicação
 
