@@ -1,5 +1,3 @@
-<h1 class="my-3"><%= t(:new_fem) %> <%= ShippingOption.model_name.human %></h1>
-
 <%= form_with(model: @shipping_option) do |f| %>
   <div class="mb-3">
     <%= f.label :name, class: "form-label fw-semibold" %>
@@ -18,7 +16,7 @@
 
   <div class="mb-3">
     <%= f.label :delivery_fee, class: "form-label fw-semibold" %>
-    <%= f.number_field :delivery_fee, step: 0.05, placeholder: t(:currency), class: "form-control" %>
+    <%= f.number_field :delivery_fee, step: 0.01, placeholder: t(:currency), class: "form-control" %>
 
     <% if(@shipping_option.errors.include? :delivery_fee) %>
       <div class=" my-3 alert alert-danger">

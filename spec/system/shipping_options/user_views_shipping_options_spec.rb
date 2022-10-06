@@ -85,15 +85,15 @@ describe 'Usuário vê lista de modalidades de transporte' do
   context 'como administrador' do
     it 'com sucesso' do
       # Arrange
-      user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
   
       ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
-                             delivery_fee: 5.50)
+                             delivery_fee: 5.50, status: :enabled)
       ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1500, max_weight: 40000, 
-                             delivery_fee: 3.00)
+                             delivery_fee: 3.00, status: :disabled)
   
       # Act
-      login_as user
+      login_as admin
       visit root_path
       click_on 'Modalidades de Transporte'
   
@@ -114,15 +114,16 @@ describe 'Usuário vê lista de modalidades de transporte' do
       expect(page).to have_content '1,5 kg a 40 kg'
       expect(page).to have_content 'R$ 5,50'
       expect(page).to have_content 'R$ 3,00'
+      expect(page).to have_content 'Ativa'
       expect(page).to have_content 'Inativa'
     end
 
     it 'e não existem modalidades de transporte cadastradas' do
       # Arrange
-      user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
 
       # Act
-      login_as user
+      login_as admin
       visit root_path
       click_on 'Modalidades de Transporte'
 

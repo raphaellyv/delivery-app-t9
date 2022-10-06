@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário altera status da modalidade de transporte' do
+describe 'Usuário altera o status da modalidade de transporte' do
   it 'e não deve ser um usuário regular' do
     # Arrange
     user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)

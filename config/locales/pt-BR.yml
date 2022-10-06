@@ -5,6 +5,7 @@ pt-BR:
   check_errors: "Veja os erros abaixo:"
   delivery_app: "Sistema de Frete"
   distance_km: "distância em km"
+  edit: "Editar"
   new_fem: "Nova"
   new_masc: "Novo"
   register: "Cadastrar"

@@ -1,6 +1,7 @@
 <% if current_user.admin? %>
   <div>
-    <%= render 'new' %>
+    <h1 class="my-3"><%= t(:new_fem) %> <%= ShippingOption.model_name.human %></h1>
+    <%= render 'form' %>
   </div>
 
   <br>
@@ -19,7 +20,8 @@
 
         <% if current_user.admin? %>
           <th><%= ShippingOption.human_attribute_name(:status) %></th>
-          <th><%= t(:change_status) %></th>
+          <th class="text-center"><%= t(:edit_shipping_option) %></th>
+          <th class="text-center"><%= t(:change_status) %></th>
         <% end %>
       </tr>
     </thead>
@@ -44,11 +46,13 @@
               <td class="fw-semibold text-danger"><%= ShippingOption.human_attribute_name("status.#{so.status}") %></td>
             <% end %>
 
+            <td class="text-center"><%= link_to t(:edit), edit_shipping_option_path(so.id), class: "btn btn-outline-dark" %></td>
+
             <% if so.status == 'disabled' %>
-              <td><%= button_to t(:enable), enable_shipping_option_path(so.id), class: "btn btn-outline-success" %></td>
+              <td class="text-center"><%= button_to t(:enable), enable_shipping_option_path(so.id), class: "btn btn-outline-success" %></td>
 
             <% elsif so.status == 'enabled' %>
-              <td><%= button_to t(:disable), disable_shipping_option_path(so.id), class: "btn btn-outline-danger" %></td>
+              <td class="text-center"><%= button_to t(:disable), disable_shipping_option_path(so.id), class: "btn btn-outline-danger" %></td>
             <% end %>
           <% end %>
         </tr>

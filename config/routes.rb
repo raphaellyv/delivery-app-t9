@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  resources :shipping_options, only: [:index, :create] do
+  resources :shipping_options, only: [:index, :create, :edit, :update, :show] do
     post 'enable', on: :member
     post 'disable', on: :member
   end
