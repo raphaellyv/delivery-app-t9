@@ -29,7 +29,9 @@ describe 'Usuário vê lista de veículos' do
       end
 
       # Assert
-      expect(page).to have_content 'Veículos'
+      within 'main' do
+        expect(page).to have_content 'Veículos'
+      end
       expect(page).to have_content 'Modalidade de Transporte'
       expect(page).to have_link 'Entrega Expressa'
       expect(page).to have_link 'Outra Entrega'
@@ -96,7 +98,9 @@ describe 'Usuário vê lista de veículos' do
       end
 
       # Assert
-      expect(page).to have_content 'Veículos'
+      within 'main' do
+        expect(page).to have_content 'Veículos'
+      end
       expect(page).to have_content 'Modalidade de Transporte'
       expect(page).to have_link 'Entrega Expressa'
       expect(page).to have_link 'Outra Entrega'

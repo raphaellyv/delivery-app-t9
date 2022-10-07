@@ -20,6 +20,11 @@ so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_d
 so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1500, max_weight: 40000, 
                               delivery_fee: 3.00, status: :disabled)
 
+# Prazos de Entrega
+Deadline.create!(min_distance: 101, max_distance: 500, deadline: 48, shipping_option: so_a)
+      
+Deadline.create!(min_distance: 40, max_distance: 100, deadline: 30, shipping_option: so_b)
+
 # Veículos
 Vehicle.create!(shipping_option: so_a, license_plate: 'AAA0000', brand: 'Peugeot', car_model: 'Partner CS', manufacture_year: '2021',
                 max_weight: 800_000, status: :available)

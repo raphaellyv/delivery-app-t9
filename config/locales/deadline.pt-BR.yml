@@ -1,0 +1,14 @@
+pt-BR:
+  no_deadlines_registered: "Não existem prazos de entrega cadastrados"
+  activerecord:
+    models:
+      deadline: 
+        one: "Prazo"
+        other: "Prazos"
+    attributes:
+      deadline:
+        min_distance: "Distância Mínima"
+        max_distance: "Distância Máxima"
+        deadline: "Prazo de Entrega"
+        shipping_option: "Modalidade de Entrega"
+        shipping_option_id: "Modalidade de Entrega"

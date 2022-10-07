@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_07_034428) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_07_160654) do
+  create_table "deadlines", force: :cascade do |t|
+    t.integer "min_distance"
+    t.integer "max_distance"
+    t.integer "deadline"
+    t.integer "shipping_option_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_option_id"], name: "index_deadlines_on_shipping_option_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "delivery_address"
     t.string "delivery_city"
@@ -75,5 +85,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_07_034428) do
     t.index ["shipping_option_id"], name: "index_vehicles_on_shipping_option_id"
   end
 
+  add_foreign_key "deadlines", "shipping_options"
   add_foreign_key "vehicles", "shipping_options"
 end

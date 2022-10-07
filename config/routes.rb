@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :vehicles, only: [:index]
+
+  resources :deadlines, only: [:index]
 end

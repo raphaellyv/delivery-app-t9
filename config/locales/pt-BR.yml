@@ -5,6 +5,7 @@ pt-BR:
   check_errors: "Veja os erros abaixo:"
   delivery_app: "Sistema de Frete"
   distance_km: "distância em km"
+  distance_range: "Intervalo de Distância"
   edit: "Editar"
   new_fem: "Nova"
   new_masc: "Novo"
@@ -13,4 +14,5 @@ pt-BR:
   sign_in: "Entrar"
   sign_out: "Sair"
   sign_up: "Criar conta"
+  to: " a "
   weight_g: "peso em g"

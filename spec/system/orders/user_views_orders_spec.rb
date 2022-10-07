@@ -25,7 +25,7 @@ describe 'Usuário vê ordens de serviço' do
   context 'como administrador' do
     it 'com sucesso' do
       # Arrange
-      user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
   
       first_order = Order.create!(delivery_address: 'Rua das Palmeiras, 13', delivery_city: 'Rio de Janeiro', delivery_state: 'RJ', 
                                   delivery_postal_code: '28200000', recipient: 'Denise Silva', recipient_cpf: '00000000000',
@@ -42,7 +42,7 @@ describe 'Usuário vê ordens de serviço' do
                                   weight: 300, distance: 1_200)
   
       # Act
-      login_as user
+      login_as admin
       visit root_path
       within 'nav' do
         click_on 'Ordens de Serviço'
