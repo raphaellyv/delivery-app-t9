@@ -25,6 +25,6 @@ describe 'Usuário edita uma modalidade de transporte' do
     patch(shipping_option_path(so.id), params: { shipping_option: { name: 'Entrega Rápida' } })
 
     # Assert
-    expect(response).to redirect_to(shipping_options_url)
+    expect(response).not_to redirect_to(shipping_option_path(so.id))
   end
 end

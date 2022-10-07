@@ -1,0 +1,38 @@
+<h1 class="my-3"><%= ShippingOption.human_attribute_name(:name) %> <%= @shipping_option.name %></h1>
+
+<h3 class="my-3 text-muted">
+  <%= ShippingOption.human_attribute_name(:status) %>: <%= ShippingOption.human_attribute_name("status.#{@shipping_option.status}") %>
+</h3>
+
+<dl>
+  <dt class="fw-semibold"><%= t(:distance_range) %>:</dt>
+  <dd>
+    <%= number_to_human(@shipping_option.min_distance, delimiter: ' ', units: { unit: 'km' }) %><%= t(:to) %>
+    <%= number_to_human(@shipping_option.max_distance, delimiter: ' ', units: { unit: 'km' }) %>
+  </dd>
+  <dt class="fw-semibold"><%= t(:weight_range) %>:</dt>
+  <dd>
+    <%= number_to_human(@shipping_option.min_weight, units: {unit: 'g', thousand: 'kg'}) %><%= t(:to) %> 
+    <%= number_to_human(@shipping_option.max_weight, units: {unit: 'g', thousand: 'kg'}) %>
+  </dd> 
+  <dt class="fw-semibold"><%= ShippingOption.human_attribute_name(:delivery_fee) %>:</dt>
+  <dd><%= number_to_currency(@shipping_option.delivery_fee) %></dd>
+</dl>
+
+<% if current_user.admin? %>
+  <div class="row">
+    <div class="d-grid gap-2 col-4 my-3">
+      <%= link_to t(:edit_shipping_option), edit_shipping_option_path(@shipping_option.id), class:"btn btn-outline-dark" %>
+    </div>
+
+    <div class="d-grid gap-2 col-4 my-3">
+      <% if @shipping_option.status == 'disabled' %>
+        <%= button_to t(:enable), enable_shipping_option_path(@shipping_option.id), class: "btn btn-outline-success" %>
+      <% elsif @shipping_option.status == 'enabled' %>
+        <%= button_to t(:disable), disable_shipping_option_path(@shipping_option.id), class: "btn btn-outline-danger" %></td>
+      <% end %>
+    </div>    
+  </div>
+<% end %>
+
+<hr>

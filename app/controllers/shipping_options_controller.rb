@@ -1,5 +1,6 @@
 class ShippingOptionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_admin, only: [:update, :disable, :enable]
   before_action :set_shipping_option, only: [:show, :edit, :update, :enable, :disable]
 
   def index
@@ -37,7 +38,8 @@ class ShippingOptionsController < ApplicationController
 
   def update
     if @shipping_option.update(so_params)
-      redirect_to shipping_options_url, notice: t(:so_update_success)
+      redirect_to @shipping_option, notice: t(:so_update_success)
+
     else
       flash.now[:alert] = t(:so_update_error)
       render 'edit'
@@ -46,12 +48,12 @@ class ShippingOptionsController < ApplicationController
 
   def enable
     @shipping_option.enabled!
-    redirect_to shipping_options_path, notice: t(:enable_so_success)
+    redirect_to @shipping_option, notice: t(:enable_so_success)
   end
 
   def disable
     @shipping_option.disabled!
-    redirect_to shipping_options_path, notice: t(:disable_so_success)
+    redirect_to @shipping_option, notice: t(:disable_so_success)
   end
 
   private

@@ -27,9 +27,12 @@
 
 - [X] Usuários regulares podem ver lista contendo somente modalidades de transporte ativas.
 - [X] Usuários administradores podem ver lista de contendo todas as modalidades de transporte e seus status.
+- [X] Usuários administradores e regulares podem ver detalhes de uma modalidade de transporte.
 - [X] Usuários administradores podem criar modalidades de transporte com o status "Inativa".
 - [X] Usuários administradores podem alterar o status de uma modalidade de transporte para "Ativa" ou "Inativa".
 - [X] Usuários administradores podem editar uma modalidade de transporte.
+
+- [X] Usuários administradores e regulares podem ver lista de veículos cadastrados com status "Disponível", "Em Manutenção" e "Em Entrega". 
 
 ## Como rodar a aplicação
 

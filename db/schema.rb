@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_035638) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_07_034428) do
   create_table "orders", force: :cascade do |t|
     t.string "delivery_address"
     t.string "delivery_city"
@@ -42,10 +42,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_035638) do
     t.integer "max_distance"
     t.integer "min_weight"
     t.integer "max_weight"
-    t.decimal "delivery_fee"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "delivery_fee"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,4 +62,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_035638) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vehicles", force: :cascade do |t|
+    t.integer "shipping_option_id", null: false
+    t.string "license_plate"
+    t.string "brand"
+    t.string "car_model"
+    t.string "manufacture_year"
+    t.integer "max_weight"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_option_id"], name: "index_vehicles_on_shipping_option_id"
+  end
+
+  add_foreign_key "vehicles", "shipping_options"
 end

@@ -25,7 +25,32 @@ describe 'Usuário edita uma modalidade de transporte' do
       login_as admin
       visit root_path
       click_on 'Modalidades de Transporte'
+      click_on 'Entrega Expressa'
       click_on 'Editar'
+
+      # Assert
+      expect(page).to have_content 'Editar Modalidade de Transporte'
+      expect(page).to have_field 'Modalidade', with: 'Entrega Expressa'
+      expect(page).to have_field 'Distância Mínima', with: '50'
+      expect(page).to have_field 'Distância Máxima', with: '600'
+      expect(page).to have_field 'Peso Mínimo', with: '1000'
+      expect(page).to have_field 'Peso Máximo', with: '50000'
+      expect(page).to have_field 'Taxa Fixa de Entrega', with: 5.5
+    end
+
+    it 'a partir da página de detalhes de uma modalidade' do
+      # Arrange
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+  
+      so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, max_weight: 50_000, 
+                                  delivery_fee: 5.50, status: :enabled)
+
+      # Act
+      login_as admin
+      visit root_path
+      click_on 'Modalidades de Transporte'
+      click_on 'Entrega Expressa'
+      click_on 'Editar Modalidade'
 
       # Assert
       expect(page).to have_content 'Editar Modalidade de Transporte'
@@ -48,6 +73,7 @@ describe 'Usuário edita uma modalidade de transporte' do
       login_as admin
       visit root_path
       click_on 'Modalidades de Transporte'
+      click_on 'Entrega Expressa'
       click_on 'Editar'
       fill_in 'Modalidade', with: 'Entrega Rápida'
       fill_in 'Distância Mínima', with: '5'
@@ -59,9 +85,9 @@ describe 'Usuário edita uma modalidade de transporte' do
 
       # Assert
       expect(page).to have_content 'Modalidade de Transporte atualizada com sucesso'
-      expect(page).to have_content '5 km a 500 km'
-      expect(page).to have_content '5 kg a 30 kg'
-      expect(page).to have_content 'R$ 3,50'
+      expect(page).to have_content 'Intervalo de Distância: 5 km a 500 km'
+      expect(page).to have_content 'Intervalo de Peso: 5 kg a 30 kg'
+      expect(page).to have_content 'Taxa Fixa de Entrega: R$ 3,50'
     end
 
     it 'com dados incompletos' do
@@ -75,6 +101,7 @@ describe 'Usuário edita uma modalidade de transporte' do
       login_as admin
       visit root_path
       click_on 'Modalidades de Transporte'
+      click_on 'Entrega Expressa'
       click_on 'Editar'
       fill_in 'Modalidade', with: ''
       fill_in 'Distância Mínima', with: ''
@@ -107,6 +134,7 @@ describe 'Usuário edita uma modalidade de transporte' do
       login_as user
       visit root_path
       click_on 'Modalidades de Transporte'
+      click_on 'Entrega Expressa'
 
       # Assert
       expect(page).to have_content 'Entrega Expressa'

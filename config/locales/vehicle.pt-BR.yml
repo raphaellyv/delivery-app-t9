@@ -1,0 +1,21 @@
+pt-BR:
+  no_vehicles_registered: "Não existem veículos cadastrados"
+  activerecord:
+    models:
+      vehicle: 
+        one: "Veículo"
+        other: "Veículos"
+    attributes:
+      vehicle:
+        brand: "Marca"
+        car_model: "Modelo"
+        license_plate: "Placa"
+        manufacture_year: "Ano"
+        max_weight: "Carga Máxima"
+        shipping_option: "Modalidade de Transporte"
+        shipping_option_id: "Modalidade de Transporte"
+        status: "Status"
+      vehicle/status:
+        available: "Disponível"
+        en_route: "Em Entrega"
+        maintenance: "Em Manutenção"

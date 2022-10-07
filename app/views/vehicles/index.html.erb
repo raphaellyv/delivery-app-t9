@@ -1,0 +1,41 @@
+<h1 class="my-3"><%= Vehicle.model_name.human count: 2 %></h1>
+
+<% if @vehicles.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= Vehicle.human_attribute_name(:shipping_option) %></th>
+        <th><%= Vehicle.human_attribute_name(:license_plate) %></th>
+        <th><%= Vehicle.human_attribute_name(:brand) %></th>
+        <th><%= Vehicle.human_attribute_name(:car_model) %></th>
+        <th><%= Vehicle.human_attribute_name(:manufacture_year) %></th>
+        <th><%= Vehicle.human_attribute_name(:max_weight) %></th>
+        <th><%= Vehicle.human_attribute_name(:status) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @vehicles.each do |vehicle| %>
+        <tr>
+          <td><%= link_to vehicle.shipping_option.name, vehicle.shipping_option, class: "link-dark" %></td>
+          <td><%= vehicle.license_plate %></td>
+          <td><%= vehicle.brand %></td>
+          <td><%= vehicle.car_model %></td>
+          <td><%= vehicle.manufacture_year %></td>
+          <td><%= number_to_human(vehicle.max_weight, units: {unit: 'g', thousand: 'kg'}) %></td>
+         
+          <% if vehicle.status == 'available' %>
+            <td class="fw-semibold text-success"><%= Vehicle.human_attribute_name("status.#{vehicle.status}") %></td>
+          <% elsif vehicle.status == 'maintenance' %>
+            <td class="fw-semibold text-warning"><%= Vehicle.human_attribute_name("status.#{vehicle.status}") %></td>
+          <% else %>
+            <td class="fw-semibold text-muted"><%= Vehicle.human_attribute_name("status.#{vehicle.status}") %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t(:no_vehicles_registered) %>
+  </div>
+<% end %>

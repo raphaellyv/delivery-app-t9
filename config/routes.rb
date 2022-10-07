@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     post 'enable', on: :member
     post 'disable', on: :member
   end
+
+  resources :vehicles, only: [:index]
 end
