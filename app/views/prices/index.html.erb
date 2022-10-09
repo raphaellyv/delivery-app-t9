@@ -1,0 +1,29 @@
+<h1 class="my-3"><%= Price.model_name.human count: 2 %></h1>
+
+<% if @prices.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= Price.human_attribute_name(:shipping_option) %></th>
+        <th><%= t(:weight_range) %></th>
+        <th><%= Price.human_attribute_name(:price_per_km) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @prices.each do |price| %>
+        <tr>
+          <td><%= link_to price.shipping_option.name, price.shipping_option, class: "link-dark" %></td>
+          <td>
+            <%= number_to_human(price.min_weight, units: {unit: 'g', thousand: 'kg'}) %><%= t(:to) %>
+            <%= number_to_human(price.max_weight, units: {unit: 'g', thousand: 'kg'}) %>
+          </td>
+          <td><%= number_to_currency(price.price_per_km) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t(:no_prices_registered) %>
+  </div>
+<% end %>

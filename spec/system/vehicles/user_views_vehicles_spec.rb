@@ -38,6 +38,7 @@ describe 'Usuário vê lista de veículos' do
       expect(page).to have_content 'Placa'
       expect(page).to have_content 'AAA0000'
       expect(page).to have_content 'BBB0000'
+      expect(page).to have_content 'BBB0003'
       expect(page).to have_content 'Marca'
       expect(page).to have_content 'Peugeot'
       expect(page).to have_content 'Fiat'
@@ -52,6 +53,8 @@ describe 'Usuário vê lista de veículos' do
       expect(page).to have_content '800 kg'
       expect(page).to have_content 'Status'
       expect(page).to have_content 'Disponível'
+      expect(page).to have_content 'Em Entrega'
+      expect(page).to have_content 'Em Manutenção'
     end
 
     it 'e não existem veículos cadastrados' do

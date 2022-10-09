@@ -10,5 +10,5 @@ pt-BR:
         min_distance: "Distância Mínima"
         max_distance: "Distância Máxima"
         deadline: "Prazo de Entrega"
-        shipping_option: "Modalidade de Entrega"
-        shipping_option_id: "Modalidade de Entrega"
+        shipping_option: "Modalidade de Transporte"
+        shipping_option_id: "Modalidade de Transporte"

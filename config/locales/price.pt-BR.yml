@@ -1,0 +1,14 @@
+pt-BR:
+  no_prices_registered: "Não existem preços cadastrados"
+  activerecord:
+    models:
+      price: 
+        one: "Preço"
+        other: "Preços"
+    attributes:
+      price:
+        min_weight: "Peso Mínimo"
+        max_weight: "Peso Máximo"
+        price_per_km: "Preço por km"
+        shipping_option: "Modalidade de Transporte"
+        shipping_option_id: "Modalidade de Transporte"

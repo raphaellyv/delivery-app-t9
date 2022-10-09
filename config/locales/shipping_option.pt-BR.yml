@@ -10,7 +10,6 @@ pt-BR:
   so_registration_success: "Modalidade de Transporte cadastrada com sucesso"
   so_update_error: "Não foi possível atualizar a Modalidade de Transporte"
   so_update_success: "Modalidade de Transporte atualizada com sucesso"
-  weight_range: "Intervalo de Peso"
   activerecord:
     models:
       shipping_option: 

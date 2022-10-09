@@ -31,7 +31,7 @@ describe 'Usuário vê lista de prazos' do
       expect(page).to have_content 'Intervalo de Distância'
       expect(page).to have_content '70 km a 100 km'
       expect(page).to have_content '101 km a 500 km'
-      expect(page).to have_content 'Modalidade de Entrega'
+      expect(page).to have_content 'Modalidade de Transporte'
       expect(page).to have_link 'Entrega Expressa'
       expect(page).to have_link 'Outra Entrega'
     end
@@ -80,7 +80,7 @@ describe 'Usuário vê lista de prazos' do
       expect(page).to have_content 'Intervalo de Distância'
       expect(page).to have_content '70 km a 100 km'
       expect(page).to have_content '101 km a 500 km'
-      expect(page).to have_content 'Modalidade de Entrega'
+      expect(page).to have_content 'Modalidade de Transporte'
       expect(page).to have_link 'Entrega Expressa'
       expect(page).to have_link 'Outra Entrega'
     end
