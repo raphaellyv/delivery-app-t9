@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :check_admin, only: [:new]
   
   def index
-    @orders = Order.all
+    @orders = Order.all.order(id: :desc)
   end
 
   def new
@@ -28,6 +28,23 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+
+    if @order.pending?
+      prices = Price.where(["min_weight <= ? and max_weight >= ?", @order.weight, @order.weight])
+
+      deadlines = Deadline.where(["min_distance <= ? and max_distance >= ?", @order.distance, @order.distance])
+
+      @quotations = []
+
+      deadlines.each do |deadline|
+        prices.each do |price|
+          if price.shipping_option == deadline.shipping_option
+            total_amount = (price.price_per_km * @order.distance) + price.shipping_option.delivery_fee
+            @quotations << {shipping_option: price.shipping_option, order: @order, deadline: deadline.deadline, price: total_amount}
+          end
+        end
+      end
+    end
   end 
 
   def search

@@ -36,6 +36,8 @@
 
 - [X] Usuários administradores e regulares podem ver lista de prazos de entrega cadastrados. Cada prazo pertence a uma modalidade de transporte.
 
+- [X] Úsuários administradores e regulares podem ver o orçamento na tela de detalhes de ordens de serviço pendentes.
+
 ## Como rodar a aplicação
 
 <p align = "justify"> No terminal, clone o projeto: </p>

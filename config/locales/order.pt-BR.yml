@@ -1,11 +1,14 @@
 pt-BR:
+  budget: "Orçamento"
   delivery_info: "Dados para Entrega"
   delivery_local: "Local de Entrega"
   destination: "Destino"
   dimensions: "Dimensões"
-  height_cm: 'altura em cm'
+  generate_quotation: "Gerar Orçamento"
+  height_cm: "altura em cm"
   length_cm: "comprimento em cm"
   no_order_registered: "Não existem ordens de serviço cadastradas"
+  no_shipping_options_for_order: "Não existem modalidades de transporte disponíveis para esta ordem de serviço"
   number_with_ddd: "somente o número com DDD"
   numbers_only: "somente números"
   order_not_found: "Não foi possível encontrar o pedido"
@@ -17,7 +20,8 @@ pt-BR:
   product_info: "Dados do Produto"
   recipient_info: "Dados do Destinatário"
   search_order: "Buscar Pedido"
-  width_cm: 'largura em cm'
+  total_amount: "Preço Total"
+  width_cm: "largura em cm"
   activerecord:
     models:
       order: 
@@ -48,7 +52,7 @@ pt-BR:
       order/status:
         delivered_late: "Finalizada com Atraso"
         delivered_on_time: "Finalizada dentro do Prazo"
-        en_route: "Em andamento"
+        en_route: "Em Andamento"
         pending: "Pendente"
         
         
