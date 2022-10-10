@@ -63,30 +63,42 @@
 <hr>
 
 <% if @order.pending? %>
-  <h3 class="my-3"><%= t(:budget) %></h3>
+  <%= render 'quotation' %>
 
-  <% if @quotations.any? %>
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th><%= Price.human_attribute_name(:shipping_option) %></th>
-            <th><%= Deadline.human_attribute_name(:deadline) %></th>
-            <th><%= t(:total_amount) %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @quotations.each do |quotation| %>
-            <tr>
-              <td><%= quotation[:shipping_option].name %></td>
-              <td><%= number_to_human(quotation[:deadline], units: { unit: 'h' }) %></td>
-              <td><%= number_to_currency(quotation[:price]) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-  <% else %>
-    <div class="alert alert-secondary text-center">
-      <%= t(:no_shipping_options_for_order) %>
-    </div>
-  <% end %>
+  <div class="my-3">
+    <%= link_to t(:select_shipping_option), new_order_detailed_order_path(@order.id), class: "btn btn-dark " %>
+  </div>
+<% else %>
+  <div>
+    <h3 class="my-3"><%= t(:delivery_details) %></h3>
+    <dl>
+      <dt class="fw-semibold"><%= ShippingOption.model_name.human %>:</dt>
+      <dd><%= @order.detailed_order.shipping_option.name %></dd>
+      <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:total_price) %>:</dt>
+      <dd><%= number_to_currency(@order.detailed_order.total_price) %></dd>
+      <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:estimated_delivery_date) %>:</dt>
+      <dd><%= @order.detailed_order.estimated_delivery_date.strftime("%d/%m/%Y") %></dd>
+      <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:vehicle) %>:</dt>
+      <dd>
+        <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="fw-semibold"><%= Vehicle.human_attribute_name(:license_plate) %></th>
+          <th class="fw-semibold"><%= Vehicle.human_attribute_name(:brand) %></th>
+          <th class="fw-semibold"><%= Vehicle.human_attribute_name(:car_model) %></th>
+          <th class="fw-semibold"><%= Vehicle.human_attribute_name(:manufacture_year) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @order.detailed_order.vehicle.license_plate %></td>
+          <td><%= @order.detailed_order.vehicle.brand %></td>
+          <td><%= @order.detailed_order.vehicle.car_model %></td>
+          <td><%= @order.detailed_order.vehicle.manufacture_year %></td>
+        </tr>
+      </tbody>
+    </table>
+      </dd>
+    </dl>
+  </div>
 <% end %>

@@ -1,0 +1,13 @@
+<h1 class="my-3"><%= Order.model_name.human %> <%= @order.tracking_code %></h1>
+
+<%= render 'orders/quotation' %>
+
+<%= form_with(model: [@order, @detailed_order]) do |f| %>
+  <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.label :shipping_option_id, class: "form-label fw-semibold" %>
+    <%= f.collection_select :shipping_option_id, @shipping_options, :id, :name, prompt: true %>
+  </div>
+  <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.submit t(:select_shipping_option), class: "btn btn-dark" %>
+  </div>
+<% end %>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   resources :orders, only: [:index, :show, :new, :create] do
     get 'search', on: :collection
+    resources :detailed_orders, only: [:new, :create]
   end
 
   resources :shipping_options, only: [:index, :create, :edit, :update, :show] do

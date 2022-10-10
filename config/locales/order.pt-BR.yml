@@ -3,6 +3,7 @@ pt-BR:
   delivery_info: "Dados para Entrega"
   delivery_local: "Local de Entrega"
   destination: "Destino"
+  delivery_details: "Detalhes da Entrega"
   dimensions: "Dimensões"
   generate_quotation: "Gerar Orçamento"
   height_cm: "altura em cm"
@@ -20,6 +21,7 @@ pt-BR:
   product_info: "Dados do Produto"
   recipient_info: "Dados do Destinatário"
   search_order: "Buscar Pedido"
+  select_shipping_option: "Selecionar Modalidade de Transporte"
   total_amount: "Preço Total"
   width_cm: "largura em cm"
   activerecord:
@@ -51,8 +53,8 @@ pt-BR:
         width: "Largura"  
       order/status:
         delivered_late: "Finalizada com Atraso"
-        delivered_on_time: "Finalizada dentro do Prazo"
-        en_route: "Em Andamento"
+        delivered_on_time: "Finalizada"
+        en_route: "Encaminhada"
         pending: "Pendente"
         
         

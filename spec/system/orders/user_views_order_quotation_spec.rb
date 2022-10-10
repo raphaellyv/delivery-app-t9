@@ -87,7 +87,6 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       # Assert
       expect(page).to have_content "Orçamento"
       within 'main' do
-        expect(page).not_to have_content 'Modalidade'
         expect(page).not_to have_content 'Prazo'
         expect(page).not_to have_content 'Preço Total'
       end        
@@ -123,7 +122,6 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       # Assert
       expect(page).to have_content "Orçamento"
       within 'main' do
-        expect(page).not_to have_content 'Modalidade'
         expect(page).not_to have_content 'Prazo'
         expect(page).not_to have_content 'Preço Total'
       end        
@@ -151,7 +149,6 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       # Assert
       expect(page).to have_content "Orçamento"
       within 'main' do
-        expect(page).not_to have_content 'Modalidade'
         expect(page).not_to have_content 'Prazo'
         expect(page).not_to have_content 'Preço Total'
       end        
@@ -168,6 +165,14 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
                             pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'São Paulo', pick_up_state: 'SP', 
                             pick_up_postal_code: '30000000', sku: 'TV32P-SAMSUNG-XPTO90', height: 60, width: 40, length: 100, 
                             weight: 3_000, distance: 300, status: :en_route)
+
+      so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
+                                    delivery_fee: 3.00, status: :enabled)
+
+      vehicle_b = Vehicle.create!(shipping_option: so_b, license_plate: 'BBB0000', brand: 'Fiat', car_model: 'Partner TX', manufacture_year: '2020',
+                                  max_weight: 700_000, status: :available)
+      detailed_order = DetailedOrder.create!(order: order, shipping_option: so_b, total_price: 90.00, 
+                                             estimated_delivery_date: Time.now + 40.hours, vehicle: vehicle_b)
            
       # Act
       login_as user
@@ -177,11 +182,6 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
    
       # Assert
       expect(page).not_to have_content "Orçamento"
-      within 'main' do
-        expect(page).not_to have_content 'Modalidade'
-        expect(page).not_to have_content 'Prazo'
-        expect(page).not_to have_content 'Preço Total'
-      end        
       expect(page).not_to have_content 'Não existem modalidades de transporte disponíveis para esta ordem de serviço'
     end
   end
@@ -272,7 +272,6 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       # Assert
       expect(page).to have_content "Orçamento"
       within 'main' do
-        expect(page).not_to have_content 'Modalidade'
         expect(page).not_to have_content 'Prazo'
         expect(page).not_to have_content 'Preço Total'
       end        
@@ -308,7 +307,6 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       # Assert
       expect(page).to have_content "Orçamento"
       within 'main' do
-        expect(page).not_to have_content 'Modalidade'
         expect(page).not_to have_content 'Prazo'
         expect(page).not_to have_content 'Preço Total'
       end        

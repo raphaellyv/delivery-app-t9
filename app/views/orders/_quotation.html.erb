@@ -1,0 +1,27 @@
+<h3 class="my-3"><%= t(:budget) %></h3>
+
+<% if @quotations.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= Price.human_attribute_name(:shipping_option) %></th>
+        <th><%= Deadline.human_attribute_name(:deadline) %></th>
+        <th><%= t(:total_amount) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @quotations.each do |quotation| %>
+        <tr>
+          <td><%= quotation[:shipping_option].name %></td>
+          <td><%= number_to_human(quotation[:deadline], units: { unit: 'h' }) %></td>
+          <td><%= number_to_currency(quotation[:price]) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t(:no_shipping_options_for_order) %>
+  </div>
+<% end %>

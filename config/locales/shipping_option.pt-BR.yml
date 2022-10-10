@@ -1,15 +1,15 @@
 pt-BR:
   currency: "preço em reais"
   disable: "Desativar"
-  disable_so_success: "Modalidade de Transporte desativada com sucesso"
+  disable_shipping_option_success: "Modalidade de Transporte desativada com sucesso"
   edit_shipping_option: "Editar Modalidade"
   enable: "Ativar"
-  enable_so_success: "Modalidade de Transporte ativada com sucesso"
+  enable_shipping_option_success: "Modalidade de Transporte ativada com sucesso"
   no_shipping_option_registered: "Não existem modalidades de transporte cadastradas"
-  so_registration_error: "Não foi possível cadastrar a modalidade de transporte"
-  so_registration_success: "Modalidade de Transporte cadastrada com sucesso"
-  so_update_error: "Não foi possível atualizar a Modalidade de Transporte"
-  so_update_success: "Modalidade de Transporte atualizada com sucesso"
+  shipping_option_registration_error: "Não foi possível cadastrar a modalidade de transporte"
+  shipping_option_registration_success: "Modalidade de Transporte cadastrada com sucesso"
+  shipping_option_update_error: "Não foi possível atualizar a Modalidade de Transporte"
+  shipping_option_update_success: "Modalidade de Transporte atualizada com sucesso"
   activerecord:
     models:
       shipping_option: 

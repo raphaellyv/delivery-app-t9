@@ -13,7 +13,7 @@
 
 ## Descrição do projeto
 
-<p align = "justify"> Aplicação para Sistema de Frete desenvolvida como parte da 1a etapa da turma 9 do Treinadev. </p>
+<p align = "justify"> Aplicação para Sistema de Frete desenvolvida em Ruby on Rails como parte da 1a etapa da turma 9 do Treinadev. </p>
 
 ## Funcionalidades
 
@@ -37,6 +37,8 @@
 - [X] Usuários administradores e regulares podem ver lista de prazos de entrega cadastrados. Cada prazo pertence a uma modalidade de transporte.
 
 - [X] Úsuários administradores e regulares podem ver o orçamento na tela de detalhes de ordens de serviço pendentes.
+
+- [X] Úsuários administradores e regulares podem selecionar transportadoras para ordens de serviço pendentes, sendo atribuídos a ela o status "Em Transporte", um veículo, preço total e data prevista de entrega.
 
 ## Como rodar a aplicação
 

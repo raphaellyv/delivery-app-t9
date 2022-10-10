@@ -1,0 +1,16 @@
+pt-BR:
+  no_vehicles_available_for_shipping_option: 'No momento não existem veículos disponíveis para esta Modalidade de Transporte'
+  select_shipping_option_success: "Modalidade de Transporte adicionada com sucesso"
+  activerecord:
+    models:
+      detailed_order: "Detalhes da Ordem de Serviço"
+    attributes:
+      detailed_order:
+        estimated_delivery_date: "Previsão de Entrega"
+        order: "Ordem de Serviço"
+        order_id: "Ordem de Serviço"
+        shipping_option: "Modalidade de Transporte"
+        shipping_option_id: "Modalidade de Transporte"
+        total_price: "Preço Total"
+        vehicle: "Veículo"
+        vehicle_id: "Veículo"

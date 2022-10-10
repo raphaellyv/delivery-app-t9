@@ -31,7 +31,6 @@ class OrdersController < ApplicationController
 
     if @order.pending?
       prices = Price.where(["min_weight <= ? and max_weight >= ?", @order.weight, @order.weight])
-
       deadlines = Deadline.where(["min_distance <= ? and max_distance >= ?", @order.distance, @order.distance])
 
       @quotations = []

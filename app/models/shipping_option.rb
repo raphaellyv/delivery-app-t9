@@ -1,4 +1,7 @@
 class ShippingOption < ApplicationRecord
+  has_many :detailed_orders
+  has_many :orders, through: :detailed_orders
+
   enum :status, { disabled: 10, enabled: 20 }, default: :disabled
 
   has_many :deadlines
