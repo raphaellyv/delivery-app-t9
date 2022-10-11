@@ -100,6 +100,7 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       expect(page).to have_content "BBB0000"
       expect(page).to have_content "Fiat"
       expect(page).to have_content "Partner TX"
+      expect(order.vehicle.status).to eq 'en_route'
     end
 
     it 'e não existem veículos disponíveis' do
@@ -192,6 +193,7 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       expect(page).to have_content "BBB0000"
       expect(page).to have_content "Fiat"
       expect(page).to have_content "Partner TX"
+      expect(order.vehicle.status).to eq 'en_route'
     end
 
     it 'e não existem veículos disponíveis' do

@@ -6,6 +6,7 @@ pt-BR:
       detailed_order: "Detalhes da Ordem de Serviço"
     attributes:
       detailed_order:
+        delivery_date: "Data de Entrega"
         estimated_delivery_date: "Previsão de Entrega"
         order: "Ordem de Serviço"
         order_id: "Ordem de Serviço"

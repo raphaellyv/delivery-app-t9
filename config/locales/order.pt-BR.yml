@@ -1,5 +1,6 @@
 pt-BR:
   budget: "Orçamento"
+  deliver_order: "Marcar como Entregue"
   delivery_info: "Dados para Entrega"
   delivery_local: "Local de Entrega"
   destination: "Destino"
@@ -12,6 +13,8 @@ pt-BR:
   no_shipping_options_for_order: "Não existem modalidades de transporte disponíveis para esta ordem de serviço"
   number_with_ddd: "somente o número com DDD"
   numbers_only: "somente números"
+  order_delivered_on_time: "Ordem de Serviço finalizada com sucesso"
+  order_delivered_late: "Ordem de Serviço finalizada com atraso"
   order_not_found: "Não foi possível encontrar o pedido"
   order_registration_error: "Não foi possível cadastrar a Ordem de Serviço"
   order_registration_success: "Ordem de Serviço cadastrada com sucesso"

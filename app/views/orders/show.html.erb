@@ -78,27 +78,45 @@
       <dd><%= number_to_currency(@order.detailed_order.total_price) %></dd>
       <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:estimated_delivery_date) %>:</dt>
       <dd><%= @order.detailed_order.estimated_delivery_date.strftime("%d/%m/%Y") %></dd>
+
+      <% if @order.delivered_on_time? || @order.delivered_late? %>
+        <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:delivery_date) %>:</dt>
+        <dd><%= @order.detailed_order.delivery_date.strftime("%d/%m/%Y") %></dd>
+      <% end %>
+
       <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:vehicle) %>:</dt>
       <dd>
         <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="fw-semibold"><%= Vehicle.human_attribute_name(:license_plate) %></th>
-          <th class="fw-semibold"><%= Vehicle.human_attribute_name(:brand) %></th>
-          <th class="fw-semibold"><%= Vehicle.human_attribute_name(:car_model) %></th>
-          <th class="fw-semibold"><%= Vehicle.human_attribute_name(:manufacture_year) %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= @order.detailed_order.vehicle.license_plate %></td>
-          <td><%= @order.detailed_order.vehicle.brand %></td>
-          <td><%= @order.detailed_order.vehicle.car_model %></td>
-          <td><%= @order.detailed_order.vehicle.manufacture_year %></td>
-        </tr>
-      </tbody>
-    </table>
+          <thead>
+            <tr>
+              <th class="fw-semibold"><%= Vehicle.human_attribute_name(:license_plate) %></th>
+              <th class="fw-semibold"><%= Vehicle.human_attribute_name(:brand) %></th>
+              <th class="fw-semibold"><%= Vehicle.human_attribute_name(:car_model) %></th>
+              <th class="fw-semibold"><%= Vehicle.human_attribute_name(:manufacture_year) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @order.detailed_order.vehicle.license_plate %></td>
+              <td><%= @order.detailed_order.vehicle.brand %></td>
+              <td><%= @order.detailed_order.vehicle.car_model %></td>
+              <td><%= @order.detailed_order.vehicle.manufacture_year %></td>
+            </tr>
+          </tbody>
+        </table>
       </dd>
     </dl>
   </div>
+  <% if @order.en_route? %>
+    <div class="my-3">
+      <%= button_to t(:deliver_order), deliver_order_path(@order.id), class: "btn btn-dark " %>
+    </div>
+  <% end %>
+  <% if @order.delivered_late? %>
+    <hr>
+    <div>
+      <h3 class="my-3"><%= DelayedOrder.human_attribute_name(:cause_of_delay) %></h3>
+      <p><%= @order.delayed_order.cause_of_delay %><p>
+    </div>
+  <% end %>
 <% end %>

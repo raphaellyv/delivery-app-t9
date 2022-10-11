@@ -1,0 +1,25 @@
+<h1 class="my-3"><%= Order.model_name.human %> <%= @order.tracking_code %></h1>
+<h3 class="my-3 text-muted">
+  <%= Order.human_attribute_name(:status) %>: <%= Order.human_attribute_name("status.#{@order.status}") %>
+</h3>
+
+<dl>
+  <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:estimated_delivery_date) %>:</dt>
+  <dd><%= @order.detailed_order.estimated_delivery_date.strftime("%d/%m/%Y") %></dd>
+
+  <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:delivery_date) %>:</dt>
+  <dd><%= @order.detailed_order.delivery_date.strftime("%d/%m/%Y") %></dd>
+</dl>
+
+<%= form_with(model: [@order, @delayed_order]) do |f| %>
+  <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.label :cause_of_delay, class: "form-label fw-semibold" %>
+    <%= f.text_area :cause_of_delay, class: "form-control" %>
+  </div>
+  <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.submit t(:save), class: "btn btn-dark" %>
+  </div>
+<% end %>
+
+
+

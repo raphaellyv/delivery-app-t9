@@ -1,0 +1,13 @@
+pt-BR:
+  add_cause_of_delay_success: "Motivo do Atraso adicionado com sucesso"
+  save: "Salvar"
+  activerecord:
+    models:
+      delayed_order: 
+        one: "Ordem de Serviço Finalizada com Atraso"
+        other: "Ordens de Serviço Finalizadas com Atraso"
+    attributes:
+      delayed_order:
+        cause_of_delay: "Motivo do Atraso"
+        order: "Ordem de Serviço"
+        order_id: "Ordem de Serviço"
