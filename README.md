@@ -40,6 +40,8 @@
 
 - [X] Úsuários administradores e regulares podem selecionar transportadoras para ordens de serviço pendentes, sendo atribuídos a ela o status "Em Transporte", um veículo, preço total e data prevista de entrega.
 
+- [X] Úsuários administradores e regulares podem finalizar uma ordem de serviço, tornando o veículo utilizado disponível para outra entrega. Caso a entrega seja realizada com atraso, o usuário deverá informar o motivo do atraso.
+
 ## Como rodar a aplicação
 
 <p align = "justify"> No terminal, clone o projeto: </p>

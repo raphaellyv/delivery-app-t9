@@ -55,6 +55,8 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     
     @order.detailed_order.update(delivery_date: Time.now)
+    
+    @order.vehicle.available!
 
     if @order.detailed_order.delivery_date <= @order.detailed_order.estimated_delivery_date
       @order.delivered_on_time!
@@ -63,9 +65,7 @@ class OrdersController < ApplicationController
     else
       @order.delivered_late!
       redirect_to  new_order_delayed_order_url(@order), notice: t(:order_delivered_late)
-    end
-
-    @order.vehicle.available!  
+    end  
   end
 
   private

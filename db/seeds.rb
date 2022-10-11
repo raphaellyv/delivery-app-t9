@@ -50,13 +50,13 @@ Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.50, shipping
 
 # Veículos
 vehicle_a = Vehicle.create!(shipping_option: so_a, license_plate: 'AAA0000', brand: 'Peugeot', car_model: 'Partner CS', manufacture_year: '2021',
-                           max_weight: 800_000, status: :available)
+                           max_weight: 800_000, status: :en_route)
 
 Vehicle.create!(shipping_option: so_b, license_plate: 'BBB0000', brand: 'Fiat', car_model: 'Partner TX', manufacture_year: '2020',
                 max_weight: 700_000, status: :maintenance)
 
 Vehicle.create!(shipping_option: so_b, license_plate: 'BBB0003', brand: 'Fiat', car_model: 'Partner TX', manufacture_year: '2020',
-                max_weight: 700_000, status: :en_route)
+                max_weight: 700_000, status: :available)
 
 vehicle_b = Vehicle.create!(shipping_option: so_b, license_plate: 'BBB0004', brand: 'Fiat', car_model: 'Partner TX', manufacture_year: '2020',
                             max_weight: 700_000, status: :en_route)

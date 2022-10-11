@@ -1,4 +1,6 @@
 class DelayedOrdersController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @order = Order.find(params[:order_id])
     @delayed_order = DelayedOrder.new
