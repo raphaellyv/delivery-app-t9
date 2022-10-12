@@ -26,7 +26,7 @@
       <% @vehicles.each do |vehicle| %>
         <tr>
           <td><%= link_to vehicle.shipping_option.name, vehicle.shipping_option, class: "link-dark" %></td>
-          <td><%= vehicle.license_plate %></td>
+          <td><%= link_to vehicle.license_plate, vehicle, class: "link-dark" %></td>
           <td><%= vehicle.brand %></td>
           <td><%= vehicle.car_model %></td>
           <td><%= vehicle.manufacture_year %></td>

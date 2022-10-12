@@ -313,5 +313,40 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       expect(page).not_to have_content 'Entrega Expressa'
       expect(page).to have_content 'Não existem modalidades de transporte disponíveis para esta ordem de serviço'
     end
+
+    it 'e a modalidade de transporte está inativa' do
+      # Arrange
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+
+      order = Order.create!(delivery_address: 'Rua das Palmeiras, 13', delivery_city: 'Rio de Janeiro', delivery_state: 'RJ', 
+                            delivery_postal_code: '28200000', recipient: 'Denise Silva', recipient_cpf: '00000000000',
+                            recipient_email: 'denise@email.com', recipient_phone_number: '2297523040', 
+                            pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'São Paulo', pick_up_state: 'SP', 
+                            pick_up_postal_code: '30000000', sku: 'TV32P-SAMSUNG-XPTO90', height: 60, width: 40, length: 100, 
+                            weight: 3_000, distance: 300, status: :pending)
+
+      so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, max_weight: 50_000, 
+                                  delivery_fee: 5.50, status: :disabled)
+
+      Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so)
+
+      Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so)
+
+        
+      # Act
+      login_as admin
+      visit root_path
+      click_on 'Ordens de Serviço'
+      click_on order.tracking_code
+
+      # Assert
+      expect(page).to have_content "Orçamento"
+      within 'main' do
+        expect(page).not_to have_content 'Prazo'
+        expect(page).not_to have_content 'Preço Total'
+      end        
+      expect(page).not_to have_content 'Entrega Expressa'
+      expect(page).to have_content 'Não existem modalidades de transporte disponíveis para esta ordem de serviço'
+    end
   end
 end

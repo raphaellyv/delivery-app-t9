@@ -30,7 +30,7 @@ class ShippingOptionsController < ApplicationController
 
   def edit
     if current_user.regular?
-      redirect_to shipping_options_url
+      redirect_to shipping_options_url, alert: t(:admin_restricted_area)
     end
   end
 

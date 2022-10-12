@@ -30,7 +30,7 @@ describe 'Usuário finaliza ordem de serviço' do
       click_on 'Marcar como Entregue'
 
       # Assert
-      expect(order.vehicle.status).to eq 'available'
+      expect(order.vehicle.available?).to be true
       expect(page).to have_content 'Ordem de Serviço finalizada com sucesso'
       expect(page).to have_content 'Status: Finalizada'
       expect(page).to have_content "Data de Entrega: #{ (Time.now).strftime("%d/%m/%Y") }"
@@ -64,8 +64,8 @@ describe 'Usuário finaliza ordem de serviço' do
       click_on 'Marcar como Entregue'
 
       # Assert
-      expect(order.vehicle.status).to eq 'en_route'
-      expect(order.status).to eq 'en_route'
+      expect(order.vehicle.en_route?).to be true
+      expect(order.en_route?).to be true
       expect(page).to have_content 'Ordem de Serviço finalizada com atraso'
       expect(page).to have_content "Ordem de Serviço #{ order.tracking_code }"
       expect(page).to have_content "Previsão de Entrega: #{ (Time.now - 24.hours).strftime("%d/%m/%Y") }"
@@ -104,7 +104,7 @@ describe 'Usuário finaliza ordem de serviço' do
       click_on 'Salvar'
 
       # Assert
-      expect(order.vehicle.status).to eq 'available'
+      expect(order.vehicle.available?).to be true
       expect(current_path).to eq order_path(order)
       expect(page).to have_content 'Motivo do Atraso adicionado com sucesso'
       expect(page).to have_content 'Status: Finalizada com Atraso'
@@ -144,8 +144,8 @@ describe 'Usuário finaliza ordem de serviço' do
       click_on 'Salvar'
 
       # Assert
-      expect(order.vehicle.status).to eq 'en_route'
-      expect(order.status).to eq 'en_route'
+      expect(order.vehicle.en_route?).to be true
+      expect(order.en_route?).to be true
       expect(current_path).to eq new_order_delayed_order_path(order)
       expect(page).to have_content 'Não foi possível finalizar a Ordem de Serviço. Por favor informe o Motivo do Atraso'
     end
@@ -180,7 +180,7 @@ describe 'Usuário finaliza ordem de serviço' do
       click_on 'Marcar como Entregue'
 
       # Assert
-      expect(order.vehicle.status).to eq 'available'
+      expect(order.vehicle.available?).to be true
       expect(page).to have_content 'Ordem de Serviço finalizada com sucesso'
       expect(page).to have_content 'Status: Finalizada'
       expect(page).to have_content "Data de Entrega: #{ (Time.now).strftime("%d/%m/%Y") }"
@@ -216,7 +216,7 @@ describe 'Usuário finaliza ordem de serviço' do
       click_on 'Salvar'
 
       # Assert
-      expect(order.vehicle.status).to eq 'available'
+      expect(order.vehicle.available?).to be true
       expect(current_path).to eq order_path(order)
       expect(page).to have_content 'Motivo do Atraso adicionado com sucesso'
       expect(page).to have_content 'Status: Finalizada com Atraso'
@@ -256,8 +256,8 @@ describe 'Usuário finaliza ordem de serviço' do
       click_on 'Salvar'
 
       # Assert
-      expect(order.vehicle.status).to eq 'en_route'
-      expect(order.status).to eq 'en_route'
+      expect(order.vehicle.en_route?).to be true
+      expect(order.en_route?).to be true
       expect(current_path).to eq new_order_delayed_order_path(order)
       expect(page).to have_content 'Não foi possível finalizar a Ordem de Serviço. Por favor informe o Motivo do Atraso'
     end

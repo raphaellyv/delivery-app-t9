@@ -45,7 +45,7 @@ def generate_quotation
 
   deadlines.each do |deadline|
     prices.each do |price|
-      if price.shipping_option == deadline.shipping_option
+      if (price.shipping_option == deadline.shipping_option) && (price.shipping_option.enabled?)
         total_amount = (price.price_per_km * @order.distance) + price.shipping_option.delivery_fee
             
         @quotations << {shipping_option: price.shipping_option, order: @order, deadline: deadline.deadline, price: total_amount}

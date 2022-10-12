@@ -14,30 +14,6 @@ describe 'Usuário edita uma modalidade de transporte' do
   end
 
   context 'como administrador' do
-    it 'a partir da lista de modalidades' do
-      # Arrange
-      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
-  
-      so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
-                                 delivery_fee: 5.50)
-
-      # Act
-      login_as admin
-      visit root_path
-      click_on 'Modalidades de Transporte'
-      click_on 'Entrega Expressa'
-      click_on 'Editar'
-
-      # Assert
-      expect(page).to have_content 'Editar Modalidade de Transporte'
-      expect(page).to have_field 'Modalidade', with: 'Entrega Expressa'
-      expect(page).to have_field 'Distância Mínima', with: '50'
-      expect(page).to have_field 'Distância Máxima', with: '600'
-      expect(page).to have_field 'Peso Mínimo', with: '1000'
-      expect(page).to have_field 'Peso Máximo', with: '50000'
-      expect(page).to have_field 'Taxa Fixa de Entrega', with: 5.5
-    end
-
     it 'a partir da página de detalhes de uma modalidade' do
       # Arrange
       admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
@@ -74,7 +50,7 @@ describe 'Usuário edita uma modalidade de transporte' do
       visit root_path
       click_on 'Modalidades de Transporte'
       click_on 'Entrega Expressa'
-      click_on 'Editar'
+      click_on 'Editar Modalidade'
       fill_in 'Modalidade', with: 'Entrega Rápida'
       fill_in 'Distância Mínima', with: '5'
       fill_in 'Distância Máxima', with: '500'
@@ -154,6 +130,7 @@ describe 'Usuário edita uma modalidade de transporte' do
 
       # Assert
       expect(current_path).to eq shipping_options_path
+      expect(page).to have_content 'Área restrita a administradores'
     end
   end
 end

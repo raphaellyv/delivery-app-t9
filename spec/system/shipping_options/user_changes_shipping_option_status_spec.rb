@@ -25,7 +25,7 @@ describe 'Usuário altera o status da modalidade de transporte' do
       user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
   
       so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
-                             delivery_fee: 5.50, status: :disabled)
+                                  delivery_fee: 5.50, status: :disabled)
   
       # Act
       login_as user
@@ -61,7 +61,7 @@ describe 'Usuário altera o status da modalidade de transporte' do
       admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
 
       so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
-                             delivery_fee: 5.50, status: :disabled)
+                                  delivery_fee: 5.50, status: :disabled)
 
       # Act
       login_as admin

@@ -24,7 +24,13 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
                               
       Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)                         
       Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
+
+      so_c = ShippingOption.create!(name: 'Outra Entrega', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
+                                    delivery_fee: 3.00, status: :disabled)
   
+      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_c)                         
+      Deadline.create!(min_distance: 300, max_distance: 400, deadline: 45, shipping_option: so_c)
+        
       # Act
       login_as user
       visit root_path
@@ -36,8 +42,10 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       expect(page).to have_content "Ordem de Serviço #{order.tracking_code}"
       expect(page).to have_content 'Entrega Expressa'
       expect(page).to have_content 'Entrega Básica'
+      expect(page).not_to have_content 'Outra Entrega'
       expect(page).to have_content '48 h'
       expect(page).to have_content '40 h'
+      expect(page).not_to have_content '45 h'
       expect(page).to have_content 'R$ 305,50'
       expect(page).to have_content 'R$ 453,00'
       expect(page).to have_button 'Selecionar Modalidade de Transporte'
@@ -100,7 +108,7 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       expect(page).to have_content "BBB0000"
       expect(page).to have_content "Fiat"
       expect(page).to have_content "Partner TX"
-      expect(order.vehicle.status).to eq 'en_route'
+      expect(order.vehicle.en_route?).to be true
     end
 
     it 'e não existem veículos disponíveis' do
@@ -193,7 +201,7 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       expect(page).to have_content "BBB0000"
       expect(page).to have_content "Fiat"
       expect(page).to have_content "Partner TX"
-      expect(order.vehicle.status).to eq 'en_route'
+      expect(order.vehicle.en_route?).to be true
     end
 
     it 'e não existem veículos disponíveis' do

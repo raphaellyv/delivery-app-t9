@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     post 'disable', on: :member
   end
 
-  resources :vehicles, only: [:index, :create]
+  resources :vehicles, only: [:index, :create, :edit, :update, :show]
 
   resources :deadlines, only: [:index]
 

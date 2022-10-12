@@ -33,7 +33,7 @@
 - [X] Usuários administradores podem editar uma modalidade de transporte.
 
 - [X] Usuários administradores e regulares podem ver lista de veículos cadastrados. Cada veículo pertence a uma modalidade de transporte e pode ter status "Disponível", "Em Manutenção" ou "Em Entrega".
-- [X] Usuários administradores podem cadastrar veículos.
+- [X] Usuários administradores podem cadastrar e editar veículos.
 
 - [X] Usuários administradores e regulares podem ver lista de prazos de entrega cadastrados. Cada prazo pertence a uma modalidade de transporte.
 
