@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário altera o status de uma modalidade de transporte' do
   context 'para inativa' do
-    it 'e náo está autenticado' do
+    it 'e não está autenticado' do
       # Arrange
       so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
                                   delivery_fee: 5.50, status: :enabled)
@@ -31,7 +31,7 @@ describe 'Usuário altera o status de uma modalidade de transporte' do
   end
 
   context 'para ativa' do
-    it 'e náo está autenticado' do
+    it 'e não está autenticado' do
       # Arrange
       so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
                                   delivery_fee: 5.50, status: :disabled)
