@@ -6,7 +6,6 @@
 <dl>
   <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:estimated_delivery_date) %>:</dt>
   <dd><%= @order.detailed_order.estimated_delivery_date.strftime("%d/%m/%Y") %></dd>
-
   <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:delivery_date) %>:</dt>
   <dd><%= @order.detailed_order.delivery_date.strftime("%d/%m/%Y") %></dd>
 </dl>

@@ -1,5 +1,6 @@
 pt-BR:
   add_cause_of_delay_success: "Motivo do Atraso adicionado com sucesso"
+  conclude_delayed_order_error: "Não foi possível finalizar a Ordem de Serviço. Por favor informe o Motivo do Atraso"
   save: "Salvar"
   activerecord:
     models:

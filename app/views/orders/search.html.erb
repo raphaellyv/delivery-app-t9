@@ -3,11 +3,58 @@
 <% if @order.present? %>
   <h3 class="my-3 text-muted"><%= Order.human_attribute_name(:status) %>: <%= Order.human_attribute_name("status.#{@order.status}") %></h3>
 
+  <% if @order.pending? == false %>
+    <hr>
+    <h4 class="my-3 text-muted">
+      <%= DetailedOrder.human_attribute_name(:estimated_delivery_date) %>: <%= @order.detailed_order.estimated_delivery_date.strftime("%d/%m/%Y") %>
+    </h4>
+  <% end %>
+
+  <% if @order.delivered_on_time? || @order.delivered_late? %>
+    <h4 class="my-3 text-muted">
+      <%= DetailedOrder.human_attribute_name(:delivery_date) %>: <%= @order.detailed_order.delivery_date.strftime("%d/%m/%Y") %>
+    </h4>
+  <% end %>
+
+  <hr>
+
+  <% if @order.delivered_late? %>
+    <div>
+      <h4 class="my-3 text-muted"><%= DelayedOrder.human_attribute_name(:cause_of_delay) %></h4>
+      <p><%= @order.delayed_order.cause_of_delay %><p>
+    </div>
+    <hr>
+  <% end %>
+  
   <dl>
     <dt class="fw-semibold"><%= t(:pick_up_local) %>:</dt>
     <dd><%= @order.full_pick_up_address %></dd> 
     <dt class="fw-semibold"><%= t(:delivery_local) %>:</dt>
     <dd><%= @order.full_delivery_address %></dd>
+
+    <% if @order.pending? == false %>
+      <dt class="fw-semibold"><%= DetailedOrder.human_attribute_name(:vehicle) %>:</dt>
+      <dd>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="fw-semibold"><%= Vehicle.human_attribute_name(:license_plate) %></th>
+              <th class="fw-semibold"><%= Vehicle.human_attribute_name(:brand) %></th>
+              <th class="fw-semibold"><%= Vehicle.human_attribute_name(:car_model) %></th>
+              <th class="fw-semibold"><%= Vehicle.human_attribute_name(:manufacture_year) %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @order.detailed_order.vehicle.license_plate %></td>
+              <td><%= @order.detailed_order.vehicle.brand %></td>
+              <td><%= @order.detailed_order.vehicle.car_model %></td>
+              <td><%= @order.detailed_order.vehicle.manufacture_year %></td>
+            </tr>
+          </tbody>
+        </table>
+      </dd>
+    <% end %>
   </dl>
 <% else %>
   <div class="alert alert-danger">
