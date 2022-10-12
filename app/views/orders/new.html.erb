@@ -85,7 +85,7 @@
 
   <div class="mb-3">
     <%= f.label :weight, class: "form-label fw-semibold" %>
-    <%= f.number_field :weight, class: "form-control", placeholder: t(:weight_g) %>
+    <%= f.number_field :weight, placeholder: t(:weight_g), class: "form-control" %>
 
     <% if(@order.errors.include? :weight) %>
       <div class=" my-3 alert alert-danger">

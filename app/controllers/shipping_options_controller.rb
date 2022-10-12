@@ -6,12 +6,10 @@ class ShippingOptionsController < ApplicationController
   def index
     if current_user.admin?
       @shipping_options = ShippingOption.all.order(:name)
-
+      @shipping_option = ShippingOption.new
     else
       @shipping_options = ShippingOption.enabled.order(:name)
-    end
-    
-    @shipping_option = ShippingOption.new
+    end    
   end
 
   def create

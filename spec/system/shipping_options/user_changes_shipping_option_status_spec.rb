@@ -52,8 +52,8 @@ describe 'Usuário altera o status da modalidade de transporte' do
       click_on 'Entrega Expressa'
 
       # Assert
-      expect(page).to have_button 'Ativar'
-      expect(page).not_to have_button 'Desativar'
+      expect(page).to have_button 'Desativar'
+      expect(page).not_to have_button 'Ativar'
     end
 
     it 'para ativa' do

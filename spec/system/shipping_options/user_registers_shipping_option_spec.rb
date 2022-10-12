@@ -30,7 +30,6 @@ describe 'Usuário cadastra modalidade de transporte' do
       login_as admin
       visit root_path
       click_on 'Modalidades de Transporte'
-      # click_on 'Cadastrar Modalidade de Transporte'
   
       # Assert
       expect(page).to have_content 'Nova Modalidade de Transporte'

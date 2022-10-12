@@ -1,3 +1,12 @@
+<% if current_user.admin? %>
+  <div>
+    <h1 class="my-3"><%= t(:new_masc) %> <%= Vehicle.model_name.human %></h1>
+    <%= render 'form' %>
+  </div>
+
+  <br>
+<% end %>
+
 <h1 class="my-3"><%= Vehicle.model_name.human count: 2 %></h1>
 
 <% if @vehicles.any? %>

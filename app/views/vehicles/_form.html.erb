@@ -1,0 +1,85 @@
+<%= form_with(model: @vehicle) do |f| %>
+  <div class="d-grid gap-2 col-4 mb-3">
+    <%= f.label :shipping_option_id, class: "form-label fw-semibold" %>
+    <%= f.collection_select :shipping_option_id, @shipping_options, :id, :name, prompt: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :license_plate, class: "form-label fw-semibold" %>
+    <%= f.text_field :license_plate, maxlength: 7, class: "form-control" %>
+
+    <% if(@vehicle.errors.include? :license_plate) %>
+      <div class=" my-3 alert alert-danger">
+        <ul>
+          <% @vehicle.errors.full_messages_for(:license_plate).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :brand, class: "form-label fw-semibold" %>
+      <%= f.text_field :brand, class: "form-control" %>
+
+      <% if(@vehicle.errors.include? :brand) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @vehicle.errors.full_messages_for(:brand).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :car_model, class: "form-label fw-semibold" %>
+      <%= f.text_field :car_model, class: "form-control" %>
+
+      <% if(@vehicle.errors.include? :car_model) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @vehicle.errors.full_messages_for(:car_model).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :manufacture_year, class: "form-label fw-semibold" %>
+      <%= f.text_field :manufacture_year, maxlength: 4, class: "form-control" %>
+
+      <% if(@vehicle.errors.include? :manufacture_year) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @vehicle.errors.full_messages_for(:manufacture_year).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :max_weight, class: "form-label fw-semibold" %>
+    <%= f.number_field :max_weight, placeholder: t(:weight_g), class: "form-control" %>
+
+    <% if(@vehicle.errors.include? :max_weight) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @vehicle.errors.full_messages_for(:max_weight).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+  </div>
+
+  <div class="d-grid mb-3">
+    <%= f.submit class: "btn btn-dark" %>
+  </div>
+<% end %>

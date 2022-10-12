@@ -254,8 +254,8 @@ RSpec.describe ShippingOption, type: :model do
     end
   end
 
-  describe '#disabled?' do
-    it 'a modalidade de transporte é criada como inativa' do
+  describe '#enabled?' do
+    it 'a modalidade de transporte é criada como ativa' do
       # Arrange
       so = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1500, max_weight: 40000, 
                                   delivery_fee: 3.00)
@@ -264,7 +264,7 @@ RSpec.describe ShippingOption, type: :model do
       # Act
 
       # Assert
-      expect(so.disabled?).to be true
+      expect(so.enabled?).to be true
     end
   end
 end

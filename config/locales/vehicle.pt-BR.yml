@@ -1,5 +1,7 @@
 pt-BR:
   no_vehicles_registered: "Não existem veículos cadastrados"
+  vehicle_registration_error: "Não foi possível cadastrar o Veículo"
+  vehicle_registration_success: "Veículo cadastrado com sucesso"
   activerecord:
     models:
       vehicle: 
