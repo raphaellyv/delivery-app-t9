@@ -1,0 +1,9 @@
+<h2 class="my-3"><%= t(:search_result) %><%= @license_plate %></h2>
+
+<% if @vehicles.any? %>
+  <%= render 'vehicles_table' %>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t(:no_vehicles_found) %>
+  </div>
+<% end %>

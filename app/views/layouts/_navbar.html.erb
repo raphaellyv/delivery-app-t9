@@ -24,9 +24,6 @@
           <li class="nav-item">
             <%= link_to Deadline.model_name.human(count: 2), deadlines_path, class: 'nav-link' %>
           </li>
-        </ul>
-
-        <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= current_user.name %>
@@ -35,6 +32,15 @@
             <ul class="dropdown-menu dropdown-menu-lg-end">
               <%= button_to t(:sign_out), destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </ul>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav">
+          <li>
+            <%= form_with(url: search_vehicles_path, method: :get, class: 'd-flex') do |f| %>
+              <%= f.text_field :query, placeholder: t(:type_license_plate), class: "form-control me-2" %>
+              <%= f.submit t(:search_vehicle), class: "btn btn-dark" %>
+            <% end %>
           </li>
         </ul>
       </div>

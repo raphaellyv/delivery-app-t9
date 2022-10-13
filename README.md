@@ -33,6 +33,7 @@
 - [X] Usuários administradores podem editar uma modalidade de transporte.
 
 - [X] Usuários administradores e regulares podem ver lista de veículos cadastrados. Cada veículo pertence a uma modalidade de transporte e pode ter status "Disponível", "Em Manutenção" ou "Em Entrega".
+- [X] Usuários administradores e regulares podem buscar por um veículo pela placa parcial ou completa.
 - [X] Usuários administradores podem cadastrar e editar veículos.
 - [X] Usuários administradores podem alterar o status de um veículo de "Em Entrega" ou "Disponível para "Em Manutenção" e de "Em Manutenção" para "Disponível".
 

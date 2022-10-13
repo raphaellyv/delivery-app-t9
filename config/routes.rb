@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :vehicles, only: [:index, :create, :edit, :update, :show] do
+    get 'search', on: :collection
     post 'sent_to_maintenance', on: :member
     post 'make_available', on: :member
   end

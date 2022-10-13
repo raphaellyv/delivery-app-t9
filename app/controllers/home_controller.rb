@@ -1,5 +1,3 @@
 class HomeController < ApplicationController
-  def track
-    
-  end
+  def track; end
 end
