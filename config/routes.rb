@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     post 'disable', on: :member
   end
 
-  resources :vehicles, only: [:index, :create, :edit, :update, :show]
+  resources :vehicles, only: [:index, :create, :edit, :update, :show] do
+    post 'sent_to_maintenance', on: :member
+    post 'make_available', on: :member
+  end
 
   resources :deadlines, only: [:index]
 

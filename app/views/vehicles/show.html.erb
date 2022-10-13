@@ -1,5 +1,9 @@
 <h1 class="my-3"><%= Vehicle.model_name.human %> <%= @vehicle.license_plate %></h1>
 
+<h3 class="my-3 text-muted">
+  <%= Vehicle.human_attribute_name(:status) %>: <%= Vehicle.human_attribute_name("status.#{@vehicle.status}") %>
+</h3>
+
 <dl>
   <dt class="fw-semibold"><%= Vehicle.human_attribute_name(:shipping_option) %>:</dt>
   <dd><%= link_to @vehicle.shipping_option.name, @vehicle.shipping_option, class:"link-dark" %></dd>
@@ -18,7 +22,18 @@
     <div class="d-grid gap-2 col-4 my-3">
       <%= link_to t(:edit_vehicle), edit_vehicle_path(@vehicle.id), class:"btn btn-outline-dark" %>
     </div>
+    <% if @vehicle.maintenance? %>
+      <div class="d-grid gap-2 col-4 my-3">
+        <%= button_to t(:change_status_to_available), make_available_vehicle_path(@vehicle.id), class: "btn btn-success" %>
+      </div>
+    <% else %>
+      <div class="d-grid gap-2 col-4 my-3">
+        <%= button_to t(:change_status_to_maintenance), sent_to_maintenance_vehicle_path(@vehicle.id), class: "btn btn-warning" %>
+      </div>
+    <% end %>
   </div>
 <% end %>
+
+  
 
 

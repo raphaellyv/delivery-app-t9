@@ -27,12 +27,10 @@
 
     <div class="d-grid gap-2 col-4 my-3">
       <% if @shipping_option.status == 'disabled' %>
-        <%= button_to t(:enable), enable_shipping_option_path(@shipping_option.id), class: "btn btn-outline-success" %>
+        <%= button_to t(:enable), enable_shipping_option_path(@shipping_option.id), class: "btn btn-success" %>
       <% elsif @shipping_option.status == 'enabled' %>
-        <%= button_to t(:disable), disable_shipping_option_path(@shipping_option.id), class: "btn btn-outline-danger" %></td>
+        <%= button_to t(:disable), disable_shipping_option_path(@shipping_option.id), class: "btn btn-danger" %></td>
       <% end %>
     </div>    
   </div>
 <% end %>
-
-<hr>
