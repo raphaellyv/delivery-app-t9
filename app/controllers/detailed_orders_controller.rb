@@ -21,7 +21,8 @@ class DetailedOrdersController < ApplicationController
     quotation = @quotations.find{ |quotation| quotation[:shipping_option] == @detailed_order.shipping_option }
     @detailed_order.total_price = quotation[:price]
     @detailed_order.estimated_delivery_date = Time.now + quotation[:deadline].hours
-    @detailed_order.vehicle = @detailed_order.shipping_option.vehicles.available.order(:updated_at)[0]
+    @detailed_order.vehicle = @detailed_order.shipping_option.vehicles.available.order(:updated_at).select{ 
+                              |vehicle| vehicle.max_weight >= @order.weight }[0]
 
     if @detailed_order.save
       @order.en_route!

@@ -141,6 +141,40 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       expect(current_path).to eq new_order_detailed_order_path(order.id)
       expect(page).to have_content 'No momento não existem veículos disponíveis para esta Modalidade de Transporte'
     end
+
+    it 'e o veículo disponível tem carga máxima menor que a necessária' do
+      # Arrange
+      user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
+    
+      order = Order.create!(delivery_address: 'Rua das Palmeiras, 13', delivery_city: 'Rio de Janeiro', delivery_state: 'RJ', 
+                            delivery_postal_code: '28200000', recipient: 'Denise Silva', recipient_cpf: '00000000000',
+                            recipient_email: 'denise@email.com', recipient_phone_number: '2297523040', 
+                            pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'São Paulo', pick_up_state: 'SP', 
+                            pick_up_postal_code: '30000000', sku: 'TV32P-SAMSUNG-XPTO90', height: 60, width: 40, length: 100, 
+                            weight: 3_000, distance: 300, status: :pending)
+    
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, max_weight: 50_000, 
+                                    delivery_fee: 5.50, status: :enabled)
+    
+      Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+      Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
+    
+      vehicle_a = Vehicle.create!(shipping_option: so_a, license_plate: 'AAA0000', brand: 'Peugeot', car_model: 'Partner CS', manufacture_year: '2021',
+                                  max_weight: 2_000, status: :available)
+  
+      # Act
+      login_as user
+      visit root_path
+      click_on 'Ordens de Serviço'
+      click_on order.tracking_code
+      click_on 'Selecionar Modalidade de Transporte'
+      select 'Entrega Expressa', from: 'Modalidade de Transporte'
+      click_on 'Selecionar Modalidade de Transporte'      
+  
+      # Assert
+      expect(current_path).to eq new_order_detailed_order_path(order.id)
+      expect(page).to have_content 'No momento não existem veículos disponíveis para esta Modalidade de Transporte'
+    end
   end
 
   context 'como usuário administrador' do
@@ -228,6 +262,40 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       click_on order.tracking_code
       click_on 'Selecionar Modalidade de Transporte'
       select 'Entrega Básica', from: 'Modalidade de Transporte'
+      click_on 'Selecionar Modalidade de Transporte'      
+  
+      # Assert
+      expect(current_path).to eq new_order_detailed_order_path(order.id)
+      expect(page).to have_content 'No momento não existem veículos disponíveis para esta Modalidade de Transporte'
+    end
+
+    it 'e o veículo disponível tem carga máxima menor que a necessária' do
+      # Arrange
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+    
+      order = Order.create!(delivery_address: 'Rua das Palmeiras, 13', delivery_city: 'Rio de Janeiro', delivery_state: 'RJ', 
+                            delivery_postal_code: '28200000', recipient: 'Denise Silva', recipient_cpf: '00000000000',
+                            recipient_email: 'denise@email.com', recipient_phone_number: '2297523040', 
+                            pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'São Paulo', pick_up_state: 'SP', 
+                            pick_up_postal_code: '30000000', sku: 'TV32P-SAMSUNG-XPTO90', height: 60, width: 40, length: 100, 
+                            weight: 3_000, distance: 300, status: :pending)
+    
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, max_weight: 50_000, 
+                                    delivery_fee: 5.50, status: :enabled)
+    
+      Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+      Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
+    
+      vehicle_a = Vehicle.create!(shipping_option: so_a, license_plate: 'AAA0000', brand: 'Peugeot', car_model: 'Partner CS', manufacture_year: '2021',
+                                  max_weight: 2_000, status: :available)
+  
+      # Act
+      login_as admin
+      visit root_path
+      click_on 'Ordens de Serviço'
+      click_on order.tracking_code
+      click_on 'Selecionar Modalidade de Transporte'
+      select 'Entrega Expressa', from: 'Modalidade de Transporte'
       click_on 'Selecionar Modalidade de Transporte'      
   
       # Assert
