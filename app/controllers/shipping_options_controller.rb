@@ -26,7 +26,9 @@ class ShippingOptionsController < ApplicationController
     end
   end
 
-  def show; end
+  def show 
+    @vehicles = @shipping_option.vehicles
+  end
 
   def edit
     if current_user.regular?
