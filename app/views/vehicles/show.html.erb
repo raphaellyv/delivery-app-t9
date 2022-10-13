@@ -4,6 +4,12 @@
   <%= Vehicle.human_attribute_name(:status) %>: <%= Vehicle.human_attribute_name("status.#{@vehicle.status}") %>
 </h3>
 
+<% if @vehicle.en_route? %>
+  <h3 class="my-3 text-muted">
+    <%= Order.model_name.human %>: <%= link_to @order.tracking_code, @order, class: "link-dark" %>
+  </h3>
+<% end %>
+
 <dl>
   <dt class="fw-semibold"><%= Vehicle.human_attribute_name(:shipping_option) %>:</dt>
   <dd><%= link_to @vehicle.shipping_option.name, @vehicle.shipping_option, class:"link-dark" %></dd>

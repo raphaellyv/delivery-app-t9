@@ -25,7 +25,11 @@ class VehiclesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    if @vehicle.en_route?
+      @order = @vehicle.orders.find_by(status: :en_route)
+    end
+  end
 
   def edit
     if current_user.admin?

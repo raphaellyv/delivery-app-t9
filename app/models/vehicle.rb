@@ -1,5 +1,7 @@
 class Vehicle < ApplicationRecord
   has_many :detailed_orders
+  has_many :orders, through: :detailed_orders
+
   enum :status, { available: 10, en_route: 20, maintenance: 30 }, default: :available
   
   belongs_to :shipping_option
