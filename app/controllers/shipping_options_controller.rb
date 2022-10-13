@@ -28,6 +28,7 @@ class ShippingOptionsController < ApplicationController
 
   def show 
     @vehicles = @shipping_option.vehicles
+    @prices = @shipping_option.prices
   end
 
   def edit

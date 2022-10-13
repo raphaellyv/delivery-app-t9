@@ -9,10 +9,4 @@
 
 <h1 class="my-3"><%= Vehicle.model_name.human count: 2 %></h1>
 
-<% if @vehicles.any? %>
-  <%= render 'vehicles_table' %>
-<% else %>
-  <div class="alert alert-secondary text-center">
-    <%= t(:no_vehicles_registered) %>
-  </div>
-<% end %>
+<%= render 'vehicles_table' %>

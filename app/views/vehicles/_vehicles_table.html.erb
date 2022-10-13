@@ -1,4 +1,5 @@
-<table class="table table-striped">
+<% if @vehicles.any? %>
+  <table class="table table-striped">
     <thead>
       <tr>
         <th><%= Vehicle.human_attribute_name(:shipping_option) %></th>
@@ -31,3 +32,8 @@
       <% end %>
     </tbody>
   </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t(:no_vehicles_registered) %>
+  </div>
+<% end %>
