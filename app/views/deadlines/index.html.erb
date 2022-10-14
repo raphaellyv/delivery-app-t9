@@ -1,29 +1,3 @@
 <h1 class="my-3"><%= Deadline.model_name.human count: 2 %></h1>
 
-<% if @deadlines.any? %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th><%= Deadline.human_attribute_name(:shipping_option) %></th>
-        <th><%= t(:distance_range) %></th>
-        <th><%= Deadline.human_attribute_name(:deadline) %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @deadlines.each do |deadline| %>
-        <tr>
-          <td><%= link_to deadline.shipping_option.name, deadline.shipping_option, class: "link-dark" %></td>
-          <td>
-            <%= number_to_human(deadline.min_distance, delimiter: ' ', units: { unit: 'km' }) %><%= t(:to) %>
-            <%= number_to_human(deadline.max_distance, delimiter: ' ', units: { unit: 'km' }) %>
-          </td>
-          <td><%= number_to_human(deadline.deadline, units: { unit: 'h' }) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <div class="alert alert-secondary text-center">
-    <%= t(:no_deadlines_registered) %>
-  </div>
-<% end %>
+<%= render 'deadlines_table' %>

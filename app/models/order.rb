@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   has_one :shipping_option, through: :detailed_order
   has_one :vehicle, through: :detailed_order
   has_one :delayed_order
+  
   enum :status, { pending: 10, en_route: 20, delivered_late: 30, delivered_on_time: 40 }, default: :pending
 
   before_validation :generate_code, on: :create

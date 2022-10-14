@@ -27,8 +27,9 @@ class ShippingOptionsController < ApplicationController
   end
 
   def show 
-    @vehicles = @shipping_option.vehicles
-    @prices = @shipping_option.prices
+    @vehicles = @shipping_option.vehicles.order(:status)
+    @prices = @shipping_option.prices.order(:min_weight)
+    @deadlines = @shipping_option.deadlines.order(:min_distance)
   end
 
   def edit

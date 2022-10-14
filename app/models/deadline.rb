@@ -2,9 +2,7 @@ class Deadline < ApplicationRecord
   belongs_to :shipping_option
 
   validates :deadline, :max_distance, :min_distance, presence: true
-
   validates :min_distance, comparison: { less_than: :max_distance }
-
   validates :deadline, numericality: { greater_than: 0}
 
   validates :deadline, uniqueness: { scope: :shipping_option }

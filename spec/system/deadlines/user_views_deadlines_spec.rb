@@ -21,9 +21,9 @@ describe 'Usuário vê lista de prazos' do
         click_on 'Prazos'
       end
       
-      # Assert
-      expect(page).to have_content 'Prazos'
+      # Assert      
       within 'main' do
+        expect(page).to have_content 'Prazos'
         expect(page).to have_content 'Prazo de Entrega'
       end
       expect(page).to have_content '48 h'
@@ -71,8 +71,8 @@ describe 'Usuário vê lista de prazos' do
       end
       
       # Assert
-      expect(page).to have_content 'Prazos'
       within 'main' do
+        expect(page).to have_content 'Prazos'
         expect(page).to have_content 'Prazo de Entrega'
       end
       expect(page).to have_content '48 h'
