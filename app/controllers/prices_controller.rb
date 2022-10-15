@@ -17,7 +17,7 @@ class PricesController < ApplicationController
     @price.shipping_option = @shipping_option
 
     if @price.save
-      redirect_to new_shipping_option_price_path(@shipping_option.id), notice: t(:price_registration_success)
+      redirect_to new_shipping_option_price_url(@shipping_option.id), notice: t(:price_registration_success)
     else
       @prices = @shipping_option.prices.order(:min_weight)
 

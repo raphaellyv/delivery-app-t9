@@ -29,7 +29,7 @@ class DetailedOrdersController < ApplicationController
 
       redirect_to @order, notice: t(:select_shipping_option_success)    
     else
-      redirect_to new_order_detailed_order_path(@order.id), alert: t(:no_vehicles_available_for_shipping_option)
+      redirect_to new_order_detailed_order_url(@order.id), alert: t(:no_vehicles_available_for_shipping_option)
     end    
   end
 end

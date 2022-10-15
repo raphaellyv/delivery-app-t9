@@ -16,6 +16,12 @@
             <%= number_to_human(deadline.max_distance, delimiter: ' ', units: { unit: 'km' }) %>
           </td>
           <td><%= number_to_human(deadline.deadline, units: { unit: 'h' }) %></td>
+          <% if current_user.admin? %>
+            <td>
+              <%= link_to t(:edit), edit_shipping_option_deadline_path(deadline.shipping_option.id, deadline.id), 
+                  class: "btn btn-outline-dark" %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

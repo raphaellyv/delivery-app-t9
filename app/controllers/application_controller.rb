@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def check_admin
     if current_user.admin? == false
-      redirect_to root_path, alert: t(:admin_restricted_area)
+      redirect_to root_url, alert: t(:admin_restricted_area)
     end
   end
 
