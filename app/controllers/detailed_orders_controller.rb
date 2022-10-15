@@ -1,5 +1,4 @@
 class DetailedOrdersController < ApplicationController
-  before_action :authenticate_user!
   
   def new
     @order = Order.find(params[:order_id])

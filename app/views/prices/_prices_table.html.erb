@@ -16,6 +16,11 @@
             <%= number_to_human(price.max_weight, units: {unit: 'g', thousand: 'kg'}) %>
           </td>
           <td><%= number_to_currency(price.price_per_km) %></td>
+          <% if current_user.admin? %>
+            <td>
+              <%= link_to t(:edit), edit_shipping_option_price_path(price.shipping_option.id, price.id), class: "btn btn-outline-dark" %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

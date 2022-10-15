@@ -3,6 +3,8 @@ pt-BR:
   no_prices_registered: "Não existem preços cadastrados"
   price_registration_error: "Não foi possível cadastrar o preço"
   price_registration_success: "Preço cadastrado com sucesso"
+  price_update_error: "Não foi possível atualizar o Preço"
+  price_update_success: "Preço atualizado com sucesso"
   activerecord:
     models:
       price: 

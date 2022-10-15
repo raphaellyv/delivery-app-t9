@@ -1,5 +1,4 @@
 class ShippingOptionsController < ApplicationController
-  before_action :authenticate_user!
   before_action :check_admin, only: [:update, :disable, :enable]
   before_action :set_shipping_option, only: [:show, :edit, :update, :enable, :disable]
 

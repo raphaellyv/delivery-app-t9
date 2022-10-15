@@ -1,0 +1,55 @@
+<h3 class="my-3 text-muted">
+  <%= Price.human_attribute_name(:shipping_option) %>: <%= @shipping_option.name %>
+</h3>
+
+<h3 class="my-3 text-muted">
+  <%= t(:weight_range) %></th>: <%= number_to_human(@shipping_option.min_weight, units: {unit: 'g', thousand: 'kg'}) %><%= 
+      t(:to) %><%= number_to_human(@shipping_option.max_weight, units: {unit: 'g', thousand: 'kg'}) %>
+</h3>
+
+<%= form_with(model: [@shipping_option, @price]) do |f| %>
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :min_weight, class: "form-label fw-semibold" %>
+      <%= f.number_field :min_weight, placeholder: t(:weight_g), class: "form-control" %>
+      <% if(@price.errors.include? :min_weight) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @price.errors.full_messages_for(:min_weight).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+   <div class="col">
+      <%= f.label :max_weight, class: "form-label fw-semibold" %>
+      <%= f.number_field :max_weight, placeholder: t(:weight_g), class: "form-control" %>
+      <% if(@price.errors.include? :max_weight) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @price.errors.full_messages_for(:max_weight).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :price_per_km, class: "form-label fw-semibold" %>
+      <%= f.number_field :price_per_km, step: 0.01, placeholder: t(:currency), class: "form-control" %>
+      <% if(@price.errors.include? :price_per_km) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @price.errors.full_messages_for(:price_per_km).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-grid mb-3">
+    <%= f.submit class: "btn btn-dark" %>
+  </div>
+<% end %>

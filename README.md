@@ -17,34 +17,40 @@
 
 ## Funcionalidades
 
+### Usuários
 - [X] Somente usuários com domínio @sistemadefrete.com.br podem fazer login.
 - [X] Usuários com domínio @sistemadefrete.com.br podem fazer cadastro e terão acesso como usuário regular.
 
-- [X] Usuários administradores podem cadastrar uma ordem de serviço com status pendente.
-- [X] Usuários regulares e administradores podem ver lista de ordens de serviço.
-- [X] Usuários regulares e administradores podem ver detalhes de uma ordem de serviço.
-- [X] Visitantes podem buscar por uma ordem de serviço pelo código de rastreio.
-
+### Modalidades de Transporte
 - [X] Usuários regulares podem ver lista contendo somente modalidades de transporte ativas.
 - [X] Usuários administradores podem ver lista de contendo todas as modalidades de transporte e seus status.
 - [X] Usuários administradores e regulares podem ver detalhes de uma modalidade de transporte contendo uma lista com os veículos, preços e prazos cadastrados para esta modalidade.
 - [X] Usuários administradores podem criar modalidades de transporte com o status "Ativa".
 - [X] Usuários administradores podem alterar o status de uma modalidade de transporte para "Ativa" ou "Inativa".
 - [X] Usuários administradores podem editar uma modalidade de transporte.
-- [X] Usuários administradores podem cadastrar preços pela página de detalhes da modalidade.
 
+### Veículos
 - [X] Usuários administradores e regulares podem ver lista de veículos cadastrados. Cada veículo pertence a uma modalidade de transporte e pode ter status "Disponível", "Em Manutenção" ou "Em Entrega".
 - [X] Usuários administradores e regulares podem buscar por um veículo pela placa parcial ou completa.
 - [X] Usuários administradores podem cadastrar e editar veículos.
 - [X] Usuários administradores podem alterar o status de um veículo de "Em Entrega" ou "Disponível para "Em Manutenção" e de "Em Manutenção" para "Disponível".
 
-- [X] Usuários administradores e regulares podem ver lista de prazos de entrega cadastrados. Cada prazo pertence a uma modalidade de transporte.
+### Preços
+- [X] Usuários administradores e regulares podem ver uma lista de preços contendo os preços cadastrados de todas as modalidades.
+- [X] Usuários administradores podem cadastrar preços pela página de detalhes da modalidade.
+- [X] Usuários administradores podem editar preços pela lista de preços.
 
-- [X] Úsuários administradores e regulares podem ver o orçamento na tela de detalhes de ordens de serviço pendentes.
+### Prazos
+- [X] Usuários administradores e regulares podem ver lista de prazos de entrega cadastrados de todas as modalidades.
 
+### Ordens de Serviço
+- [X] Usuários administradores podem cadastrar uma ordem de serviço com status pendente.
+- [X] Usuários regulares e administradores podem ver lista de ordens de serviço.
+- [X] Usuários regulares e administradores podem ver detalhes de uma ordem de serviço.
+- [X] Úsuários administradores e regulares podem ver o orçamento para uma ordem deserviço pendente na tela de detalhes desta ordem.
 - [X] Úsuários administradores e regulares podem selecionar transportadoras para ordens de serviço pendentes, sendo atribuídos a ela o status "Em Transporte", um veículo (respeitando sua carga máxima), preço total e data prevista de entrega.
-
 - [X] Úsuários administradores e regulares podem finalizar uma ordem de serviço, tornando o veículo utilizado disponível para outra entrega. Caso a entrega seja realizada com atraso, o usuário deverá informar o motivo do atraso.
+- [X] Visitantes podem buscar por uma ordem de serviço pelo código de rastreio.
 
 ## Como rodar a aplicação
 
