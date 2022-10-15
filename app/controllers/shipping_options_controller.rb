@@ -60,12 +60,6 @@ class ShippingOptionsController < ApplicationController
 
   private
 
-  def check_admin
-    if current_user.regular?
-      redirect_to root_path, alert: t(:admin_restricted_area)
-    end
-  end
-
   def set_shipping_option
     @shipping_option = ShippingOption.find(params[:id])
   end

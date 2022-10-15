@@ -1,5 +1,6 @@
 class VehiclesController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_admin, only: [:edit, :update, :sent_to_maintenance, :make_available]
   before_action :set_vehicle, only: [:show, :edit, :update, :sent_to_maintenance, :make_available]
 
   def index
@@ -32,40 +33,28 @@ class VehiclesController < ApplicationController
   end
 
   def edit
-    if current_user.admin?
-      @shipping_options = ShippingOption.enabled.order(:name)
-    else
-      redirect_to root_path, alert: t(:admin_restricted_area)
-    end
+    @shipping_options = ShippingOption.enabled.order(:name)
   end
 
   def update
-    if current_user.admin?
-      if @vehicle.update(vehicle_params)
+    if @vehicle.update(vehicle_params)
       redirect_to @vehicle, notice: t(:vehicle_update_success)
-      else
-        @shipping_options = ShippingOption.enabled.order(:name)
-        
-        flash.now[:alert] = t(:vehicle_update_error)
-        render 'edit'
-      end
     else
-      redirect_to root_path, alert: t(:admin_restricted_area)
+      @shipping_options = ShippingOption.enabled.order(:name)
+        
+      flash.now[:alert] = t(:vehicle_update_error)
+      render 'edit'
     end
   end
 
   def sent_to_maintenance
-    if current_user.admin?
-      @vehicle.maintenance!
-      redirect_to @vehicle, notice: t(:status_change_success)
-    end    
+    @vehicle.maintenance!
+    redirect_to @vehicle, notice: t(:status_change_success)
   end
 
   def make_available
-    if current_user.admin?
-      @vehicle.available!
-      redirect_to @vehicle, notice: t(:status_change_success)
-    end  
+    @vehicle.available!
+    redirect_to @vehicle, notice: t(:status_change_success) 
   end
 
   def search

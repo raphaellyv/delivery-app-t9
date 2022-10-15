@@ -38,24 +38,31 @@
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
         <h4><%= Vehicle.model_name.human count: 2 %></h4>
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <%= render 'vehicles/vehicles_table' %>
       </div>
     </div>
   </div>
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
+    <h4 class="accordion-header" id="headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         <h4><%= Price.model_name.human count: 2 %></h4>
       </button>
-    </h2>
+    </h4>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
+        <% if current_user.admin? %>
+          <div class="row">
+            <div class="d-grid gap-2 col-4 my-3">
+              <%= link_to t(:new_price), new_shipping_option_price_path(@shipping_option.id), class:"btn btn-dark" %>
+            </div>
+          </div>
+        <% end %>
         <%= render 'prices/prices_table' %>
       </div>
     </div>

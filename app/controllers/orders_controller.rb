@@ -66,12 +66,4 @@ class OrdersController < ApplicationController
       redirect_to  new_order_delayed_order_url(@order), alert: t(:order_delivered_late)
     end  
   end
-
-  private
-
-  def check_admin
-    if current_user.regular?
-      redirect_to root_path, alert: t(:admin_restricted_area)
-    end
-  end
 end

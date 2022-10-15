@@ -1,5 +1,8 @@
 pt-BR:
+  new_price: "Cadastrar Preço"
   no_prices_registered: "Não existem preços cadastrados"
+  price_registration_error: "Não foi possível cadastrar o preço"
+  price_registration_success: "Preço cadastrado com sucesso"
   activerecord:
     models:
       price: 

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :shipping_options, only: [:index, :create, :edit, :update, :show] do
     post 'enable', on: :member
     post 'disable', on: :member
+    resources :prices, only: [:new, :create]
   end
 
   resources :vehicles, only: [:index, :create, :edit, :update, :show] do
