@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário edita um veículo' do
+describe 'Usuário cadastra uma ordem de serviço' do
   it 'e não está autenticado' do
     # Arrange
 

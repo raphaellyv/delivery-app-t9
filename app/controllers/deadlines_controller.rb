@@ -1,5 +1,5 @@
 class DeadlinesController < ApplicationController
-  before_action :check_admin, only: [:new, :edit, :update]
+  before_action :check_admin, only: [:new, :create, :edit, :update]
 
   def index
     @deadlines = Deadline.all.order(:min_distance)

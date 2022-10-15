@@ -1,5 +1,5 @@
 class VehiclesController < ApplicationController
-  before_action :check_admin, only: [:edit, :update, :sent_to_maintenance, :make_available]
+  before_action :check_admin, only: [:create, :edit, :update, :sent_to_maintenance, :make_available]
   before_action :set_vehicle, only: [:show, :edit, :update, :sent_to_maintenance, :make_available]
 
   def index

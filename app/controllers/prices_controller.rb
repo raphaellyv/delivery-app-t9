@@ -1,5 +1,5 @@
 class PricesController < ApplicationController
-  before_action :check_admin, only: [:new, :edit, :update]
+  before_action :check_admin, only: [:new, :create, :edit, :update]
 
   def index
     @prices = Price.all.order(:min_weight)
