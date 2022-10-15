@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     post 'enable', on: :member
     post 'disable', on: :member
     resources :prices, only: [:new, :create, :edit, :update, :show]
+    resources :deadlines, only: [:new, :create]
   end
 
   resources :vehicles, only: [:index, :create, :edit, :update, :show] do

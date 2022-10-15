@@ -14,13 +14,13 @@ class Deadline < ApplicationRecord
 
   def max_distance_is_less_than_or_equal_to_shipping_option_max_distance
     if self.max_distance.present? && self.max_distance > self.shipping_option.max_distance
-      self.errors.add(:max_distance, "deve ser menor que #{self.shipping_option.max_distance}")
+      self.errors.add(:max_distance, "deve ser menor que ou igual a #{self.shipping_option.max_distance}")
     end
   end
 
   def min_distance_is_greater_than_or_equal_to_shipping_option_min_distance
     if self.min_distance.present? && self.min_distance < self.shipping_option.min_distance
-      self.errors.add(:min_distance, "deve ser maior que #{self.shipping_option.min_distance}")
+      self.errors.add(:min_distance, "deve ser maior que ou igual a #{self.shipping_option.min_distance}")
     end
   end
 end

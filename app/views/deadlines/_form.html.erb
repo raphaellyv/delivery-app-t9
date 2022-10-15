@@ -1,0 +1,55 @@
+<h3 class="my-3 text-muted">
+  <%= Deadline.human_attribute_name(:shipping_option) %>: <%= @shipping_option.name %>
+</h3>
+
+<h3 class="my-3 text-muted">
+  <%= t(:distance_range) %></th>: <%= number_to_human(@shipping_option.min_distance, delimiter: ' ', units: { unit: 'km' }) %><%= 
+      t(:to) %><%= number_to_human(@shipping_option.max_distance, delimiter: ' ', units: { unit: 'km' }) %>
+</h3>
+
+<%= form_with(model: [@shipping_option, @deadline]) do |f| %>
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :min_distance, class: "form-label fw-semibold" %>
+      <%= f.number_field :min_distance, placeholder: t(:distance_km), class: "form-control" %>
+      <% if(@deadline.errors.include? :min_distance) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @deadline.errors.full_messages_for(:min_distance).uniq.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :max_distance, class: "form-label fw-semibold" %>
+      <%= f.number_field :max_distance, placeholder: t(:distance_km), class: "form-control" %>
+      <% if(@deadline.errors.include? :max_distance) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @deadline.errors.full_messages_for(:max_distance).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :deadline, class: "form-label fw-semibold" %>
+      <%= f.number_field :deadline, placeholder: t(:deadline_hours), class: "form-control" %>
+      <% if(@deadline.errors.include? :deadline) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @deadline.errors.full_messages_for(:deadline).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-grid mb-3">
+    <%= f.submit class: "btn btn-dark" %>
+  </div>
+<% end %>

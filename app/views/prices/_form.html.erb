@@ -15,7 +15,7 @@
       <% if(@price.errors.include? :min_weight) %>
         <div class=" my-3 alert alert-danger">
           <ul>
-            <% @price.errors.full_messages_for(:min_weight).each do |msg| %>
+            <% @price.errors.full_messages_for(:min_weight).uniq.each do |msg| %>
               <li><%= msg %></li>
             <% end %>
           </ul>

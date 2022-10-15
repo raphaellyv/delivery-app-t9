@@ -1,4 +1,8 @@
 pt-BR:
+  deadline_hours: "prazo em horas"
+  deadline_registration_error: "Não foi possível cadastrar o Prazo"
+  deadline_registration_success: "Prazo cadastrado com sucesso"
+  new_deadline: "Cadastrar Prazo"
   no_deadlines_registered: "Não existem prazos de entrega cadastrados"
   activerecord:
     models:

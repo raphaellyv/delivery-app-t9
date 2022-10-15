@@ -42,6 +42,7 @@
 
 ### Prazos
 - [X] Usuários administradores e regulares podem ver lista de prazos de entrega cadastrados de todas as modalidades.
+- [X] Usuários administradores podem cadastrar prazos pela página de detalhes da modalidade.
 
 ### Ordens de Serviço
 - [X] Usuários administradores podem cadastrar uma ordem de serviço com status pendente.
