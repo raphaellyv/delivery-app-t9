@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, except: ['search']
-  before_action :check_admin, only: [:new]
+  before_action :check_admin, only: [:new, :create]
   
   def index
     @orders = Order.all.order(id: :desc)
