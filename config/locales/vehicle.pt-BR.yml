@@ -2,6 +2,7 @@ pt-BR:
   change_status_to_available: "Alterar Status para Disponível"
   change_status_to_maintenance: "Alterar Status para Em Manutenção"
   edit_vehicle: "Editar Veículo"
+  new_vehicle: "Cadastrar Veículo"
   no_vehicles_found: "Não foram encontrados Veículos"
   no_vehicles_registered: "Não existem veículos cadastrados"
   status_change_success: "Status alterado com sucesso"

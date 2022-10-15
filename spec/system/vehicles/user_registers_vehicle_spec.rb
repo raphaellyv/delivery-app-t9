@@ -1,30 +1,75 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra um veículo' do
-  it 'como usuário regular' do
-    # Arrange
-    user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
-      
-    ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50_000, 
-                           delivery_fee: 5.50, status: :enabled)
+  context 'como usuário regular' do
+    it 'a partir da tela de detalhes da modalidade de transporte' do
+      # Arrange
+      user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
 
-    # Act
-    login_as user
-    visit root_path
-    click_on 'Veículos'
+      so = ShippingOption.create!(name: 'Outra Entrega', min_distance: 60 , max_distance: 700, min_weight: 3_000, max_weight: 55_000, 
+                                  delivery_fee: 3.50)
 
-    # Assert
-    expect(page).not_to have_content 'Novo Veículo'
-    expect(page).not_to have_field 'Modalidade de Transporte'
-    expect(page).not_to have_field 'Placa'
-    expect(page).not_to have_field 'Marca'
-    expect(page).not_to have_field 'Modelo'
-    expect(page).not_to have_field 'Ano'
-    expect(page).not_to have_field 'Carga Máxima'
-    expect(page).not_to have_button 'Criar Veículo'
+      # Act
+      login_as user
+      visit root_path
+      click_on 'Modalidades de Transporte'
+      click_on 'Outra Entrega'
+
+      # Assert
+      expect(page).not_to have_link 'Cadastrar Veículo'
+    end
+
+    it 'a partir da lista de veículos' do
+      # Arrange
+      user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
+        
+      ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50_000, 
+                            delivery_fee: 5.50, status: :enabled)
+
+      # Act
+      login_as user
+      visit root_path
+      click_on 'Veículos'
+
+      # Assert
+      expect(page).not_to have_content 'Novo Veículo'
+      expect(page).not_to have_field 'Modalidade de Transporte'
+      expect(page).not_to have_field 'Placa'
+      expect(page).not_to have_field 'Marca'
+      expect(page).not_to have_field 'Modelo'
+      expect(page).not_to have_field 'Ano'
+      expect(page).not_to have_field 'Carga Máxima'
+      expect(page).not_to have_button 'Criar Veículo'
+    end
   end
+  
 
   context 'como administrador' do
+    it 'a partir da tela de detalhes da modalidade de transporte' do
+      # Arrange
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+
+      so = ShippingOption.create!(name: 'Outra Entrega', min_distance: 60 , max_distance: 700, min_weight: 3_000, max_weight: 55_000, 
+                                  delivery_fee: 3.50)
+
+      # Act
+      login_as admin
+      visit root_path
+      click_on 'Modalidades de Transporte'
+      click_on 'Outra Entrega'
+      click_on 'Cadastrar Veículo'
+
+      # Assert
+      expect(page).to have_content 'Novo Veículo'
+      expect(page).to have_field 'Modalidade de Transporte'
+      expect(page).to have_field 'Placa'
+      expect(page).to have_field 'Marca'
+      expect(page).to have_field 'Modelo'
+      expect(page).to have_field 'Ano'
+      expect(page).to have_field 'Carga Máxima'
+      expect(page).to have_button 'Criar Veículo'
+    end
+
     it 'a partir da lista de veículos' do
       # Arrange
       admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
