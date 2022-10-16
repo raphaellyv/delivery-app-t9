@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_155544) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_16_212856) do
   create_table "deadlines", force: :cascade do |t|
     t.integer "min_distance"
     t.integer "max_distance"
@@ -41,6 +41,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_155544) do
     t.index ["order_id"], name: "index_detailed_orders_on_order_id"
     t.index ["shipping_option_id"], name: "index_detailed_orders_on_shipping_option_id"
     t.index ["vehicle_id"], name: "index_detailed_orders_on_vehicle_id"
+  end
+
+  create_table "distance_fees", force: :cascade do |t|
+    t.integer "min_distance"
+    t.integer "max_distance"
+    t.decimal "fee"
+    t.integer "shipping_option_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_option_id"], name: "index_distance_fees_on_shipping_option_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -122,6 +132,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_155544) do
   add_foreign_key "detailed_orders", "orders"
   add_foreign_key "detailed_orders", "shipping_options"
   add_foreign_key "detailed_orders", "vehicles"
+  add_foreign_key "distance_fees", "shipping_options"
   add_foreign_key "prices", "shipping_options"
   add_foreign_key "vehicles", "shipping_options"
 end

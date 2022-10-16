@@ -8,7 +8,7 @@ describe 'Visitante procura por ondem de serviço' do
     visit root_path
 
     # Assert
-    expect(page).to have_field 'código de rastreio'
+    expect(page).to have_field 'Código de Rastreio'
     expect(page).to have_button 'Buscar'
   end
 
@@ -30,7 +30,7 @@ describe 'Visitante procura por ondem de serviço' do
 
     # Act
     visit root_path
-    fill_in 'código de rastreio', with: second_order.tracking_code
+    fill_in 'Código de Rastreio', with: second_order.tracking_code
     click_on 'Buscar'
 
     # Assert
@@ -62,7 +62,7 @@ describe 'Visitante procura por ondem de serviço' do
     
     # Act
     visit root_path
-    fill_in 'código de rastreio', with: order.tracking_code
+    fill_in 'Código de Rastreio', with: order.tracking_code
     click_on 'Buscar'
 
     # Assert
@@ -102,7 +102,7 @@ describe 'Visitante procura por ondem de serviço' do
     
     # Act
     visit root_path
-    fill_in 'código de rastreio', with: order.tracking_code
+    fill_in 'Código de Rastreio', with: order.tracking_code
     click_on 'Buscar'
 
     # Assert
@@ -145,7 +145,7 @@ describe 'Visitante procura por ondem de serviço' do
     
     # Act
     visit root_path
-    fill_in 'código de rastreio', with: order.tracking_code
+    fill_in 'Código de Rastreio', with: order.tracking_code
     click_on 'Buscar'
 
     # Assert
@@ -173,7 +173,7 @@ describe 'Visitante procura por ondem de serviço' do
 
     # Act
     visit root_path
-    fill_in 'código de rastreio', with: ''
+    fill_in 'Código de Rastreio', with: ''
     click_on 'Buscar'
 
     # Assert

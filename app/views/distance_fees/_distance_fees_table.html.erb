@@ -1,0 +1,27 @@
+<% if @distance_fees.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= DistanceFee.human_attribute_name(:shipping_option) %></th>
+        <th><%= t(:distance_range) %></th>
+        <th><%= DistanceFee.human_attribute_name(:fee) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @distance_fees.each do |distance_fee| %>
+        <tr>
+          <td><%= link_to distance_fee.shipping_option.name, distance_fee.shipping_option, class: "link-dark" %></td>
+          <td>
+            <%= number_to_human(distance_fee.min_distance, delimiter: ' ', units: { unit: 'km' }) %><%= t(:to) %>
+            <%= number_to_human(distance_fee.max_distance, delimiter: ' ', units: { unit: 'km' }) %>
+          </td>
+          <td><%= number_to_currency(distance_fee.fee) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-secondary text-center">
+    <%= t(:no_distance_fees_registered) %>
+  </div>
+<% end %>

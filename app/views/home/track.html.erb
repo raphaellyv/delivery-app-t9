@@ -2,10 +2,10 @@
   <div class="row align-items-center">
 
     <div class="col align-center">
-      <h1 class=" my-3">Consulte seu pedido</h1>
+      <h1 class=" my-3">Consulte seu Pedido</h1>
       <%= form_with url: search_orders_path, method: :get do |form| %>
         <div class="mb-3">
-          <%= form.text_field :query, placeholder: Order.human_attribute_name(:tracking_code).downcase, 
+          <%= form.text_field :query, placeholder: Order.human_attribute_name(:tracking_code), 
               maxlength: 15, class: "form-control text-center" %>
         </div>
 

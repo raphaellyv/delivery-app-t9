@@ -4,9 +4,7 @@ class Price < ApplicationRecord
   validates :max_weight, :min_weight, :price_per_km, presence: true
   validates :min_weight, comparison: { less_than: :max_weight }
   validates :price_per_km, numericality: { greater_than: 0 } 
-  validates :max_weight, uniqueness: { scope: :shipping_option }
-  validates :min_weight, uniqueness: { scope: :shipping_option }
-  validates :price_per_km, uniqueness: { scope: :shipping_option } 
+  validates :max_weight, :min_weight, :price_per_km, uniqueness: { scope: :shipping_option }
   validate :max_weight_is_less_than_or_equal_to_shipping_option_max_weight
   validate :min_weight_is_greater_than_or_equal_to_shipping_option_min_weight
 

@@ -1,3 +1,28 @@
 <h1 class="my-3"><%= Price.model_name.human count: 2 %></h1>
 
-<%= render 'prices_table' %>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <h4><%= t(:prices_title) %></h4>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <%= render 'prices_table' %>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h4 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <h4><%= DistanceFee.model_name.human count: 2 %></h4>
+      </button>
+    </h4>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <%= render 'distance_fees/distance_fees_table' %>
+      </div>
+    </div>
+  </div>
+</div>

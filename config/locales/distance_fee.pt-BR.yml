@@ -1,0 +1,15 @@
+pt-BR:
+  no_distance_fees_registered: "Não existem taxas por distância cadastradas"
+  activerecord:
+    models:
+      distance_fee: 
+        one: "Taxa por Distância"
+        other: "Taxas por Distância"
+    attributes:
+      distance_fee:
+        fee: "Taxa"
+        min_distance: "Distância Mínima"
+        max_distance: "Distância Máxima"
+        shipping_option: "Modalidade de Transporte"
+        shipping_option_id: "Modalidade de Transporte"
+        

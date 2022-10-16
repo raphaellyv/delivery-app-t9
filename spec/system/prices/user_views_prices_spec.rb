@@ -25,9 +25,7 @@ describe 'Usuário vê preços' do
       
       # Assert
       expect(current_path).to eq prices_path
-      within 'main' do
-        expect(page).to have_content 'Preços'
-      end
+      expect(page).to have_content 'Preços por km'
       expect(page).to have_content 'Modalidade de Transporte'
       expect(page).to have_link 'Entrega Expressa'
       expect(page).to have_link 'Outra Entrega'

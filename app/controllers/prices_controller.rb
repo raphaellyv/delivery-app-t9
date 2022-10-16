@@ -3,6 +3,7 @@ class PricesController < ApplicationController
 
   def index
     @prices = Price.all.order(:min_weight)
+    @distance_fees = DistanceFee.all.order(:min_distance)
   end
 
   def new

@@ -7,7 +7,7 @@ pt-BR:
   no_vehicles_registered: "Não existem veículos cadastrados"
   status_change_success: "Status alterado com sucesso"
   search_vehicle: "Buscar Veículo"
-  type_license_plate: "digite a placa do veículo"
+  type_license_plate: "Digite a placa do veículo"
   vehicle_registration_error: "Não foi possível cadastrar o Veículo"
   vehicle_registration_success: "Veículo cadastrado com sucesso"
   vehicle_update_error: "Não foi possível atualizar o Veículo"

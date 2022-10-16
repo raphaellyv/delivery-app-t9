@@ -12,7 +12,7 @@ describe 'Visitante procura por ondem de serviço' do
   
       # Assert
       within 'nav' do
-        expect(page).to have_field 'digite a placa do veículo'
+        expect(page).to have_field 'Digite a placa do veículo'
         expect(page).to have_button 'Buscar Veículo'
       end
     end
@@ -36,7 +36,7 @@ describe 'Visitante procura por ondem de serviço' do
       # Act
       login_as admin
       visit root_path
-      fill_in 'digite a placa do veículo', with: 'AAA0000'
+      fill_in 'Digite a placa do veículo', with: 'AAA0000'
       click_on 'Buscar Veículo'
   
       # Assert
@@ -62,7 +62,7 @@ describe 'Visitante procura por ondem de serviço' do
       # Act
       login_as admin
       visit root_path
-      fill_in 'digite a placa do veículo', with: 'AAA0000'
+      fill_in 'Digite a placa do veículo', with: 'AAA0000'
       click_on 'Buscar Veículo'
   
       # Assert
@@ -89,7 +89,7 @@ describe 'Visitante procura por ondem de serviço' do
       # Act
       login_as admin
       visit root_path
-      fill_in 'digite a placa do veículo', with: 'AA0'
+      fill_in 'Digite a placa do veículo', with: 'AA0'
       click_on 'Buscar Veículo'
   
       # Assert
@@ -134,7 +134,7 @@ describe 'Visitante procura por ondem de serviço' do
       # Act
       login_as user
       visit root_path
-      fill_in 'digite a placa do veículo', with: 'AAA0000'
+      fill_in 'Digite a placa do veículo', with: 'AAA0000'
       click_on 'Buscar Veículo'
   
       # Assert
@@ -160,7 +160,7 @@ describe 'Visitante procura por ondem de serviço' do
       # Act
       login_as user
       visit root_path
-      fill_in 'digite a placa do veículo', with: 'AAA0000'
+      fill_in 'Digite a placa do veículo', with: 'AAA0000'
       click_on 'Buscar Veículo'
   
       # Assert
@@ -187,7 +187,7 @@ describe 'Visitante procura por ondem de serviço' do
       # Act
       login_as user
       visit root_path
-      fill_in 'digite a placa do veículo', with: 'AA0'
+      fill_in 'Digite a placa do veículo', with: 'AA0'
       click_on 'Buscar Veículo'
   
       # Assert
@@ -222,7 +222,7 @@ describe 'Visitante procura por ondem de serviço' do
   
       # Assert
       within 'nav' do
-        expect(page).not_to have_field 'digite a placa do veículo'
+        expect(page).not_to have_field 'Digite a placa do veículo'
         expect(page).not_to have_button 'Buscar Veículo'
       end
     end
