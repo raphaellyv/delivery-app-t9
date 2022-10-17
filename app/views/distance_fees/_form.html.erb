@@ -1,0 +1,55 @@
+<h3 class="my-3 text-muted">
+  <%= DistanceFee.human_attribute_name(:shipping_option) %>: <%= @shipping_option.name %>
+</h3>
+
+<h3 class="my-3 text-muted">
+  <%= t(:distance_range) %></th>: <%= number_to_human(@shipping_option.min_distance, delimiter: ' ', units: { unit: 'km' }) %><%= 
+      t(:to) %><%= number_to_human(@shipping_option.max_distance, delimiter: ' ', units: { unit: 'km' }) %>
+</h3>
+
+<%= form_with(model: [@shipping_option, @distance_fee]) do |f| %>
+  <div class="row mb-3">
+    <div class="col">
+      <%= f.label :min_distance, class: "form-label fw-semibold" %>
+      <%= f.number_field :min_distance, placeholder: t(:distance_km), class: "form-control" %>
+      <% if(@distance_fee.errors.include? :min_distance) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @distance_fee.errors.full_messages_for(:min_distance).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :max_distance, class: "form-label fw-semibold" %>
+      <%= f.number_field :max_distance, placeholder: t(:distance_km), class: "form-control" %>
+      <% if(@distance_fee.errors.include? :max_distance) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @distance_fee.errors.full_messages_for(:max_distance).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= f.label :fee, class: "form-label fw-semibold" %>
+      <%= f.number_field :fee, step: 0.01, placeholder: t(:currency), class: "form-control" %>
+      <% if(@distance_fee.errors.include? :fee) %>
+        <div class=" my-3 alert alert-danger">
+          <ul>
+            <% @distance_fee.errors.full_messages_for(:fee).each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="d-grid mb-3">
+      <%= f.submit class: "btn btn-dark" %>
+    </div>
+  </div>
+<% end %>

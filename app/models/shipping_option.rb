@@ -1,6 +1,7 @@
 class ShippingOption < ApplicationRecord
   has_many :deadlines
   has_many :detailed_orders
+  has_many :distance_fees
   has_many :orders, through: :detailed_orders
   has_many :prices
   has_many :vehicles

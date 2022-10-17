@@ -48,6 +48,13 @@ Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping
 Price.create!(min_weight: 1_500, max_weight: 2_000, price_per_km: 3.50, shipping_option: so_b)
 Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
 
+# Taxas por Distância
+DistanceFee.create!(min_distance: 50, max_distance: 200, fee: 2.00, shipping_option: so_a)
+DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_a) 
+
+DistanceFee.create!(min_distance: 30, max_distance: 200, fee: 1.00, shipping_option: so_b)
+DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)
+
 # Veículos
 vehicle_a = Vehicle.create!(shipping_option: so_a, license_plate: 'AAA0000', brand: 'Peugeot', car_model: 'Partner CS', manufacture_year: '2021',
                            max_weight: 800_000, status: :en_route)

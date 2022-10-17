@@ -210,6 +210,61 @@ describe 'Usuário vê detalhes de uma modalidade de transporte' do
       end      
       expect(page).to have_content 'Não existem prazos de entrega cadastrados'
     end
+
+    it 'e vê as taxas por distância cadastradas para a modalidade' do
+      # Arrange
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50_000, 
+                                    delivery_fee: 5.50)
+      so_b = ShippingOption.create!(name: 'Outra Entrega', min_distance: 60 , max_distance: 700, min_weight: 3000, max_weight: 55_000, 
+                                    delivery_fee: 3.50)
+
+      DistanceFee.create!(min_distance: 50, max_distance: 200, fee: 7.00, shipping_option: so_a)
+      DistanceFee.create!(min_distance: 201, max_distance: 400, fee: 4.00, shipping_option: so_a)
+                              
+      DistanceFee.create!(min_distance: 70, max_distance: 300, fee: 3.00, shipping_option: so_b)
+
+      # Act
+      login_as admin
+      visit root_path
+      click_on 'Modalidades de Transporte'
+      click_on 'Entrega Expressa'
+      
+      # Assert
+      expect(page).to have_content 'Taxas por Distância'
+      expect(page).to have_content 'Intervalo de Distância'
+      expect(page).to have_content 'Taxa'
+      expect(page).to have_content '50 km a 200 km'
+      expect(page).to have_content '201 km a 400 km'
+      expect(page).not_to have_content '70 km a 300 km'
+      expect(page).to have_content 'R$ 7,00'
+      expect(page).to have_content 'R$ 4,00'
+      expect(page).not_to have_content 'R$ 3,00'
+      expect(page).to have_content 'Modalidade de Transporte'
+      expect(page).to have_link 'Entrega Expressa'
+      expect(page).not_to have_link 'Outra Entrega'
+    end
+
+    it 'e não existem taxas por distância cadastradas' do
+      # Arrange
+      admin = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :admin)
+
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50_000, 
+                                    delivery_fee: 5.50)
+
+      # Act
+      login_as admin
+      visit root_path
+      click_on 'Modalidades de Transporte'
+      click_on 'Entrega Expressa'
+      
+      # Assert
+      within 'main' do
+        expect(page).to have_content 'Taxas por Distância'
+      end      
+      expect(page).to have_content 'Não existem taxas por distância cadastradas'
+    end
   end
 
   context 'como usuário regular' do
@@ -420,6 +475,61 @@ describe 'Usuário vê detalhes de uma modalidade de transporte' do
         expect(page).to have_content 'Prazos'
       end      
       expect(page).to have_content 'Não existem prazos de entrega cadastrados'
+    end
+
+    it 'e vê as taxas por distância cadastradas para a modalidade' do
+      # Arrange
+      user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
+
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50_000, 
+                                    delivery_fee: 5.50)
+      so_b = ShippingOption.create!(name: 'Outra Entrega', min_distance: 60 , max_distance: 700, min_weight: 3000, max_weight: 55_000, 
+                                    delivery_fee: 3.50)
+
+      DistanceFee.create!(min_distance: 50, max_distance: 200, fee: 7.00, shipping_option: so_a)
+      DistanceFee.create!(min_distance: 201, max_distance: 400, fee: 4.00, shipping_option: so_a)
+                              
+      DistanceFee.create!(min_distance: 70, max_distance: 300, fee: 3.00, shipping_option: so_b)
+
+      # Act
+      login_as user
+      visit root_path
+      click_on 'Modalidades de Transporte'
+      click_on 'Entrega Expressa'
+      
+      # Assert
+      expect(page).to have_content 'Taxas por Distância'
+      expect(page).to have_content 'Intervalo de Distância'
+      expect(page).to have_content 'Taxa'
+      expect(page).to have_content '50 km a 200 km'
+      expect(page).to have_content '201 km a 400 km'
+      expect(page).not_to have_content '70 km a 300 km'
+      expect(page).to have_content 'R$ 7,00'
+      expect(page).to have_content 'R$ 4,00'
+      expect(page).not_to have_content 'R$ 3,00'
+      expect(page).to have_content 'Modalidade de Transporte'
+      expect(page).to have_link 'Entrega Expressa'
+      expect(page).not_to have_link 'Outra Entrega'
+    end
+
+    it 'e não existem taxas por distância cadastradas' do
+      # Arrange
+      user = User.create!(name: 'Pessoa', email: 'pessoa@sistemadefrete.com.br', password: 'password', role: :regular)
+
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50_000, 
+                                    delivery_fee: 5.50)
+
+      # Act
+      login_as user
+      visit root_path
+      click_on 'Modalidades de Transporte'
+      click_on 'Entrega Expressa'
+      
+      # Assert
+      within 'main' do
+        expect(page).to have_content 'Taxas por Distância'
+      end      
+      expect(page).to have_content 'Não existem taxas por distância cadastradas'
     end
   end
 

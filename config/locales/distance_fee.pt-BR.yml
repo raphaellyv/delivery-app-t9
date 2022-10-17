@@ -1,4 +1,7 @@
 pt-BR:
+  distance_fee_registration_error: "Não foi possível cadastrar a Taxa por Distância"
+  distance_fee_registration_success: "Taxa por Distância cadastrada com sucesso"
+  new_distance_fee: "Cadastrar Taxa por Distância"
   no_distance_fees_registered: "Não existem taxas por distância cadastradas"
   activerecord:
     models:
