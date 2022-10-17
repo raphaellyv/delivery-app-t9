@@ -16,19 +16,22 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, max_weight: 50_000, 
                                     delivery_fee: 5.50, status: :enabled)
                               
-      Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)                         
+      Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_a)                         
       Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
                               
       so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
                                     delivery_fee: 3.00, status: :enabled)
                               
-      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)                         
+      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)  
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)                       
       Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
 
       so_c = ShippingOption.create!(name: 'Outra Entrega', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
                                     delivery_fee: 3.00, status: :disabled)
   
-      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_c)                         
+      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_c)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_c)                         
       Deadline.create!(min_distance: 300, max_distance: 400, deadline: 45, shipping_option: so_c)
         
       # Act
@@ -46,8 +49,8 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       expect(page).to have_content '48 h'
       expect(page).to have_content '40 h'
       expect(page).not_to have_content '45 h'
-      expect(page).to have_content 'R$ 305,50'
-      expect(page).to have_content 'R$ 453,00'
+      expect(page).to have_content 'R$ 307,00'
+      expect(page).to have_content 'R$ 454,50'
       expect(page).to have_button 'Selecionar Modalidade de Transporte'
     end
 
@@ -66,12 +69,14 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
                                     delivery_fee: 5.50, status: :enabled)
     
       Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_a)
       Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
     
       so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
                                     delivery_fee: 3.00, status: :enabled)
     
-      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)    
+      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)    
       Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
 
       vehicle_a = Vehicle.create!(shipping_option: so_a, license_plate: 'AAA0000', brand: 'Peugeot', car_model: 'Partner CS', manufacture_year: '2021',
@@ -99,7 +104,7 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       expect(page).to have_content 'Detalhes da Entrega'
       expect(page).to have_content 'Status: Encaminhada'
       expect(page).to have_content 'Modalidade de Transporte: Entrega Básica'
-      expect(page).to have_content 'Preço Total: R$ 453,00'
+      expect(page).to have_content 'Preço Total: R$ 454,50'
       expect(page).to have_content "Previsão de Entrega: #{ (Time.now + 40.hours).strftime("%d/%m/%Y") }"
       expect(page).to have_content "Veículo"
       expect(page).to have_content "Placa"
@@ -125,7 +130,8 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
                                     delivery_fee: 3.00, status: :enabled)
     
-      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)    
+      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)    
       Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
 
       # Act
@@ -157,6 +163,7 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
                                     delivery_fee: 5.50, status: :enabled)
     
       Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_a)
       Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
     
       vehicle_a = Vehicle.create!(shipping_option: so_a, license_plate: 'AAA0000', brand: 'Peugeot', car_model: 'Partner CS', manufacture_year: '2021',
@@ -193,12 +200,14 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
                                     delivery_fee: 5.50, status: :enabled)
     
       Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_a)
       Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
     
       so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
                                     delivery_fee: 3.00, status: :enabled)
     
-      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)    
+      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)    
       Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
 
       vehicle_a = Vehicle.create!(shipping_option: so_a, license_plate: 'AAA0000', brand: 'Peugeot', car_model: 'Partner CS', manufacture_year: '2021',
@@ -226,7 +235,7 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       expect(page).to have_content 'Detalhes da Entrega'
       expect(page).to have_content 'Status: Encaminhada'
       expect(page).to have_content 'Modalidade de Transporte: Entrega Básica'
-      expect(page).to have_content 'Preço Total: R$ 453,00'
+      expect(page).to have_content 'Preço Total: R$ 454,50'
       expect(page).to have_content "Previsão de Entrega: #{ (Time.now + 40.hours).strftime("%d/%m/%Y") }"
       expect(page).to have_content "Veículo"
       expect(page).to have_content "Placa"
@@ -252,7 +261,8 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
       so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
                                     delivery_fee: 3.00, status: :enabled)
     
-      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)    
+      Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)    
       Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
 
       # Act
@@ -284,6 +294,7 @@ describe 'Usuário escolhe a modalidade de transporte para uma ordem de serviço
                                     delivery_fee: 5.50, status: :enabled)
     
       Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_a)
       Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
     
       vehicle_a = Vehicle.create!(shipping_option: so_a, license_plate: 'AAA0000', brand: 'Peugeot', car_model: 'Partner CS', manufacture_year: '2021',

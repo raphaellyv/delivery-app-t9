@@ -18,6 +18,9 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
   
       Price.create!(min_weight: 1_000, max_weight: 2_000, price_per_km: 3.00, shipping_option: so_a)
       Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+
+      DistanceFee.create!(min_distance: 50, max_distance: 200, fee: 2.00, shipping_option: so_a)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_a)
   
       Deadline.create!(min_distance: 60, max_distance: 200, deadline: 30, shipping_option: so_a)
       Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
@@ -27,6 +30,9 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
   
       Price.create!(min_weight: 1_500, max_weight: 2_000, price_per_km: 3.50, shipping_option: so_b)
       Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
+
+      DistanceFee.create!(min_distance: 30, max_distance: 200, fee: 1.00, shipping_option: so_b)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)
   
       Deadline.create!(min_distance: 60, max_distance: 200, deadline: 20, shipping_option: so_b)
       Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
@@ -35,6 +41,8 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
                                     delivery_fee: 3.00, status: :enabled)
 
       Price.create!(min_weight: 4_500, max_weight: 6_000, price_per_km: 3.50, shipping_option: so_c)
+
+      DistanceFee.create!(min_distance: 30, max_distance: 200, fee: 1.00, shipping_option: so_c)
         
       Deadline.create!(min_distance: 40, max_distance: 600, deadline: 50, shipping_option: so_c)
           
@@ -56,8 +64,8 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       expect(page).not_to have_content 'Outra Entrega'
       expect(page).to have_content '48 h'
       expect(page).to have_content '40 h'
-      expect(page).to have_content 'R$ 305,50'
-      expect(page).to have_content 'R$ 453,00'
+      expect(page).to have_content 'R$ 308,00'
+      expect(page).to have_content 'R$ 454,50'
     end
       
     it 'e não existem intervalos de distância compatíveis' do
@@ -75,7 +83,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
                                     delivery_fee: 5.50, status: :enabled)
    
       Price.create!(min_weight: 1_000, max_weight: 4_000, price_per_km: 3.00, shipping_option: so_a)
-   
+      DistanceFee.create!(min_distance: 201, max_distance: 299, fee: 2.50, shipping_option: so_a)
       Deadline.create!(min_distance: 60, max_distance: 200, deadline: 30, shipping_option: so_a)
            
       # Act
@@ -110,7 +118,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
                                     delivery_fee: 5.50, status: :enabled)
    
       Price.create!(min_weight: 1_000, max_weight: 2_000, price_per_km: 3.00, shipping_option: so_a)
-   
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_a)
       Deadline.create!(min_distance: 60, max_distance: 400, deadline: 30, shipping_option: so_a)
            
       # Act
@@ -204,6 +212,9 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       Price.create!(min_weight: 1_000, max_weight: 2_000, price_per_km: 3.00, shipping_option: so_a)
       Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
 
+      DistanceFee.create!(min_distance: 50, max_distance: 200, fee: 2.00, shipping_option: so_a)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_a)
+
       Deadline.create!(min_distance: 60, max_distance: 200, deadline: 30, shipping_option: so_a)
       Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
 
@@ -213,6 +224,9 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       Price.create!(min_weight: 1_500, max_weight: 2_000, price_per_km: 3.50, shipping_option: so_b)
       Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
 
+      DistanceFee.create!(min_distance: 50, max_distance: 200, fee: 2.00, shipping_option: so_b)
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_b)
+
       Deadline.create!(min_distance: 60, max_distance: 200, deadline: 20, shipping_option: so_b)
       Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
 
@@ -220,7 +234,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
                                     delivery_fee: 3.00, status: :enabled)
 
       Price.create!(min_weight: 4_500, max_weight: 6_000, price_per_km: 3.50, shipping_option: so_c)
-      
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_c)
       Deadline.create!(min_distance: 40, max_distance: 600, deadline: 50, shipping_option: so_c)
         
       # Act
@@ -241,8 +255,8 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       expect(page).not_to have_content 'Outra Entrega'
       expect(page).to have_content '48 h'
       expect(page).to have_content '40 h'
-      expect(page).to have_content 'R$ 305,50'
-      expect(page).to have_content 'R$ 453,00'
+      expect(page).to have_content 'R$ 308,00'
+      expect(page).to have_content 'R$ 455,50'
     end
     
     it 'e não existem intervalos de distância compatíveis' do
@@ -260,7 +274,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
                                     delivery_fee: 5.50, status: :enabled)
  
       Price.create!(min_weight: 1_000, max_weight: 4_000, price_per_km: 3.00, shipping_option: so_a)
- 
+      DistanceFee.create!(min_distance: 201, max_distance: 299, fee: 2.50, shipping_option: so_a)
       Deadline.create!(min_distance: 60, max_distance: 200, deadline: 30, shipping_option: so_a)
          
       # Act
@@ -295,7 +309,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
                                     delivery_fee: 5.50, status: :enabled)
  
       Price.create!(min_weight: 1_000, max_weight: 2_000, price_per_km: 3.00, shipping_option: so_a)
- 
+      DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_a)
       Deadline.create!(min_distance: 60, max_distance: 400, deadline: 30, shipping_option: so_a)
          
       # Act
