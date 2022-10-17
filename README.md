@@ -38,7 +38,7 @@
 ### Preços por Peso e Taxas por Distância
 - [X] Usuários administradores e regulares podem ver na aba "Preços" uma lista de preços por peso e uma de taxas por distância, contendo os preços cadastrados de todas as modalidades.
 - [X] Usuários administradores podem cadastrar preços por peso e taxas por distância pela página de detalhes da modalidade.
-- [X] Usuários administradores podem editar preços por peso pela lista de preços.
+- [X] Usuários administradores podem editar preços por peso e taxas por distância pela lista de preços.
 
 ### Prazos
 - [X] Usuários administradores e regulares podem ver lista de prazos de entrega cadastrados de todas as modalidades.

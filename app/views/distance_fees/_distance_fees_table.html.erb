@@ -16,6 +16,12 @@
             <%= number_to_human(distance_fee.max_distance, delimiter: ' ', units: { unit: 'km' }) %>
           </td>
           <td><%= number_to_currency(distance_fee.fee) %></td>
+          <% if current_user.admin? %>
+            <td>
+              <%= link_to t(:edit), edit_shipping_option_distance_fee_path(distance_fee.shipping_option.id, distance_fee.id), 
+                  class: "btn btn-outline-dark" %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
