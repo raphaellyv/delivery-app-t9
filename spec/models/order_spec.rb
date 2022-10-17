@@ -789,4 +789,160 @@ RSpec.describe Order, type: :model do
       expect(second_order.tracking_code).not_to eq first_order.tracking_code
     end
   end
+
+  describe '#search_prices' do
+    it 'encontra os preços por peso para uma ordem de serviço' do
+      # Arrange
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, max_weight: 50_000, 
+                                    delivery_fee: 5.50, status: :enabled)
+      so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
+                                    delivery_fee: 3.00, status: :enabled)
+
+      price_a = Price.create!(min_weight: 1_000, max_weight: 2_000, price_per_km: 3.00, shipping_option: so_a)
+      price_aa = Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+
+      price_b = Price.create!(min_weight: 1_500, max_weight: 2_000, price_per_km: 3.50, shipping_option: so_b)
+      price_bb = Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
+
+      order = Order.new(weight: 3_000)
+
+      # Act
+
+      # Assert
+      expect(order.search_prices).to eq [price_aa, price_bb]
+    end
+  end
+
+  describe '#search_deadlines' do
+    it 'encontra os prazos para uma ordem de serviço' do
+      # Arrange
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, max_weight: 50_000, 
+                                    delivery_fee: 5.50, status: :enabled)
+      so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
+                                    delivery_fee: 3.00, status: :enabled)
+
+      deadline_a = Deadline.create!(min_distance: 60, max_distance: 200, deadline: 30, shipping_option: so_a)
+      deadline_aa = Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
+
+      deadline_b = Deadline.create!(min_distance: 60, max_distance: 200, deadline: 20, shipping_option: so_b)
+      deadline_bb = Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
+
+      order = Order.new(distance: 300)
+
+      # Act
+
+      # Assert
+      expect(order.search_deadlines).to eq [deadline_aa, deadline_bb]
+    end
+  end
+
+  describe '#search_distance_fees' do
+    it 'encontra as taxas por distância para uma ordem de serviço' do
+      # Arrange
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, max_weight: 50_000, 
+                                    delivery_fee: 5.50, status: :enabled)
+      so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
+                                    delivery_fee: 3.00, status: :enabled)
+
+      distance_fee_a = DistanceFee.create!(min_distance: 50, max_distance: 200, fee: 2.00, shipping_option: so_a)
+      distance_fee_aa = DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_a)
+
+      distance_fee_b = DistanceFee.create!(min_distance: 30, max_distance: 200, fee: 1.00, shipping_option: so_b)
+      distance_fee_bb = DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)
+
+      order = Order.new(distance: 300)
+
+      # Act
+
+      # Assert
+      expect(order.search_distance_fees).to eq [distance_fee_aa, distance_fee_bb]
+    end
+  end
+
+  describe '#generate_quotations' do
+    it 'retorna um array de hashs com orçamentos e prazos para uma ordem de serviço' do
+      # Arrange
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, 
+                                               max_weight: 50_000, delivery_fee: 5.50, status: :enabled)
+      so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
+                                    delivery_fee: 3.00, status: :enabled)
+      so_c = ShippingOption.create!(name: 'Outra Entrega', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
+                                    delivery_fee: 3.00, status: :enabled)
+
+      price_a = Price.create!(min_weight: 1_000, max_weight: 2_000, price_per_km: 3.00, shipping_option: so_a)
+      price_aa = Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+      distance_fee_a = DistanceFee.create!(min_distance: 50, max_distance: 200, fee: 2.00, shipping_option: so_a)
+      distance_fee_aa = DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_a)
+      deadline_a = Deadline.create!(min_distance: 60, max_distance: 200, deadline: 30, shipping_option: so_a)
+      deadline_aa = Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
+
+      price_b = Price.create!(min_weight: 1_500, max_weight: 2_000, price_per_km: 3.50, shipping_option: so_b)
+      price_bb = Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
+      distance_fee_b = DistanceFee.create!(min_distance: 30, max_distance: 200, fee: 1.00, shipping_option: so_b)
+      distance_fee_bb = DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)
+      deadline_b = Deadline.create!(min_distance: 60, max_distance: 200, deadline: 20, shipping_option: so_b)
+      deadline_bb = Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
+
+      Price.create!(min_weight: 4_500, max_weight: 6_000, price_per_km: 3.50, shipping_option: so_c)
+      DistanceFee.create!(min_distance: 30, max_distance: 200, fee: 1.00, shipping_option: so_c)        
+      Deadline.create!(min_distance: 40, max_distance: 600, deadline: 50, shipping_option: so_c)
+
+      order = Order.create!(delivery_address: 'Rua das Palmeiras, 13', delivery_city: 'Rio de Janeiro', delivery_state: 'RJ', 
+                            delivery_postal_code: '28200000', recipient: 'Denise Silva', recipient_cpf: '00000000000',
+                            recipient_email: 'denise@email.com', recipient_phone_number: '2297523040', 
+                            pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'São Paulo', pick_up_state: 'SP', 
+                            pick_up_postal_code: '30000000', sku: 'TV32P-SAMSUNG-XPTO90', height: 60, width: 40, length: 100, 
+                            weight: 3_000, distance: 300, status: :pending)
+
+      # Act
+      
+
+      # Assert
+      expect(order.generate_quotations).to eq [{shipping_option: so_a, order: order, deadline: 48, price: 308},
+                                               {shipping_option: so_b, order: order, deadline: 40, price: 454.5}]
+    end
+  end
+
+  describe '#search_possible_shipping_options' do
+    it 'retorna um array de modalidades de transporte possíveis para uma ordem de serviço' do
+      # Arrange
+      so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1_000, 
+                                               max_weight: 50_000, delivery_fee: 5.50, status: :enabled)
+      so_b = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
+                                    delivery_fee: 3.00, status: :enabled)
+      so_c = ShippingOption.create!(name: 'Outra Entrega', min_distance: 30 , max_distance: 800, min_weight: 1_500, max_weight: 40_000, 
+                                    delivery_fee: 3.00, status: :enabled)
+
+      price_a = Price.create!(min_weight: 1_000, max_weight: 2_000, price_per_km: 3.00, shipping_option: so_a)
+      price_aa = Price.create!(min_weight: 2_001, max_weight: 4_000, price_per_km: 1.00, shipping_option: so_a)
+      distance_fee_a = DistanceFee.create!(min_distance: 50, max_distance: 200, fee: 2.00, shipping_option: so_a)
+      distance_fee_aa = DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 2.50, shipping_option: so_a)
+      deadline_a = Deadline.create!(min_distance: 60, max_distance: 200, deadline: 30, shipping_option: so_a)
+      deadline_aa = Deadline.create!(min_distance: 201, max_distance: 400, deadline: 48, shipping_option: so_a)
+
+      price_b = Price.create!(min_weight: 1_500, max_weight: 2_000, price_per_km: 3.50, shipping_option: so_b)
+      price_bb = Price.create!(min_weight: 3_000, max_weight: 4_000, price_per_km: 1.50, shipping_option: so_b)
+      distance_fee_b = DistanceFee.create!(min_distance: 30, max_distance: 200, fee: 1.00, shipping_option: so_b)
+      distance_fee_bb = DistanceFee.create!(min_distance: 201, max_distance: 350, fee: 1.50, shipping_option: so_b)
+      deadline_b = Deadline.create!(min_distance: 60, max_distance: 200, deadline: 20, shipping_option: so_b)
+      deadline_bb = Deadline.create!(min_distance: 300, max_distance: 400, deadline: 40, shipping_option: so_b)
+
+      Price.create!(min_weight: 4_500, max_weight: 6_000, price_per_km: 3.50, shipping_option: so_c)
+      DistanceFee.create!(min_distance: 30, max_distance: 200, fee: 1.00, shipping_option: so_c)        
+      Deadline.create!(min_distance: 40, max_distance: 600, deadline: 50, shipping_option: so_c)
+
+      order = Order.create!(delivery_address: 'Rua das Palmeiras, 13', delivery_city: 'Rio de Janeiro', delivery_state: 'RJ', 
+                            delivery_postal_code: '28200000', recipient: 'Denise Silva', recipient_cpf: '00000000000',
+                            recipient_email: 'denise@email.com', recipient_phone_number: '2297523040', 
+                            pick_up_address: 'Estrada do Porto, 70', pick_up_city: 'São Paulo', pick_up_state: 'SP', 
+                            pick_up_postal_code: '30000000', sku: 'TV32P-SAMSUNG-XPTO90', height: 60, width: 40, length: 100, 
+                            weight: 3_000, distance: 300, status: :pending)
+
+      # Act
+      
+
+      # Assert
+      expect(order.search_possible_shipping_options).to eq [so_a, so_b]
+    end
+  end
 end

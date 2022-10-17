@@ -30,27 +30,8 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
     if @order.pending?
-      prices = Price.where(["min_weight <= ? and max_weight >= ?", @order.weight, @order.weight])
-      deadlines = Deadline.where(["min_distance <= ? and max_distance >= ?", @order.distance, @order.distance])
-      distance_fees = DistanceFee.where(["min_distance <= ? and max_distance >= ?", @order.distance, @order.distance])
-
-      @quotations = []
-      @shipping_options = []
-
-      deadlines.each do |deadline|
-        prices.each do |price|
-          if (price.shipping_option == deadline.shipping_option)
-            distance_fees.each do |distance_fee|
-              if (distance_fee.shipping_option == price.shipping_option) && (distance_fee.shipping_option.enabled?)
-                total_amount = (price.price_per_km * @order.distance) + distance_fee.shipping_option.delivery_fee + distance_fee.fee
-                    
-                @quotations << {shipping_option: distance_fee.shipping_option, order: @order, deadline: deadline.deadline, price: total_amount}
-                @shipping_options << price.shipping_option
-              end
-            end
-          end
-        end
-      end
+      @quotations = @order.generate_quotations
+      @shipping_options = @order.search_possible_shipping_options
     end
   end 
 

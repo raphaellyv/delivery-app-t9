@@ -5,24 +5,21 @@ class DetailedOrdersController < ApplicationController
     @detailed_order = DetailedOrder.new
 
     if @order.pending?
-      generate_quotation
+      @quotations = @order.generate_quotations
+      @shipping_options = @order.search_possible_shipping_options
     end
   end
 
   def create
     @order = Order.find(params[:order_id])
     detailed_order_params = params.require(:detailed_order).permit(:shipping_option_id)
-    generate_quotation
-
     @detailed_order = DetailedOrder.new(detailed_order_params)
+
     @detailed_order.order = @order
+    @detailed_order.select_vehicle
 
-    quotation = @quotations.find{ |quotation| quotation[:shipping_option] == @detailed_order.shipping_option }
-    @detailed_order.total_price = quotation[:price]
-    @detailed_order.estimated_delivery_date = Time.now + quotation[:deadline].hours
-    @detailed_order.vehicle = @detailed_order.shipping_option.vehicles.available.order(:updated_at).select{ 
-                              |vehicle| vehicle.max_weight >= @order.weight }[0]
-
+    @detailed_order.set_total_price_and_estimated_delivery_date
+                               
     if @detailed_order.save
       @order.en_route!
       @detailed_order.vehicle.en_route!
@@ -31,31 +28,5 @@ class DetailedOrdersController < ApplicationController
     else
       redirect_to new_order_detailed_order_url(@order.id), alert: t(:no_vehicles_available_for_shipping_option)
     end    
-  end
-end
-
-private
-
-def generate_quotation
-  prices = Price.where(["min_weight <= ? and max_weight >= ?", @order.weight, @order.weight])
-  deadlines = Deadline.where(["min_distance <= ? and max_distance >= ?", @order.distance, @order.distance])
-  distance_fees = DistanceFee.where(["min_distance <= ? and max_distance >= ?", @order.distance, @order.distance])
-
-  @quotations = []
-  @shipping_options = []
-
-  deadlines.each do |deadline|
-    prices.each do |price|
-      if (price.shipping_option == deadline.shipping_option)
-        distance_fees.each do |distance_fee|
-          if (distance_fee.shipping_option == price.shipping_option) && (distance_fee.shipping_option.enabled?)
-            total_amount = (price.price_per_km * @order.distance) + distance_fee.shipping_option.delivery_fee + distance_fee.fee
-                
-            @quotations << {shipping_option: distance_fee.shipping_option, order: @order, deadline: deadline.deadline, price: total_amount}
-            @shipping_options << price.shipping_option
-          end
-        end
-      end
-    end
   end
 end

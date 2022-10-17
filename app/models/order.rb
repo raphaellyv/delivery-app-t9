@@ -60,6 +60,49 @@ class Order < ApplicationRecord
     "#{pick_up_city} - #{pick_up_state}"
   end
 
+  def search_prices
+    Price.where(["min_weight <= ? and max_weight >= ?", weight, weight])
+  end
+
+  def search_deadlines
+    Deadline.where(["min_distance <= ? and max_distance >= ?", distance, distance])
+  end
+
+  def search_distance_fees
+    DistanceFee.where(["min_distance <= ? and max_distance >= ?", distance, distance])
+  end
+
+  def search_possible_shipping_options
+    prices = search_prices
+    deadlines = search_deadlines
+    distance_fees = search_distance_fees
+
+    @shipping_options = []
+
+    deadlines.each do |deadline|
+      prices.each do |price|
+        if (price.shipping_option == deadline.shipping_option)
+          distance_fees.each do |distance_fee|
+            if (distance_fee.shipping_option == price.shipping_option) && (distance_fee.shipping_option.enabled?)
+              @shipping_options << distance_fee.shipping_option
+            end
+          end
+        end
+      end
+    end
+    @shipping_options
+  end
+
+  def generate_quotations
+    @shipping_options = search_possible_shipping_options
+    @quotations = []
+
+    @shipping_options.each do |so|
+      @quotations << so.generate_quotation_for(self)
+    end
+    @quotations
+  end
+
   private
 
   def generate_code
