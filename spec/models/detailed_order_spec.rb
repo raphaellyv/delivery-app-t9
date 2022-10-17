@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe DetailedOrder, type: :model do
   describe '#valid?' do
     context 'presence' do
-      it 'estimated_delivery_date é obrigatório' do
+      it 'previsão de entrega é obrigatória' do
         # Arrange
         detailed_order = DetailedOrder.new(estimated_delivery_date: '')
 
@@ -14,7 +14,7 @@ RSpec.describe DetailedOrder, type: :model do
         expect(detailed_order.errors.include? :estimated_delivery_date).to be true
       end
 
-      it 'total_price é obrigatório' do
+      it 'preço total é obrigatório' do
         # Arrange
         detailed_order = DetailedOrder.new(total_price: '')
 

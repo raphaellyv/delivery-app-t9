@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe DelayedOrder, type: :model do
   describe '#valid?' do
     context 'presence' do
-      it 'cause_of_delay é obrigatório' do
+      it 'motivo do atraso é obrigatório' do
         # Arrange
         delayed_order = DelayedOrder.new(cause_of_delay: '')
 

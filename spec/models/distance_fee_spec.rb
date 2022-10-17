@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe DistanceFee, type: :model do
   describe '#valid?' do
     context 'presence' do
-      it 'fee é obrigatório' do
+      it 'taxa é obrigatória' do
         # Arrange
         distance_fee = DistanceFee.new(fee: '')
 
@@ -14,7 +14,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors[:fee]).to include('não pode ficar em branco')
       end
 
-      it 'max_distance é obrigatório' do
+      it 'distância máxima é obrigatória' do
         # Arrange
         distance_fee = DistanceFee.new(max_distance: '')
 
@@ -25,7 +25,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors[:max_distance]).to include('não pode ficar em branco')
       end
 
-      it 'min_distance é obrigatório' do
+      it 'distância mínima é obrigatória' do
         # Arrange
         distance_fee = DistanceFee.new(min_distance: '')
 
@@ -38,7 +38,7 @@ RSpec.describe DistanceFee, type: :model do
     end
 
     context 'comparison' do
-      it 'min_distance deve ser menor que max_distance' do
+      it 'distância mínima deve ser menor que a distância máxima' do
         # Arrange
         so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                       min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -52,7 +52,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :min_distance).to be false
       end
 
-      it 'min_distance não deve ser igual ao max_distance' do
+      it 'distância mínima não deve ser igual à distância máxima' do
         # Arrange
         so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                       min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -66,7 +66,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :min_distance).to be true
       end
 
-      it 'min_distance não deve ser maior que max_distance' do
+      it 'distância mínima não deve ser maior que a distância máxima' do
         # Arrange
         so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                       min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -82,7 +82,7 @@ RSpec.describe DistanceFee, type: :model do
     end
 
     context 'numericality' do
-      it 'fee deve ser maior que 0' do
+      it 'taxa deve ser maior que 0' do
         # Arrange
         distance_fee = DistanceFee.new(fee: 1.00)
 
@@ -93,7 +93,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :fee).to be false
       end
 
-      it 'fee não deve ser igual a 0' do
+      it 'taxa não deve ser igual a 0' do
         # Arrange
         distance_fee = DistanceFee.new(fee: 0.00)
 
@@ -104,7 +104,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :fee).to be true
       end
 
-      it 'fee não deve ser menor que 0' do
+      it 'taxa não deve ser menor que 0' do
         # Arrange
         distance_fee = DistanceFee.new(fee: -1)
 
@@ -117,7 +117,7 @@ RSpec.describe DistanceFee, type: :model do
     end
 
     context 'uniqueness' do
-      it 'max_distance deve ser único na modalidade de transporte' do
+      it 'distância máxima deve ser única na modalidade de transporte' do
         # Arrange
         so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                     min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -133,7 +133,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :max_distance).to be true
       end
 
-      it 'max_distance pode se repetir em outra modalidade de transporte' do
+      it 'distância máxima pode se repetir em outra modalidade de transporte' do
         # Arrange
         so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                       min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -151,7 +151,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :max_distance).to be false
       end
 
-      it 'min_distance deve ser único na modalidade de transporte' do
+      it 'distância mínima deve ser única na modalidade de transporte' do
         # Arrange
         so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                     min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -167,7 +167,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :min_distance).to be true
       end
 
-      it 'min_distance pode se repetir em outra modalidade de transporte' do
+      it 'distância mínima pode se repetir em outra modalidade de transporte' do
         # Arrange
         so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                       min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -185,7 +185,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :min_distance).to be false
       end
 
-      it 'fee deve ser único na modalidade de transporte' do
+      it 'taxa deve ser única na modalidade de transporte' do
         # Arrange
         so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                     min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -201,7 +201,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :fee).to be true
       end
 
-      it 'fee pode se repetir em outra modalidade de transporte' do
+      it 'taxa pode se repetir em outra modalidade de transporte' do
         # Arrange
         so_a = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                       min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -221,7 +221,7 @@ RSpec.describe DistanceFee, type: :model do
     end
 
     context 'comparação com a distância da modalidade de transporte' do
-      it 'max_distance não pode ser maior que o max_distance da modalidade' do
+      it 'distância máxima não pode ser maior que a distância máxima da modalidade' do
         # Arrange
         so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                     min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -235,7 +235,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors[:max_distance]).to include('deve ser menor que ou igual a 600')
       end
 
-      it 'max_distance pode ser igual ao max_distance da modalidade' do
+      it 'distância máxima pode ser igual à distância máxima da modalidade' do
         # Arrange
         so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                     min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -249,7 +249,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :max_distance).to be false
       end
 
-      it 'max_distance pode ser menor que o max_distance da modalidade' do
+      it 'distância máxima pode ser menor que a distância máxima da modalidade' do
         # Arrange
         so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                     min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -263,7 +263,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :max_distance).to be false
       end
 
-      it 'min_distance não pode ser menor que o min_distance da modalidade' do
+      it 'distância mínima não pode ser menor que a distância mínima da modalidade' do
         # Arrange
         so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                     min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -277,7 +277,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors[:min_distance]).to include('deve ser maior que ou igual a 50')
       end
 
-      it 'min_distance pode ser igual ao min_distance da modalidade' do
+      it 'distância mínima pode ser igual à distância mínima da modalidade' do
         # Arrange
         so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                     min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)
@@ -291,7 +291,7 @@ RSpec.describe DistanceFee, type: :model do
         expect(distance_fee.errors.include? :min_distance).to be false
       end
 
-      it 'min_distance pode ser maior que o min_distance da modalidade' do
+      it 'distância mínima pode ser maior que a distância mínima da modalidade' do
         # Arrange
         so = ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, 
                                     min_weight: 1_000, max_weight: 50_000, delivery_fee: 5.50)

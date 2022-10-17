@@ -9,7 +9,9 @@ class ShippingOption < ApplicationRecord
   enum :status, { disabled: 10, enabled: 20 }, default: :enabled
   
   validates :delivery_fee, :max_distance, :min_distance, :min_weight, :max_weight, :name, presence: true
-  validates :delivery_fee, :max_distance, :min_distance, :max_weight, :min_weight, numericality: { greater_than: 0 }
+  validates :delivery_fee, :min_distance, :min_weight, numericality: { greater_than: 0 }
+  validates :max_distance, comparison: { greater_than: :min_distance }
+  validates :max_weight, comparison: { greater_than: :min_weight }
   validates :name, uniqueness: true
 
   def generate_quotation_for(order)

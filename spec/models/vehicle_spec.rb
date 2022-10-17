@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Vehicle, type: :model do
   describe '#valid?' do
     context 'presence' do
-      it 'brand é obrigatório' do
+      it 'marca é obrigatória' do
         # Arrange
         vehicle = Vehicle.new(brand: '')
 
@@ -14,7 +14,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :brand).to be true
       end
 
-      it 'car_model é obrigatório' do
+      it 'modelo é obrigatório' do
         # Arrange
         vehicle = Vehicle.new(car_model: '')
 
@@ -25,7 +25,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :car_model).to be true
       end
 
-      it 'license_plate é obrigatório' do
+      it 'placa é obrigatória' do
         # Arrange
         vehicle = Vehicle.new(license_plate: '')
 
@@ -36,7 +36,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :license_plate).to be true
       end
 
-      it 'manufacture_year é obrigatório' do
+      it 'ano de fabricação é obrigatório' do
         # Arrange
         vehicle = Vehicle.new(manufacture_year: '')
 
@@ -47,7 +47,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :manufacture_year).to be true
       end
 
-      it 'max_weight é obrigatório' do
+      it 'carga máxima é obrigatória' do
         # Arrange
         vehicle = Vehicle.new(max_weight: '')
 
@@ -60,7 +60,7 @@ RSpec.describe Vehicle, type: :model do
     end
 
     context 'format' do
-      it 'manufacture_year deve conter somente números' do
+      it 'ano de fabricação deve conter somente números' do
         # Arrange
         vehicle = Vehicle.new(manufacture_year: 'AB12')
 
@@ -73,7 +73,7 @@ RSpec.describe Vehicle, type: :model do
     end
 
     context 'length' do
-      it 'license_plate deve ter 7 dígitos' do
+      it 'placa deve ter 7 dígitos' do
         # Arrange
         vehicle = Vehicle.new(license_plate: 'ABC1234')
 
@@ -84,7 +84,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :license_plate).to be false
       end
 
-      it 'license_plate não deve ter mais que 7 dígitos' do
+      it 'placa não deve ter mais que 7 dígitos' do
         # Arrange
         vehicle = Vehicle.new(license_plate: 'ABC12345')
 
@@ -95,7 +95,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :license_plate).to be true
       end
 
-      it 'license_plate não deve ter menos que 7 dígitos' do
+      it 'placa não deve ter menos que 7 dígitos' do
         # Arrange
         vehicle = Vehicle.new(license_plate: 'ABC123')
 
@@ -106,7 +106,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :license_plate).to be true
       end
 
-      it 'manufacture_year deve ter 4 dígitos' do
+      it 'ano de fabricação deve ter 4 dígitos' do
         # Arrange
         vehicle = Vehicle.new(manufacture_year: '1234')
 
@@ -117,7 +117,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :manufacture_year).to be false
       end
 
-      it 'manufacture_year não deve ter mais que 4 dígitos' do
+      it 'ano de fabricação não deve ter mais que 4 dígitos' do
         # Arrange
         vehicle = Vehicle.new(manufacture_year: '12345')
 
@@ -128,7 +128,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :manufacture_year).to be true
       end
 
-      it 'manufacture_year não deve ter menos que 4 dígitos' do
+      it 'ano de fabricação não deve ter menos que 4 dígitos' do
         # Arrange
         vehicle = Vehicle.new(manufacture_year: '123')
 
@@ -141,7 +141,7 @@ RSpec.describe Vehicle, type: :model do
     end
 
     context 'numericality' do
-      it 'max_weight deve ser maior que 0' do
+      it 'carga máxima deve ser maior que 0' do
         # Arrange
         vehicle = Vehicle.new(max_weight: 1)
 
@@ -152,7 +152,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :max_weight).to be false
       end
 
-      it 'max_weight não deve ser igual a 0' do
+      it 'carga máxima não deve ser igual a 0' do
         # Arrange
         vehicle = Vehicle.new(max_weight: 0)
 
@@ -163,7 +163,7 @@ RSpec.describe Vehicle, type: :model do
         expect(vehicle.errors.include? :max_weight).to be true
       end
 
-      it 'max_weight não deve ser menor que 0' do
+      it 'carga máxima não deve ser menor que 0' do
         # Arrange
         vehicle = Vehicle.new(max_weight: -1)
 
@@ -176,7 +176,7 @@ RSpec.describe Vehicle, type: :model do
     end
 
     context 'uniqueness' do
-      it 'license_plate deve ser única' do
+      it 'placa deve ser única' do
         # Arrange
         so_a = ShippingOption.create!(name: 'Entrega Básica', min_distance: 30 , max_distance: 800, min_weight: 1500, max_weight: 40000, 
                                       delivery_fee: 3.00)

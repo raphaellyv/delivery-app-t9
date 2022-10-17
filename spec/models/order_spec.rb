@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
   describe '#valid?' do
     context 'format' do
-      it 'delivery_postal_code deve conter somente números' do
+      it 'CEP de entrega deve conter somente números' do
         # Arrange
         order = Order.new(delivery_postal_code: '5HBf9CIu')
 
@@ -14,7 +14,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :delivery_postal_code).to be true
       end
 
-      it 'pick_up_postal_code deve conter somente números' do
+      it 'CEP de retirada deve conter somente números' do
         # Arrange
         order = Order.new(pick_up_postal_code: '5HBf9CIu')
 
@@ -25,7 +25,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :pick_up_postal_code).to be true
       end
 
-      it 'recipient_cpf deve conter somente números' do
+      it 'CPF do destinatário deve conter somente números' do
         # Arrange
         order = Order.new(recipient_cpf: '5HBf9CIufu5')
 
@@ -36,7 +36,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :recipient_cpf).to be true
       end
 
-      it 'recipient_email deve ser um e-mail' do
+      it 'e-mail do destinatário deve ser um e-mail' do
         # Arrange
         order = Order.new(recipient_email: 'denise.com')
 
@@ -47,7 +47,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :recipient_email).to be true
       end
 
-      it 'recipient_phone_number deve conter somente números' do
+      it 'telefone do destinatário deve conter somente números' do
         # Arrange
         order = Order.new(recipient_phone_number: '5HBf9CIuf')
 
@@ -60,7 +60,7 @@ RSpec.describe Order, type: :model do
     end
     
     context 'length' do
-      it 'delivery_postal_code deve ter 8 dígitos' do
+      it 'CEP de entrega deve ter 8 dígitos' do
          # Arrange
          order = Order.new(delivery_postal_code: '12345678')
 
@@ -71,7 +71,7 @@ RSpec.describe Order, type: :model do
          expect(order.errors.include? :delivery_postal_code).to be false
       end
 
-      it 'delivery_postal_code não deve ter mais que 8 dígitos' do
+      it 'CEP de entrega não deve ter mais que 8 dígitos' do
         # Arrange
         order = Order.new(delivery_postal_code: '123456789')
 
@@ -82,7 +82,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :delivery_postal_code).to be true
       end
 
-      it 'delivery_postal_code não deve ter menos que 8 dígitos' do
+      it 'CEP de entrega não deve ter menos que 8 dígitos' do
         # Arrange
         order = Order.new(delivery_postal_code: '1234567')
 
@@ -93,7 +93,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :delivery_postal_code).to be true
      end
 
-      it 'pick_up_postal_code deve ter 8 dígitos' do
+      it 'CEP de retirada deve ter 8 dígitos' do
         # Arrange
         order = Order.new(pick_up_postal_code: '12345678')
 
@@ -104,7 +104,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :pick_up_postal_code).to be false
      end
 
-      it 'pick_up_postal_code não deve ter mais que 8 dígitos' do
+      it 'CEP de retirada não deve ter mais que 8 dígitos' do
         # Arrange
         order = Order.new(pick_up_postal_code: '123456789')
 
@@ -115,7 +115,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :pick_up_postal_code).to be true
       end
 
-      it 'pick_up_postal_code não deve ter menos que 8 dígitos' do
+      it 'CEP de retirada não deve ter menos que 8 dígitos' do
         # Arrange
         order = Order.new(pick_up_postal_code: '1234567')
 
@@ -126,7 +126,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :pick_up_postal_code).to be true
       end
 
-      it 'recipient_cpf deve ter 11 dígitos' do
+      it 'CPF do destinatário deve ter 11 dígitos' do
         # Arrange
         order = Order.new(recipient_cpf: '12345678901')
 
@@ -137,7 +137,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :recipient_cpf).to be false
       end
 
-      it 'recipient_cpf não deve ter mais que 11 dígitos' do
+      it 'CPF do destinatário não deve ter mais que 11 dígitos' do
         # Arrange
         order = Order.new(recipient_cpf: '123456789012')
 
@@ -148,7 +148,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :recipient_cpf).to be true
       end
 
-      it 'recipient_cpf não deve ter menos que 11 dígitos' do
+      it 'CPF do destinatário não deve ter menos que 11 dígitos' do
         # Arrange
         order = Order.new(recipient_cpf: '1234567890')
 
@@ -159,7 +159,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :recipient_cpf).to be true
       end
 
-      it 'recipient_phone_number não deve ter mais que 11 dígitos' do
+      it 'telefone do destinatário não deve ter mais que 11 dígitos' do
         # Arrange
         order = Order.new(recipient_phone_number: '123456789012')
 
@@ -170,7 +170,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :recipient_phone_number).to be true
       end
 
-      it 'recipient_phone_number não deve ter menos que 10 dígitos' do
+      it 'telefone do destinatário não deve ter menos que 10 dígitos' do
         # Arrange
         order = Order.new(recipient_phone_number: '123456789')
 
@@ -181,7 +181,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :recipient_phone_number).to be true
       end
 
-      it 'recipient_phone_number pode ter 10 dígitos' do
+      it 'telefone do destinatário pode ter 10 dígitos' do
         # Arrange
         order = Order.new(recipient_phone_number: '1234567890')
 
@@ -192,7 +192,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :recipient_phone_number).to be false
       end
 
-      it 'recipient_phone_number pode ter 11 dígitos' do
+      it 'telefone do destinatário pode ter 11 dígitos' do
         # Arrange
         order = Order.new(recipient_phone_number: '12345678901')
 
@@ -238,7 +238,7 @@ RSpec.describe Order, type: :model do
     end
 
     context 'numericality' do
-      it 'distance deve ser maior que 0' do
+      it 'distância deve ser maior que 0' do
         # Arrange
         order = Order.new(distance: 1)
 
@@ -249,7 +249,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :distance).to be false
       end
 
-      it 'distance não deve ser igual a 0' do
+      it 'distância não deve ser igual a 0' do
         # Arrange
         order = Order.new(distance: 0)
 
@@ -260,7 +260,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :distance).to be true
       end
 
-      it 'distance não deve ser menor que 0' do
+      it 'distância não deve ser menor que 0' do
         # Arrange
         order = Order.new(distance: -1)
 
@@ -271,7 +271,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :distance).to be true
       end
 
-      it 'height deve ser maior que 0' do
+      it 'altura deve ser maior que 0' do
         # Arrange
         order = Order.new(height: 1)
 
@@ -282,7 +282,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :height).to be false
       end
 
-      it 'height não deve ser igual a 0' do
+      it 'altura não deve ser igual a 0' do
         # Arrange
         order = Order.new(height: 0)
 
@@ -293,7 +293,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :height).to be true
       end
 
-      it 'height não deve ser menor que 0' do
+      it 'altura não deve ser menor que 0' do
         # Arrange
         order = Order.new(height: -1)
 
@@ -304,7 +304,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :height).to be true
       end
 
-      it 'length deve ser maior que 0' do
+      it 'comprimento deve ser maior que 0' do
         # Arrange
         order = Order.new(length: 1)
 
@@ -315,7 +315,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :length).to be false
       end
 
-      it 'length não deve ser igual a 0' do
+      it 'comprimento não deve ser igual a 0' do
         # Arrange
         order = Order.new(length: 0)
 
@@ -326,7 +326,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :length).to be true
       end
 
-      it 'length não deve ser menor que 0' do
+      it 'comprimento não deve ser menor que 0' do
         # Arrange
         order = Order.new(length: -1)
 
@@ -337,7 +337,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :length).to be true
       end
 
-      it 'width deve ser maior que 0' do
+      it 'largura deve ser maior que 0' do
         # Arrange
         order = Order.new(width: 1)
 
@@ -348,51 +348,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :width).to be false
       end
 
-      it 'weight deve ser maior que 0' do
-        # Arrange
-        order = Order.new(weight: 1)
-
-        # Act
-        order.valid?
-
-        # Assert
-        expect(order.errors.include? :weight).to be false
-      end
-
-      it 'weight não deve ser igual a 0' do
-        # Arrange
-        order = Order.new(weight: 0)
-
-        # Act
-        order.valid?
-
-        # Assert
-        expect(order.errors.include? :weight).to be true
-      end
-
-      it 'weight não deve ser menor que 0' do
-        # Arrange
-        order = Order.new(weight: -1)
-
-        # Act
-        order.valid?
-
-        # Assert
-        expect(order.errors.include? :weight).to be true
-      end
-
-      it 'width deve ser maior que 0' do
-        # Arrange
-        order = Order.new(width: 1)
-
-        # Act
-        order.valid?
-
-        # Assert
-        expect(order.errors.include? :width).to be false
-      end
-
-      it 'width não deve ser igual a 0' do
+      it 'largura não deve ser igual a 0' do
         # Arrange
         order = Order.new(width: 0)
 
@@ -403,7 +359,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors.include? :width).to be true
       end
       
-      it 'width não deve ser menor que 0' do
+      it 'largura não deve ser menor que 0' do
         # Arrange
         order = Order.new(width: -1)
 
@@ -413,10 +369,43 @@ RSpec.describe Order, type: :model do
         # Assert
         expect(order.errors.include? :width).to be true
       end
+
+      it 'peso deve ser maior que 0' do
+        # Arrange
+        order = Order.new(weight: 1)
+
+        # Act
+        order.valid?
+
+        # Assert
+        expect(order.errors.include? :weight).to be false
+      end
+
+      it 'peso não deve ser igual a 0' do
+        # Arrange
+        order = Order.new(weight: 0)
+
+        # Act
+        order.valid?
+
+        # Assert
+        expect(order.errors.include? :weight).to be true
+      end
+
+      it 'peso não deve ser menor que 0' do
+        # Arrange
+        order = Order.new(weight: -1)
+
+        # Act
+        order.valid?
+
+        # Assert
+        expect(order.errors.include? :weight).to be true
+      end
     end
     
     context 'presence' do
-      it 'delivery_address é obrigatório' do
+      it 'endereço de entrega é obrigatório' do
         # Arrange
         order = Order.new(delivery_address: '')
 
@@ -427,7 +416,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:delivery_address]).to include('não pode ficar em branco')
       end
 
-      it 'delivery_city é obrigatório' do
+      it 'cidade de entrega é obrigatório' do
         # Arrange
         order = Order.new(delivery_city: '')
 
@@ -438,7 +427,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:delivery_city]).to include('não pode ficar em branco')
       end
 
-      it 'delivery_state é obrigatório' do
+      it 'estado de entrega é obrigatório' do
         # Arrange
         order = Order.new(delivery_state: '')
 
@@ -449,7 +438,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:delivery_state]).to include('não pode ficar em branco')
       end
 
-      it 'delivery_postal_code é obrigatório' do
+      it 'CEP de entrega é obrigatório' do
         # Arrange
         order = Order.new(delivery_postal_code: '')
 
@@ -460,7 +449,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:delivery_postal_code]).to include('não pode ficar em branco')
       end
 
-      it 'recipient é obrigatório' do
+      it 'destinatário é obrigatório' do
         # Arrange
         order = Order.new(recipient: '')
 
@@ -471,7 +460,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:recipient]).to include('não pode ficar em branco')
       end
 
-      it 'recipient_cpf é obrigatório' do
+      it 'CPF do destinatário é obrigatório' do
         # Arrange
         order = Order.new(recipient_cpf: '')
 
@@ -482,7 +471,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:recipient_cpf]).to include('não pode ficar em branco')
       end
 
-      it 'recipient_email é obrigatório' do
+      it 'e-mail do destinatário é obrigatório' do
         # Arrange
         order = Order.new(recipient_email: '')
 
@@ -493,7 +482,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:recipient_email]).to include('não pode ficar em branco')
       end
 
-      it 'recipient_phone_number é obrigatório' do
+      it 'telefone do destinatário é obrigatório' do
         # Arrange
         order = Order.new(recipient_phone_number: '')
 
@@ -504,7 +493,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:recipient_phone_number]).to include('não pode ficar em branco')
       end
 
-      it 'pick_up_address é obrigatório' do
+      it 'endereço de retirada é obrigatório' do
         # Arrange
         order = Order.new(pick_up_address: '')
 
@@ -515,7 +504,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:pick_up_address]).to include('não pode ficar em branco')
       end
 
-      it 'pick_up_city é obrigatório' do
+      it 'cidade de retirada é obrigatório' do
         # Arrange
         order = Order.new(pick_up_city: '')
 
@@ -526,7 +515,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:pick_up_city]).to include('não pode ficar em branco')
       end
 
-      it 'pick_up_state é obrigatório' do
+      it 'estado de retirada é obrigatório' do
         # Arrange
         order = Order.new(pick_up_state: '')
 
@@ -537,7 +526,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:pick_up_state]).to include('não pode ficar em branco')
       end
 
-      it 'pick_up_postal_code é obrigatório' do
+      it 'CEP de retirada é obrigatório' do
         # Arrange
         order = Order.new(pick_up_postal_code: '')
 
@@ -548,7 +537,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:pick_up_postal_code]).to include('não pode ficar em branco')
       end
 
-      it 'sku é obrigatório' do
+      it 'SKU é obrigatório' do
         # Arrange
         order = Order.new(sku: '')
 
@@ -559,7 +548,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:sku]).to include('não pode ficar em branco')
       end
 
-      it 'height é obrigatório' do
+      it 'altura é obrigatório' do
         # Arrange
         order = Order.new(height: '')
 
@@ -570,7 +559,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:height]).to include('não pode ficar em branco')
       end
 
-      it 'width é obrigatório' do
+      it 'largura é obrigatório' do
         # Arrange
         order = Order.new(width: '')
 
@@ -581,7 +570,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:width]).to include('não pode ficar em branco')
       end
 
-      it 'length é obrigatório' do
+      it 'comprimento é obrigatório' do
         # Arrange
         order = Order.new(length: '')
 
@@ -592,7 +581,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:length]).to include('não pode ficar em branco')
       end
 
-      it 'weight é obrigatório' do
+      it 'peso é obrigatório' do
         # Arrange
         order = Order.new(weight: '')
 
@@ -603,7 +592,7 @@ RSpec.describe Order, type: :model do
         expect(order.errors[:weight]).to include('não pode ficar em branco')
       end
 
-      it 'distance é obrigatório' do
+      it 'distância é obrigatório' do
         # Arrange
         order = Order.new(distance: '')
 

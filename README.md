@@ -1,15 +1,11 @@
 # Sistema de Frete
 
 ## Tabela de Conteúdos
-  * [Status do projeto](#status-do-projeto)
   * [Descrição do projeto](#descrição-do-projeto)
   * [Funcionalidades](#funcionalidades)
   * [Como rodar a aplicação](#como-rodar-a-aplicação)
   * [Como rodar os testes](#como-rodar-os-testes)
   * [Informações adicionais](#informações-adicionais)
-
-## Status do projeto
-<p align = "justify"> Em desenvolvimento :warning: </p>
 
 ## Descrição do projeto
 

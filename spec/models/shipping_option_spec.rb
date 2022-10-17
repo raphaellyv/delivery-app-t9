@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ShippingOption, type: :model do
   describe '#valid?' do
     context 'presence' do
-      it 'delivery_fee é obrigatório' do
+      it 'taxa fixa de entrega é obrigatório' do
         # Arrange
         so = ShippingOption.new(delivery_fee: '')
 
@@ -14,7 +14,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :delivery_fee).to be true
       end
 
-      it 'max_distance é obrigatório' do
+      it 'distância máxima é obrigatório' do
         # Arrange
         so = ShippingOption.new(max_distance: '')
 
@@ -25,7 +25,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :max_distance).to be true
       end
 
-      it 'max_weigh é obrigatório' do
+      it 'peso máximo é obrigatório' do
         # Arrange
         so = ShippingOption.new(max_weight: '')
 
@@ -36,7 +36,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :max_weight).to be true
       end
 
-      it 'min_distance é obrigatório' do
+      it 'distância mínima é obrigatória' do
         # Arrange
         so = ShippingOption.new(min_distance: '')
 
@@ -47,7 +47,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :min_distance).to be true
       end
 
-      it 'min_weight é obrigatório' do
+      it 'peso mínimo é obrigatório' do
         # Arrange
         so = ShippingOption.new(min_weight: '')
 
@@ -58,7 +58,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :min_weight).to be true
       end
 
-      it 'name é obrigatório' do
+      it 'nome é obrigatório' do
         # Arrange
         so = ShippingOption.new(name: '')
 
@@ -71,7 +71,7 @@ RSpec.describe ShippingOption, type: :model do
     end
 
     context 'uniqueness' do
-      it 'name deve ser único' do
+      it 'nome deve ser único' do
         # Arrange
         ShippingOption.create!(name: 'Entrega Expressa', min_distance: 50 , max_distance: 600, min_weight: 1000, max_weight: 50000, 
                                delivery_fee: 5.50)
@@ -87,7 +87,7 @@ RSpec.describe ShippingOption, type: :model do
     end
 
     context 'numericality' do
-      it 'delivery_fee deve ser maior que 0' do
+      it 'taxa fixa de entrega deve ser maior que 0' do
         # Arrange
         so = ShippingOption.new(delivery_fee: 1)
 
@@ -98,7 +98,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :delivery_fee).to be false
       end
 
-      it 'delivery_fee não deve ser igual a 0' do
+      it 'taxa fixa de entrega não deve ser igual a 0' do
         # Arrange
         so = ShippingOption.new(delivery_fee: 0)
 
@@ -109,7 +109,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :delivery_fee).to be true
       end
 
-      it 'delivery_fee não deve ser menor que 0' do
+      it 'taxa fixa de entrega não deve ser menor que 0' do
         # Arrange
         so = ShippingOption.new(delivery_fee: -1)
 
@@ -120,40 +120,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :delivery_fee).to be true
       end
 
-      it 'max_distance deve ser maior que 0' do
-        # Arrange
-        so = ShippingOption.new(max_distance: 1)
-
-        # Act
-        so.valid?
-
-        # Assert
-        expect(so.errors.include? :max_distance).to be false
-      end
-
-      it 'max_distance não deve ser igual a 0' do
-        # Arrange
-        so = ShippingOption.new(max_distance: 0)
-
-        # Act
-        so.valid?
-
-        # Assert
-        expect(so.errors.include? :max_distance).to be true
-      end
-
-      it 'max_distance não deve ser menor que 0' do
-        # Arrange
-        so = ShippingOption.new(max_distance: -1)
-
-        # Act
-        so.valid?
-
-        # Assert
-        expect(so.errors.include? :max_distance).to be true
-      end
-
-      it 'min_distance deve ser maior que 0' do
+      it 'distância mínima pode ser maior que 0' do
         # Arrange
         so = ShippingOption.new(min_distance: 1)
 
@@ -164,7 +131,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :min_distance).to be false
       end
 
-      it 'min_distance não deve ser igual a 0' do
+      it 'distância mínima não deve ser igual a 0' do
         # Arrange
         so = ShippingOption.new(min_distance: 0)
 
@@ -175,7 +142,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :min_distance).to be true
       end
 
-      it 'min_distance não deve ser menor que 0' do
+      it 'distância mínima não deve ser menor que 0' do
         # Arrange
         so = ShippingOption.new(min_distance: -1)
 
@@ -186,40 +153,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :min_distance).to be true
       end
 
-      it 'max_weight deve ser maior que 0' do
-        # Arrange
-        so = ShippingOption.new(max_weight: 1)
-
-        # Act
-        so.valid?
-
-        # Assert
-        expect(so.errors.include? :max_weight).to be false
-      end
-
-      it 'max_weight não deve ser igual a 0' do
-        # Arrange
-        so = ShippingOption.new(max_weight: 0)
-
-        # Act
-        so.valid?
-
-        # Assert
-        expect(so.errors.include? :max_weight).to be true
-      end
-
-      it 'max_weight não deve ser menor que 0' do
-        # Arrange
-        so = ShippingOption.new(max_weight: -1)
-
-        # Act
-        so.valid?
-
-        # Assert
-        expect(so.errors.include? :max_weight).to be true
-      end
-
-      it 'min_weight deve ser maior que 0' do
+      it 'peso mínimo deve ser maior que 0' do
         # Arrange
         so = ShippingOption.new(min_weight: 1)
 
@@ -230,7 +164,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :min_weight).to be false
       end
 
-      it 'min_weight não deve ser igual a 0' do
+      it 'peso mínimo não deve ser igual a 0' do
         # Arrange
         so = ShippingOption.new(min_weight: 0)
 
@@ -241,7 +175,7 @@ RSpec.describe ShippingOption, type: :model do
         expect(so.errors.include? :min_weight).to be true
       end
 
-      it 'min_weight não deve ser menor que 0' do
+      it 'peso mínimo não deve ser menor que 0' do
         # Arrange
         so = ShippingOption.new(min_weight: -1)
 
@@ -250,6 +184,74 @@ RSpec.describe ShippingOption, type: :model do
 
         # Assert
         expect(so.errors.include? :min_weight).to be true
+      end
+    end
+
+    context 'comparison' do
+      it 'distância máxima deve ser maior que a distância mínima' do
+        # Arrange
+        so = ShippingOption.new(min_distance: 1, max_distance: 2)
+
+        # Act
+        so.valid?
+
+        # Assert
+        expect(so.errors.include? :max_distance).to be false
+      end
+
+      it 'distância máxima não deve ser igual à distância mínima' do
+        # Arrange
+        so = ShippingOption.new(min_distance: 1, max_distance: 1)
+
+        # Act
+        so.valid?
+
+        # Assert
+        expect(so.errors.include? :max_distance).to be true
+      end
+
+      it 'distância máxima não deve ser menor que a distância mínima' do
+        # Arrange
+        so = ShippingOption.new(min_distance: 2, max_distance: 1)
+
+        # Act
+        so.valid?
+
+        # Assert
+        expect(so.errors.include? :max_distance).to be true
+      end
+
+      it 'peso máximo deve ser maior que o peso mínimo' do
+        # Arrange
+        so = ShippingOption.new(min_weight: 1, max_weight: 2)
+
+        # Act
+        so.valid?
+
+        # Assert
+        expect(so.errors.include? :max_weight).to be false
+      end
+
+      it 'peso máximo não deve ser igual ao peso mínimo' do
+        # Arrange
+        so = ShippingOption.new(min_weight: 1, max_weight: 1)
+
+        # Act
+        so.valid?
+
+        # Assert
+        expect(so.errors.include? :max_weight).to be true
+      end
+
+      it 'peso máximo não deve ser menor que o peso mínimo' do
+        # Arrange
+        so = ShippingOption.new(min_weight: 2, max_weight: 1)
+
+        # Act
+        so.valid?
+
+        # Assert
+        expect(so.errors.include? :max_weight).to be true
       end
     end
   end
