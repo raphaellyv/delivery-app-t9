@@ -1,28 +1,24 @@
 <h1 class="my-3"><%= Price.model_name.human count: 2 %></h1>
 
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-        <h4><%= t(:prices_title) %></h4>
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <%= render 'prices_table' %>
-      </div>
-    </div>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link link-dark active" id="prices-tab" data-bs-toggle="tab" data-bs-target="#prices-tab-pane" type="button" 
+      role="tab" aria-controls="prices-tab-pane" aria-selected="true">
+      <%= t(:prices_title) %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link link-dark" id="distance_fees-tab" data-bs-toggle="tab" data-bs-target="#distance_fees-tab-pane" type="button" 
+      role="tab" aria-controls="distance_fees-tab-pane" aria-selected="false">
+      <%= DistanceFee.model_name.human count: 2 %>
+    </button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="prices-tab-pane" role="tabpanel" aria-labelledby="prices-tab" tabindex="0">
+    <%= render 'prices_table' %>  
   </div>
-  <div class="accordion-item">
-    <h4 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        <h4><%= DistanceFee.model_name.human count: 2 %></h4>
-      </button>
-    </h4>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <%= render 'distance_fees/distance_fees_table' %>
-      </div>
-    </div>
+  <div class="tab-pane fade" id="distance_fees-tab-pane" role="tabpanel" aria-labelledby="distance_fees-tab" tabindex="0">
+    <%= render 'distance_fees/distance_fees_table' %>
   </div>
 </div>
