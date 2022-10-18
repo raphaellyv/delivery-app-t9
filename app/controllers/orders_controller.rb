@@ -3,7 +3,10 @@ class OrdersController < ApplicationController
   before_action :check_admin, only: [:new, :create]
   
   def index
-    @orders = Order.all.order(id: :desc)
+    @all_orders = Order.all.order(id: :desc)
+    @pending_orders = Order.pending.order(id: :desc)
+    @orders_delivered_on_time = Order.delivered_on_time.order(id: :desc)
+    @orders_delivered_late = Order.delivered_late.order(id: :desc)
   end
 
   def new

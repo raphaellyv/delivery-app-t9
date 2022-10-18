@@ -50,7 +50,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       login_as user
       visit root_path
       click_on 'Ordens de Serviço'
-      click_on order.tracking_code
+      find('div#all-tab-pane').click_on order.tracking_code
   
       # Assert
       expect(page).to have_content "Orçamento"
@@ -90,7 +90,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       login_as user
       visit root_path
       click_on 'Ordens de Serviço'
-      click_on order.tracking_code
+      find('div#all-tab-pane').click_on order.tracking_code
    
       # Assert
       expect(page).to have_content "Orçamento"
@@ -125,7 +125,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       login_as user
       visit root_path
       click_on 'Ordens de Serviço'
-      click_on order.tracking_code
+      find('div#all-tab-pane').click_on order.tracking_code
    
       # Assert
       expect(page).to have_content "Orçamento"
@@ -152,7 +152,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       login_as user
       visit root_path
       click_on 'Ordens de Serviço'
-      click_on order.tracking_code
+      find('div#all-tab-pane').click_on order.tracking_code
    
       # Assert
       expect(page).to have_content "Orçamento"
@@ -241,7 +241,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       login_as admin
       visit root_path
       click_on 'Ordens de Serviço'
-      click_on order.tracking_code
+      find('div#all-tab-pane').click_on order.tracking_code
 
       # Assert
       expect(page).to have_content "Orçamento"
@@ -281,7 +281,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       login_as admin
       visit root_path
       click_on 'Ordens de Serviço'
-      click_on order.tracking_code
+      find('div#all-tab-pane').click_on order.tracking_code
  
       # Assert
       expect(page).to have_content "Orçamento"
@@ -316,7 +316,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       login_as admin
       visit root_path
       click_on 'Ordens de Serviço'
-      click_on order.tracking_code
+      find('div#all-tab-pane').click_on order.tracking_code
  
       # Assert
       expect(page).to have_content "Orçamento"
@@ -351,7 +351,7 @@ describe 'Usuário vê orçamentos de ordens de serviço pendente' do
       login_as admin
       visit root_path
       click_on 'Ordens de Serviço'
-      click_on order.tracking_code
+      find('div#all-tab-pane').click_on order.tracking_code
 
       # Assert
       expect(page).to have_content "Orçamento"

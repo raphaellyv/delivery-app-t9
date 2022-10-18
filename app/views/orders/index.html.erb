@@ -2,42 +2,75 @@
 
 <% if current_user.admin? %>
   <div class="my-3">
-    <%= link_to "#{ t(:register) } #{ Order.model_name.human }", new_order_path, class: "btn btn-outline-dark " %>
+    <%= link_to "#{ t(:register) } #{ Order.model_name.human }", new_order_path, class: "btn btn-dark " %>
   </div>
 <% end %>
 
-<% if @orders.any? %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th><%= Order.human_attribute_name(:tracking_code) %></th>
-        <th><%= t(:origin) %></th>
-        <th><%= t(:destination) %></th>
-        <th><%= Order.human_attribute_name(:distance) %></th>
-        <th><%= Order.human_attribute_name(:status) %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td><%= link_to order.tracking_code, order, class: "link-dark" %></td>
-          <td><%= order.origin_city_and_state %></td>
-          <td><%= order.destination_city_and_state %></td>
-          <td><%= number_to_human(order.distance, delimiter: ' ', units: { unit: 'km' }) %></td>
-
-          <% if order.status == 'pending' %>
-            <td class="fw-semibold text-danger"><%= Order.human_attribute_name("status.#{order.status}") %></td>
-          <% elsif order.status == 'en_route' %>
-            <td class="fw-semibold text-primary"><%= Order.human_attribute_name("status.#{order.status}") %></td>
-          <% else %>
-            <td class="fw-semibold text-muted"><%= Order.human_attribute_name("status.#{order.status}") %></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <div class="alert alert-secondary text-center">
-    <%= t(:no_order_registered) %>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link link-dark active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" 
+      role="tab" aria-controls="all-tab-pane" aria-selected="true">
+      <%= t(:all_orders) %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link link-dark" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending-tab-pane" type="button" 
+      role="tab" aria-controls="pending-tab-pane" aria-selected="false">
+      <%= t(:pending_orders) %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link link-dark" id="delivered_on_time-tab" data-bs-toggle="tab" data-bs-target="#delivered_on_time-tab-pane" 
+      type="button" role="tab" aria-controls="delivered_on_time-tab-pane" aria-selected="false">
+      <%= t(:orders_delivered_on_time) %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link link-dark" id="delivered_late-tab" data-bs-toggle="tab" data-bs-target="#delivered_late-tab-pane" 
+      type="button" role="tab" aria-controls="delivered_late-tab-pane" aria-selected="false">
+      <%= t(:orders_delivered_late) %>
+    </button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
+    <% if @all_orders.any? %>
+      <% @orders =  @all_orders %>
+      <%= render 'orders_table' %>
+    <% else %>
+      <div class="alert alert-secondary text-center">
+        <%= t(:no_order_registered) %>
+      </div>
+    <% end %>    
   </div>
-<% end %> 
+  <div class="tab-pane fade" id="pending-tab-pane" role="tabpanel" aria-labelledby="pending-tab" tabindex="0">
+    <% if @pending_orders.any? %>
+      <% @orders =  @pending_orders %>
+      <%= render 'orders_table' %>
+    <% else %>
+      <div class="alert alert-secondary text-center">
+        <%= t(:no_pending_orders) %>
+      </div>
+    <% end %> 
+  </div>
+  <div class="tab-pane fade" id="delivered_on_time-tab-pane" role="tabpanel" aria-labelledby="delivered_on_time-tab" tabindex="0">
+    <% if @orders_delivered_on_time.any? %>
+      <% @orders =  @orders_delivered_on_time %>
+      <%= render 'orders_table' %>
+    <% else %>
+      <div class="alert alert-secondary text-center">
+        <%= t(:no_orders_delivered_on_time) %>
+      </div>
+    <% end %> 
+  </div>
+  <div class="tab-pane fade" id="delivered_late-tab-pane" role="tabpanel" aria-labelledby="delivered_late-tab" tabindex="0">
+    <% if @orders_delivered_late.any? %>
+      <% @orders =  @orders_delivered_late %>
+      <%= render 'orders_table' %>
+    <% else %>
+      <div class="alert alert-secondary text-center">
+        <%= t(:no_orders_delivered_late) %>
+      </div>
+    <% end %> 
+  </div>
+</div>

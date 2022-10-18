@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= Order.human_attribute_name(:tracking_code) %></th>
+      <th><%= t(:origin) %></th>
+      <th><%= t(:destination) %></th>
+      <th><%= Order.human_attribute_name(:distance) %></th>
+      <th><%= Order.human_attribute_name(:status) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.tracking_code, order, class: "link-dark" %></td>
+        <td><%= order.origin_city_and_state %></td>
+        <td><%= order.destination_city_and_state %></td>
+        <td><%= number_to_human(order.distance, delimiter: ' ', units: { unit: 'km' }) %></td>
+
+        <% if order.status == 'pending' %>
+          <td class="fw-semibold text-danger"><%= Order.human_attribute_name("status.#{order.status}") %></td>
+        <% elsif order.status == 'en_route' %>
+          <td class="fw-semibold text-primary"><%= Order.human_attribute_name("status.#{order.status}") %></td>
+        <% else %>
+          <td class="fw-semibold text-muted"><%= Order.human_attribute_name("status.#{order.status}") %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>    

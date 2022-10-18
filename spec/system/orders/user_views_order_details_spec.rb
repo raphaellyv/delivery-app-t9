@@ -16,7 +16,7 @@ describe 'Usuário vê detalhes da ordem de serviço' do
     login_as admin
     visit root_path
     click_on 'Ordens de Serviço'
-    click_on order.tracking_code
+    find('div#all-tab-pane').click_on order.tracking_code
 
     # Assert
     expect(page).to have_content "Ordem de Serviço #{order.tracking_code}"
@@ -58,7 +58,7 @@ describe 'Usuário vê detalhes da ordem de serviço' do
     login_as user
     visit root_path
     click_on 'Ordens de Serviço'
-    click_on order.tracking_code
+    find('div#all-tab-pane').click_on order.tracking_code
 
     # Assert
     expect(page).to have_content "Ordem de Serviço #{order.tracking_code}"
